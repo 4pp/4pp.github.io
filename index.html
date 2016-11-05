@@ -107,7 +107,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/tag1/" style="font-size: 10px;">tag1</a>
 					</div>
 				</section>
 				
@@ -173,11 +173,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-test-page" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-test2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/05/test-page/" class="article-date">
-  	<time datetime="2016-11-05T13:50:02.000Z" itemprop="datePublished">2016-11-05</time>
+      <a href="/2016/11/06/test2/" class="article-date">
+  	<time datetime="2016-11-05T16:09:00.000Z" itemprop="datePublished">2016-11-06</time>
 </a>
     </div>
   
@@ -190,7 +190,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/05/test-page/">test page</a>
+      <a class="article-title" href="/2016/11/06/test2/">Android坑</a>
     </h1>
   
 
@@ -199,13 +199,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>问题：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。</p>
+<p>因为：titleBar.getBackground().setAlpha(0);<br>在布局中多个控件同时使用一个资源的时候，这些控件会共用一个状态，例如<br>ColorState，如果你改变了一个控件的状态，其他的控件都会接收到相同的通知。这<br>时我们可以使用mutate()方法使该控件状态不定，这样不定状态的控件就不会共享自<br>己的状态了。</p>
+<p>解决：titleBar.getBackground().mutate(0).setAlpha(0);</p>
+<p>参考：<a href="http://blog.csdn.net/zhouhui520w/article/details/52415038" target="_blank" rel="external">http://blog.csdn.net/zhouhui520w/article/details/52415038</a></p>
+
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/">tag1</a></li></ul>
+	</div>
+
       
 
       
