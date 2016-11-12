@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>JAVA枚举常见用法 | 4pp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JDK1.5引入了新的类型——枚举。在 Java 中它虽然算个“小”功能，却给我的开发带来了“大”方便。
+用法一：常量在JDK1.5 之前，我们定义常量都是： publicstaticfianl…. 。现在好了，有了枚举，可以把相关的常量分组到一个枚举类型里，而且枚举提供了比常量更多的方法。
+public enum Color {  
+  RED, GREEN, BLANK, YELLOW  
+}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA枚举常见用法">
+<meta property="og:url" content="http://4pp.me/2016/11/07/JAVA枚举常见用法/index.html">
+<meta property="og:site_name" content="4pp">
+<meta property="og:description" content="JDK1.5引入了新的类型——枚举。在 Java 中它虽然算个“小”功能，却给我的开发带来了“大”方便。
+用法一：常量在JDK1.5 之前，我们定义常量都是： publicstaticfianl…. 。现在好了，有了枚举，可以把相关的常量分组到一个枚举类型里，而且枚举提供了比常量更多的方法。
+public enum Color {  
+  RED, GREEN, BLANK, YELLOW  
+}">
+<meta property="og:updated_time" content="2016-11-07T09:49:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA枚举常见用法">
+<meta name="twitter:description" content="JDK1.5引入了新的类型——枚举。在 Java 中它虽然算个“小”功能，却给我的开发带来了“大”方便。
+用法一：常量在JDK1.5 之前，我们定义常量都是： publicstaticfianl…. 。现在好了，有了枚举，可以把相关的常量分组到一个枚举类型里，而且枚举提供了比常量更多的方法。
+public enum Color {  
+  RED, GREEN, BLANK, YELLOW  
+}">
+  
+    <link rel="alternative" href="/atom.xml" title="4pp" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/images/avatar.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">ShiPing</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/react-native/" style="font-size: 10px;">react native</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">一个平凡无知的奔跑的“猿”，目标是在极短的时间内完成进化……</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">ShiPing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/images/avatar.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">ShiPing</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-JAVA枚举常见用法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/07/JAVA枚举常见用法/" class="article-date">
+  	<time datetime="2016-11-07T09:29:26.000Z" itemprop="datePublished">2016-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JAVA枚举常见用法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JDK1.5引入了新的类型——枚举。在 Java 中它虽然算个“小”功能，却给我的开发带来了“大”方便。</p>
+<h1 id="用法一：常量"><a href="#用法一：常量" class="headerlink" title="用法一：常量"></a>用法一：常量</h1><p>在JDK1.5 之前，我们定义常量都是： publicstaticfianl…. 。现在好了，有了枚举，可以把相关的常量分组到一个枚举类型里，而且枚举提供了比常量更多的方法。</p>
+<pre><code class="bash">public enum Color {  
+  RED, GREEN, BLANK, YELLOW  
+}
+</code></pre>
+<h1 id="用法二：switch"><a href="#用法二：switch" class="headerlink" title="用法二：switch"></a>用法二：switch</h1><p>JDK1.6之前的switch语句只支持int,char,enum类型，使用枚举，能让我们的代码可读性更强。</p>
+<pre><code class="bash">enum Signal {  
+    GREEN, YELLOW, RED  
+}  
+public class TrafficLight {  
+    Signal color = Signal.RED;  
+    public void <span class="function"><span class="title">change</span></span>() {  
+        switch (color) {  
+        <span class="keyword">case</span> RED:  
+            color = Signal.GREEN;  
+            <span class="built_in">break</span>;  
+        <span class="keyword">case</span> YELLOW:  
+            color = Signal.RED;  
+            <span class="built_in">break</span>;  
+        <span class="keyword">case</span> GREEN:  
+            color = Signal.YELLOW;  
+            <span class="built_in">break</span>;  
+        }  
+    }  
+}
+</code></pre>
+<h1 id="用法三：向枚举中添加新方法"><a href="#用法三：向枚举中添加新方法" class="headerlink" title="用法三：向枚举中添加新方法"></a>用法三：向枚举中添加新方法</h1><p>如果打算自定义自己的方法，那么必须在enum实例序列的最后添加一个分号。而且 Java 要求必须先定义 enum 实例。</p>
+<pre><code class="bash">public enum Color {  
+    RED(<span class="string">"红色"</span>, 1), GREEN(<span class="string">"绿色"</span>, 2), BLANK(<span class="string">"白色"</span>, 3), YELLO(<span class="string">"黄色"</span>, 4);  
+    // 成员变量  
+    private String name;  
+    private int index;  
+    // 构造方法  
+    private Color(String name, int index) {  
+        this.name = name;  
+        this.index = index;  
+    }  
+    // 普通方法  
+    public static String getName(int index) {  
+        <span class="keyword">for</span> (Color c : Color.values()) {  
+            <span class="keyword">if</span> (c.getIndex() == index) {  
+                <span class="built_in">return</span> c.name;  
+            }  
+        }  
+        <span class="built_in">return</span> null;  
+    }  
+    // get <span class="built_in">set</span> 方法  
+    public String <span class="function"><span class="title">getName</span></span>() {  
+        <span class="built_in">return</span> name;  
+    }  
+    public void <span class="built_in">set</span>Name(String name) {  
+        this.name = name;  
+    }  
+    public int <span class="function"><span class="title">getIndex</span></span>() {  
+        <span class="built_in">return</span> index;  
+    }  
+    public void <span class="built_in">set</span>Index(int index) {  
+        this.index = index;  
+    }  
+}
+</code></pre>
+<h1 id="用法四：覆盖枚举的方法"><a href="#用法四：覆盖枚举的方法" class="headerlink" title="用法四：覆盖枚举的方法"></a>用法四：覆盖枚举的方法</h1><p>下面给出一个toString()方法覆盖的例子。</p>
+<pre><code class="bash">public enum Color {  
+    RED(<span class="string">"红色"</span>, 1), GREEN(<span class="string">"绿色"</span>, 2), BLANK(<span class="string">"白色"</span>, 3), YELLO(<span class="string">"黄色"</span>, 4);  
+    // 成员变量  
+    private String name;  
+    private int index;  
+    // 构造方法  
+    private Color(String name, int index) {  
+        this.name = name;  
+        this.index = index;  
+    }  
+    //覆盖方法  
+    @Override  
+    public String <span class="function"><span class="title">toString</span></span>() {  
+        <span class="built_in">return</span> this.index+<span class="string">"_"</span>+this.name;  
+    }  
+}
+</code></pre>
+<h1 id="用法五：实现接口"><a href="#用法五：实现接口" class="headerlink" title="用法五：实现接口"></a>用法五：实现接口</h1><p>如果打算自定义自己的方法，那么必须在enum实例序列的最后添加一个分号。而且 Java 要求必须先定义 enum 实例。 </p>
+<pre><code class="bash">public interface Behaviour {  
+    void <span class="built_in">print</span>();  
+    String getInfo();  
+}  
+public enum Color implements Behaviour{  
+    RED(<span class="string">"红色"</span>, 1), GREEN(<span class="string">"绿色"</span>, 2), BLANK(<span class="string">"白色"</span>, 3), YELLO(<span class="string">"黄色"</span>, 4);  
+    // 成员变量  
+    private String name;  
+    private int index;  
+    // 构造方法  
+    private Color(String name, int index) {  
+        this.name = name;  
+        this.index = index;  
+    }  
+//接口方法  
+    @Override  
+    public String <span class="function"><span class="title">getInfo</span></span>() {  
+        <span class="built_in">return</span> this.name;  
+    }  
+    //接口方法  
+    @Override  
+    public void <span class="function"><span class="title">print</span></span>() {  
+        System.out.println(this.index+<span class="string">":"</span>+this.name);  
+    }  
+}
+</code></pre>
+<h1 id="用法六：使用接口组织枚举"><a href="#用法六：使用接口组织枚举" class="headerlink" title="用法六：使用接口组织枚举"></a>用法六：使用接口组织枚举</h1><p>如果打算自定义自己的方法，那么必须在enum实例序列的最后添加一个分号。而且 Java 要求必须先定义 enum 实例。 </p>
+<pre><code class="bash">public interface Food {  
+    enum Coffee implements Food{  
+        BLACK_COFFEE,DECAF_COFFEE,LATTE,CAPPUCCINO  
+    }  
+    enum Dessert implements Food{  
+        FRUIT, CAKE, GELATO  
+    }  
+}
+</code></pre>
+<h1 id="用法七：关于枚举集合的使用"><a href="#用法七：关于枚举集合的使用" class="headerlink" title="用法七：关于枚举集合的使用"></a>用法七：关于枚举集合的使用</h1><p>java.util.EnumSet和java.util.EnumMap是两个枚举集合。EnumSet保证集合中的元素不重复；EnumMap中的 key是enum类型，而value则可以是任意类型。关于这个两个集合的使用就不在这里赘述，可以参考JDK文档。<br>关于枚举的实现细节和原理请参考：<br>参考资料：《ThinkingInJava》第四版</p>
+<p>参考：<a href="http://www.iteye.com/topic/1116193" target="_blank" rel="external">http://www.iteye.com/topic/1116193</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/08/Android5-0坑/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android5.0坑
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/06/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="JAVA枚举常见用法" data-title="JAVA枚举常见用法" data-url="http://4pp.me/2016/11/07/JAVA枚举常见用法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 ShiPing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

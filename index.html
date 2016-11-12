@@ -107,7 +107,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/tag1/" style="font-size: 10px;">tag1</a>
+						<a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/react-native/" style="font-size: 10px;">react native</a>
 					</div>
 				</section>
 				
@@ -173,11 +173,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-test2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-React-Native笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/06/test2/" class="article-date">
-  	<time datetime="2016-11-05T16:09:00.000Z" itemprop="datePublished">2016-11-06</time>
+      <a href="/2016/11/12/React-Native笔记/" class="article-date">
+  	<time datetime="2016-11-12T14:03:29.000Z" itemprop="datePublished">2016-11-12</time>
 </a>
     </div>
   
@@ -190,7 +190,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/06/test2/">Android坑</a>
+      <a class="article-title" href="/2016/11/12/React-Native笔记/">React Native笔记</a>
     </h1>
   
 
@@ -199,10 +199,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>问题：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。</p>
-<p>因为：titleBar.getBackground().setAlpha(0);<br>在布局中多个控件同时使用一个资源的时候，这些控件会共用一个状态，例如<br>ColorState，如果你改变了一个控件的状态，其他的控件都会接收到相同的通知。这<br>时我们可以使用mutate()方法使该控件状态不定，这样不定状态的控件就不会共享自<br>己的状态了。</p>
-<p>解决：titleBar.getBackground().mutate(0).setAlpha(0);</p>
-<p>参考：<a href="http://blog.csdn.net/zhouhui520w/article/details/52415038" target="_blank" rel="external">http://blog.csdn.net/zhouhui520w/article/details/52415038</a></p>
+        <p>网络请求的项目记得开启native项目的网络访问权限<br>ios端<br>Xcode 7.0 bata网络访问失败 ,输出错误信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.</span><br></pre></td></tr></table></figure></p>
+<p>iOS9引入了新特性App Transport Security (ATS)。<br>新特性要求App内访问的网络必须使用HTTPS协议。打开 AndroidManifest.xml文件<br>1.在Info.plist中添加NSAppTransportSecurity类型Dictionary。<br>2.在NSAppTransportSecurity下添加NSAllowsArbitraryLoads类型Boolean,值设为YES</p>
+<p>android端<br>1.打开 AndroidManifest.xml文件<br>2.在application节点之前增加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=”android.permission.INTERNET”&gt;&lt;/uses-permission&gt;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -211,7 +210,327 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag1/">tag1</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react native</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Mac常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/09/Mac常用命令/" class="article-date">
+  	<time datetime="2016-11-09T04:27:46.000Z" itemprop="datePublished">2016-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/09/Mac常用命令/">Mac常用命令</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sips应用范例</p>
+<p>特别提前说明一点，下面的sips命令处理图片会覆盖原图，所以建议提前做好图片的备份工作。如果不想覆盖原图也可以在每个命令中添加-o参数，可以参考倒数第二个范例。</p>
+<p>裁剪时固定图片宽度，高度自适应</p>
+<pre><code class="bash">sips -Z 320 iamge_file_name
+</code></pre>
+<p>裁剪时指定图片宽与高</p>
+<p>sips -z 400 300 iamge_file_name<br>裁剪图片为400x300大小<br>需要注意的是这里的参数是小写的z，并且图片缩放方式不是锁定图片比例的，即如果图片本身是16:9，则会导致图片被挤压。</p>
+<p>旋转图片</p>
+<p>sips -r 90 image_file_name<br>上面的命令将图片顺时针旋转90度，相信机智的你已经想到逆时针90度应该是-90了。没错，顺时针用正数表示，逆时针可以用负数表示。你可以进行任意角度和方向的旋转。</p>
+<p>翻转图片</p>
+<p>sips -f horizontal image_file_name<br>上面命令可以对图片进行水平翻转，-f支持水平和垂直两种翻转，水平（horizontal），垂直（vertical）。</p>
+<p>修改图片格式</p>
+<p> sips -s format jpeg input.png -o output.jpg<br>使用-s参数可以修改图片格式为指定值，sips支持jpeg | tiff | png | gif | jp2 | pict | bmp | qtif | psd | sgi | tga共11种格式。并且-s除了能修改文件格式外，还能修改图片的其它meta数据，具体可以通过man sips查看。</p>
+<p>获取图片meta信息</p>
+<p>sips -g pixelWidth -g pixelHeight image_file_name<br>上面命令可以获取图片的长宽高信息，与-s参数一样，-g也支持更多的meta值，可以参见man sips的信息，这里就不做赘述了。</p>
+<p>OK，上面的几种应用场景应该是我们最常见的，掌握它们应对日常的简单需求是没有问题了，另外通过命令行你可以组合出简单的脚本，轻轻松松的进行批处理。当然sips还有其它更高级的功能你可以通过man sips指令来查看它们。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android5-0坑" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/08/Android5-0坑/" class="article-date">
+  	<time datetime="2016-11-08T10:56:47.000Z" itemprop="datePublished">2016-11-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/08/Android5-0坑/">Android5.0坑</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题1：Android-5-0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。"><a href="#问题1：Android-5-0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。" class="headerlink" title="问题1：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。"></a>问题1：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。</h1><p>因为：titleBar.getBackground().setAlpha(0);<br>在布局中多个控件同时使用一个资源的时候，这些控件会共用一个状态，例如<br>ColorState，如果你改变了一个控件的状态，其他的控件都会接收到相同的通知。这<br>时我们可以使用mutate()方法使该控件状态不定，这样不定状态的控件就不会共享自<br>己的状态了。<br>解决：titleBar.getBackground().mutate(0).setAlpha(0);<br>参考：<a href="http://blog.csdn.net/zhouhui520w/article/details/52415038" target="_blank" rel="external">http://blog.csdn.net/zhouhui520w/article/details/52415038</a></p>
+<h1 id="问题2：android-5-0及以上，seekbar-thumb-透明效果出现父布局背景颜色的解决方法"><a href="#问题2：android-5-0及以上，seekbar-thumb-透明效果出现父布局背景颜色的解决方法" class="headerlink" title="问题2：android 5.0及以上，seekbar thumb 透明效果出现父布局背景颜色的解决方法"></a>问题2：android 5.0及以上，seekbar thumb 透明效果出现父布局背景颜色的解决方法</h1><p>在seekbar中添加  android:splitTrack=”false” 即可</p>
+<pre><code class="bash">&lt;SeekBar  
+           android:id=<span class="string">"@+id/seekbar"</span>  
+           android:layout_width=<span class="string">"match_parent"</span>  
+           android:layout_height=<span class="string">"wrap_content"</span>  
+           android:max=<span class="string">"@integer/max_step"</span>  
+           android:maxHeight=<span class="string">"@dimen/seekbar_height"</span>  
+           android:minHeight=<span class="string">"@dimen/seekbar_height"</span>  
+           android:padding=<span class="string">"0dp"</span>  
+           android:splitTrack=<span class="string">"false"</span>
+           android:progress=<span class="string">"0"</span>  
+           android:progressDrawable=<span class="string">"@drawable/bg_seekbar"</span>  
+           android:thumb=<span class="string">"@drawable/bg_seekbar_thumbs"</span>  
+           android:thumbOffset=<span class="string">"0dp"</span> /&gt;
+</code></pre>
+<p>参考：<a href="http://blog.csdn.net/jacklog/article/details/50067227" target="_blank" rel="external">http://blog.csdn.net/jacklog/article/details/50067227</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JAVA枚举常见用法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/07/JAVA枚举常见用法/" class="article-date">
+  	<time datetime="2016-11-07T09:29:26.000Z" itemprop="datePublished">2016-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/07/JAVA枚举常见用法/">JAVA枚举常见用法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JDK1.5引入了新的类型——枚举。在 Java 中它虽然算个“小”功能，却给我的开发带来了“大”方便。</p>
+<h1 id="用法一：常量"><a href="#用法一：常量" class="headerlink" title="用法一：常量"></a>用法一：常量</h1><p>在JDK1.5 之前，我们定义常量都是： publicstaticfianl…. 。现在好了，有了枚举，可以把相关的常量分组到一个枚举类型里，而且枚举提供了比常量更多的方法。</p>
+<pre><code class="bash">public enum Color {  
+  RED, GREEN, BLANK, YELLOW  
+}
+</code></pre>
+<h1 id="用法二：switch"><a href="#用法二：switch" class="headerlink" title="用法二：switch"></a>用法二：switch</h1><p>JDK1.6之前的switch语句只支持int,char,enum类型，使用枚举，能让我们的代码可读性更强。</p>
+<pre><code class="bash">enum Signal {  
+    GREEN, YELLOW, RED  
+}  
+public class TrafficLight {  
+    Signal color = Signal.RED;  
+    public void <span class="function"><span class="title">change</span></span>() {  
+        switch (color) {  
+        <span class="keyword">case</span> RED:  
+            color = Signal.GREEN;  
+            <span class="built_in">break</span>;  
+        <span class="keyword">case</span> YELLOW:  
+            color = Signal.RED;  
+            <span class="built_in">break</span>;  
+        <span class="keyword">case</span> GREEN:  
+            color = Signal.YELLOW;  
+            <span class="built_in">break</span>;  
+        }  
+    }  
+}
+</code></pre>
+<h1 id="用法三：向枚举中添加新方法"><a href="#用法三：向枚举中添加新方法" class="headerlink" title="用法三：向枚举中添加新方法"></a>用法三：向枚举中添加新方法</h1><p>如果打算自定义自己的方法，那么必须在enum实例序列的最后添加一个分号。而且 Java 要求必须先定义 enum 实例。</p>
+<pre><code class="bash">public enum Color {  
+    RED(<span class="string">"红色"</span>, 1), GREEN(<span class="string">"绿色"</span>, 2), BLANK(<span class="string">"白色"</span>, 3), YELLO(<span class="string">"黄色"</span>, 4);  
+    // 成员变量  
+    private String name;  
+    private int index;  
+    // 构造方法  
+    private Color(String name, int index) {  
+        this.name = name;  
+        this.index = index;  
+    }  
+    // 普通方法  
+    public static String getName(int index) {  
+        <span class="keyword">for</span> (Color c : Color.values()) {  
+            <span class="keyword">if</span> (c.getIndex() == index) {  
+                <span class="built_in">return</span> c.name;  
+            }  
+        }  
+        <span class="built_in">return</span> null;  
+    }  
+    // get <span class="built_in">set</span> 方法  
+    public String <span class="function"><span class="title">getName</span></span>() {  
+        <span class="built_in">return</span> name;  
+    }  
+    public void <span class="built_in">set</span>Name(String name) {  
+        this.name = name;  
+    }  
+    public int <span class="function"><span class="title">getIndex</span></span>() {  
+        <span class="built_in">return</span> index;  
+    }  
+    public void <span class="built_in">set</span>Index(int index) {  
+        this.index = index;  
+    }  
+}
+</code></pre>
+<h1 id="用法四：覆盖枚举的方法"><a href="#用法四：覆盖枚举的方法" class="headerlink" title="用法四：覆盖枚举的方法"></a>用法四：覆盖枚举的方法</h1><p>下面给出一个toString()方法覆盖的例子。</p>
+<pre><code class="bash">public enum Color {  
+    RED(<span class="string">"红色"</span>, 1), GREEN(<span class="string">"绿色"</span>, 2), BLANK(<span class="string">"白色"</span>, 3), YELLO(<span class="string">"黄色"</span>, 4);  
+    // 成员变量  
+    private String name;  
+    private int index;  
+    // 构造方法  
+    private Color(String name, int index) {  
+        this.name = name;  
+        this.index = index;  
+    }  
+    //覆盖方法  
+    @Override  
+    public String <span class="function"><span class="title">toString</span></span>() {  
+        <span class="built_in">return</span> this.index+<span class="string">"_"</span>+this.name;  
+    }  
+}
+</code></pre>
+<h1 id="用法五：实现接口"><a href="#用法五：实现接口" class="headerlink" title="用法五：实现接口"></a>用法五：实现接口</h1><p>如果打算自定义自己的方法，那么必须在enum实例序列的最后添加一个分号。而且 Java 要求必须先定义 enum 实例。 </p>
+<pre><code class="bash">public interface Behaviour {  
+    void <span class="built_in">print</span>();  
+    String getInfo();  
+}  
+public enum Color implements Behaviour{  
+    RED(<span class="string">"红色"</span>, 1), GREEN(<span class="string">"绿色"</span>, 2), BLANK(<span class="string">"白色"</span>, 3), YELLO(<span class="string">"黄色"</span>, 4);  
+    // 成员变量  
+    private String name;  
+    private int index;  
+    // 构造方法  
+    private Color(String name, int index) {  
+        this.name = name;  
+        this.index = index;  
+    }  
+//接口方法  
+    @Override  
+    public String <span class="function"><span class="title">getInfo</span></span>() {  
+        <span class="built_in">return</span> this.name;  
+    }  
+    //接口方法  
+    @Override  
+    public void <span class="function"><span class="title">print</span></span>() {  
+        System.out.println(this.index+<span class="string">":"</span>+this.name);  
+    }  
+}
+</code></pre>
+<h1 id="用法六：使用接口组织枚举"><a href="#用法六：使用接口组织枚举" class="headerlink" title="用法六：使用接口组织枚举"></a>用法六：使用接口组织枚举</h1><p>如果打算自定义自己的方法，那么必须在enum实例序列的最后添加一个分号。而且 Java 要求必须先定义 enum 实例。 </p>
+<pre><code class="bash">public interface Food {  
+    enum Coffee implements Food{  
+        BLACK_COFFEE,DECAF_COFFEE,LATTE,CAPPUCCINO  
+    }  
+    enum Dessert implements Food{  
+        FRUIT, CAKE, GELATO  
+    }  
+}
+</code></pre>
+<h1 id="用法七：关于枚举集合的使用"><a href="#用法七：关于枚举集合的使用" class="headerlink" title="用法七：关于枚举集合的使用"></a>用法七：关于枚举集合的使用</h1><p>java.util.EnumSet和java.util.EnumMap是两个枚举集合。EnumSet保证集合中的元素不重复；EnumMap中的 key是enum类型，而value则可以是任意类型。关于这个两个集合的使用就不在这里赘述，可以参考JDK文档。<br>关于枚举的实现细节和原理请参考：<br>参考资料：《ThinkingInJava》第四版</p>
+<p>参考：<a href="http://www.iteye.com/topic/1116193" target="_blank" rel="external">http://www.iteye.com/topic/1116193</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 	</div>
 
       

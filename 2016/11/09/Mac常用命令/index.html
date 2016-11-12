@@ -4,18 +4,36 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Android坑 | 4pp</title>
+  <title>Mac常用命令 | 4pp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题1：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。因为：titleBar.getBackground().setAlpha(0);在布局中多个控件同时使用一个资源的时候，这些控件会共用一个状态，例如ColorState，如果你改变了一个控件的状态，其他的控件都会接收到相同的通知。这时我们可以使用mutate()方">
+  <meta name="description" content="Sips应用范例
+特别提前说明一点，下面的sips命令处理图片会覆盖原图，所以建议提前做好图片的备份工作。如果不想覆盖原图也可以在每个命令中添加-o参数，可以参考倒数第二个范例。
+裁剪时固定图片宽度，高度自适应
+sips -Z 320 iamge_file_name
+
+裁剪时指定图片宽与高
+sips -z 400 300 iamge_file_name裁剪图片为400x300大小需要注意的是这里的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android坑">
-<meta property="og:url" content="http://4pp.me/2016/11/06/test2/index.html">
+<meta property="og:title" content="Mac常用命令">
+<meta property="og:url" content="http://4pp.me/2016/11/09/Mac常用命令/index.html">
 <meta property="og:site_name" content="4pp">
-<meta property="og:description" content="问题1：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。因为：titleBar.getBackground().setAlpha(0);在布局中多个控件同时使用一个资源的时候，这些控件会共用一个状态，例如ColorState，如果你改变了一个控件的状态，其他的控件都会接收到相同的通知。这时我们可以使用mutate()方">
-<meta property="og:updated_time" content="2016-11-08T10:56:14.000Z">
+<meta property="og:description" content="Sips应用范例
+特别提前说明一点，下面的sips命令处理图片会覆盖原图，所以建议提前做好图片的备份工作。如果不想覆盖原图也可以在每个命令中添加-o参数，可以参考倒数第二个范例。
+裁剪时固定图片宽度，高度自适应
+sips -Z 320 iamge_file_name
+
+裁剪时指定图片宽与高
+sips -z 400 300 iamge_file_name裁剪图片为400x300大小需要注意的是这里的">
+<meta property="og:updated_time" content="2016-11-09T06:47:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android坑">
-<meta name="twitter:description" content="问题1：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。因为：titleBar.getBackground().setAlpha(0);在布局中多个控件同时使用一个资源的时候，这些控件会共用一个状态，例如ColorState，如果你改变了一个控件的状态，其他的控件都会接收到相同的通知。这时我们可以使用mutate()方">
+<meta name="twitter:title" content="Mac常用命令">
+<meta name="twitter:description" content="Sips应用范例
+特别提前说明一点，下面的sips命令处理图片会覆盖原图，所以建议提前做好图片的备份工作。如果不想覆盖原图也可以在每个命令中添加-o参数，可以参考倒数第二个范例。
+裁剪时固定图片宽度，高度自适应
+sips -Z 320 iamge_file_name
+
+裁剪时指定图片宽与高
+sips -z 400 300 iamge_file_name裁剪图片为400x300大小需要注意的是这里的">
   
     <link rel="alternative" href="/atom.xml" title="4pp" type="application/atom+xml">
   
@@ -71,7 +89,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -108,7 +126,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/java/" style="font-size: 10px;">java</a>
+						<a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/react-native/" style="font-size: 10px;">react native</a>
 					</div>
 				</section>
 				
@@ -172,11 +190,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-test2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Mac常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/06/test2/" class="article-date">
-  	<time datetime="2016-11-05T16:09:00.000Z" itemprop="datePublished">2016-11-06</time>
+      <a href="/2016/11/09/Mac常用命令/" class="article-date">
+  	<time datetime="2016-11-09T04:27:46.000Z" itemprop="datePublished">2016-11-09</time>
 </a>
     </div>
   
@@ -189,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android坑
+      Mac常用命令
     </h1>
   
 
@@ -198,7 +216,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li></ul>
 	</div>
 
         
@@ -209,23 +227,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="问题1：Android-5-0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。"><a href="#问题1：Android-5-0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。" class="headerlink" title="问题1：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。"></a>问题1：Android 5.0以上系统背景色白色的那些坑滑动时会改变标题栏的透明度，引起了整体ui的显示问题，其余的ui背景色也消失了。</h1><p>因为：titleBar.getBackground().setAlpha(0);<br>在布局中多个控件同时使用一个资源的时候，这些控件会共用一个状态，例如<br>ColorState，如果你改变了一个控件的状态，其他的控件都会接收到相同的通知。这<br>时我们可以使用mutate()方法使该控件状态不定，这样不定状态的控件就不会共享自<br>己的状态了。<br>解决：titleBar.getBackground().mutate(0).setAlpha(0);<br>参考：<a href="http://blog.csdn.net/zhouhui520w/article/details/52415038" target="_blank" rel="external">http://blog.csdn.net/zhouhui520w/article/details/52415038</a></p>
-<h1 id="问题2：android-5-0及以上，seekbar-thumb-透明效果出现父布局背景颜色的解决方法"><a href="#问题2：android-5-0及以上，seekbar-thumb-透明效果出现父布局背景颜色的解决方法" class="headerlink" title="问题2：android 5.0及以上，seekbar thumb 透明效果出现父布局背景颜色的解决方法"></a>问题2：android 5.0及以上，seekbar thumb 透明效果出现父布局背景颜色的解决方法</h1><p>在seekbar中添加  android:splitTrack=”false” 即可</p>
-<pre><code class="bash">&lt;SeekBar  
-           android:id=<span class="string">"@+id/seekbar"</span>  
-           android:layout_width=<span class="string">"match_parent"</span>  
-           android:layout_height=<span class="string">"wrap_content"</span>  
-           android:max=<span class="string">"@integer/max_step"</span>  
-           android:maxHeight=<span class="string">"@dimen/seekbar_height"</span>  
-           android:minHeight=<span class="string">"@dimen/seekbar_height"</span>  
-           android:padding=<span class="string">"0dp"</span>  
-           android:splitTrack=<span class="string">"false"</span>
-           android:progress=<span class="string">"0"</span>  
-           android:progressDrawable=<span class="string">"@drawable/bg_seekbar"</span>  
-           android:thumb=<span class="string">"@drawable/bg_seekbar_thumbs"</span>  
-           android:thumbOffset=<span class="string">"0dp"</span> /&gt;
+        <p>Sips应用范例</p>
+<p>特别提前说明一点，下面的sips命令处理图片会覆盖原图，所以建议提前做好图片的备份工作。如果不想覆盖原图也可以在每个命令中添加-o参数，可以参考倒数第二个范例。</p>
+<p>裁剪时固定图片宽度，高度自适应</p>
+<pre><code class="bash">sips -Z 320 iamge_file_name
 </code></pre>
-<p>参考：<a href="http://blog.csdn.net/jacklog/article/details/50067227" target="_blank" rel="external">http://blog.csdn.net/jacklog/article/details/50067227</a></p>
+<p>裁剪时指定图片宽与高</p>
+<p>sips -z 400 300 iamge_file_name<br>裁剪图片为400x300大小<br>需要注意的是这里的参数是小写的z，并且图片缩放方式不是锁定图片比例的，即如果图片本身是16:9，则会导致图片被挤压。</p>
+<p>旋转图片</p>
+<p>sips -r 90 image_file_name<br>上面的命令将图片顺时针旋转90度，相信机智的你已经想到逆时针90度应该是-90了。没错，顺时针用正数表示，逆时针可以用负数表示。你可以进行任意角度和方向的旋转。</p>
+<p>翻转图片</p>
+<p>sips -f horizontal image_file_name<br>上面命令可以对图片进行水平翻转，-f支持水平和垂直两种翻转，水平（horizontal），垂直（vertical）。</p>
+<p>修改图片格式</p>
+<p> sips -s format jpeg input.png -o output.jpg<br>使用-s参数可以修改图片格式为指定值，sips支持jpeg | tiff | png | gif | jp2 | pict | bmp | qtif | psd | sgi | tga共11种格式。并且-s除了能修改文件格式外，还能修改图片的其它meta数据，具体可以通过man sips查看。</p>
+<p>获取图片meta信息</p>
+<p>sips -g pixelWidth -g pixelHeight image_file_name<br>上面命令可以获取图片的长宽高信息，与-s参数一样，-g也支持更多的meta值，可以参见man sips的信息，这里就不做赘述了。</p>
+<p>OK，上面的几种应用场景应该是我们最常见的，掌握它们应对日常的简单需求是没有问题了，另外通过命令行你可以组合出简单的脚本，轻轻松松的进行批处理。当然sips还有其它更高级的功能你可以通过man sips指令来查看它们。</p>
 
       
     </div>
@@ -235,18 +252,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/11/07/JAVA枚举常见用法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/11/12/React-Native笔记/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          JAVA枚举常见用法
+          React Native笔记
         
       </div>
     </a>
   
   
-    <a href="/2016/04/06/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2016/11/08/Android5-0坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android5.0坑</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -281,7 +298,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="test2" data-title="Android坑" data-url="http://4pp.me/2016/11/06/test2/"></div>
+	<div class="ds-thread" data-thread-key="Mac常用命令" data-title="Mac常用命令" data-url="http://4pp.me/2016/11/09/Mac常用命令/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
