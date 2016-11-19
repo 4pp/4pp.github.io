@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://4pp.me/2016/11/07/JAVA枚举常见用法/index.html">
 <meta property="og:site_name" content="4pp.me">
 <meta property="og:description" content="JDK1.5&amp;#x5F15;&amp;#x5165;&amp;#x4E86;&amp;#x65B0;&amp;#x7684;&amp;#x7C7B;&amp;#x578B;&amp;#x2014;&amp;#x2014;&amp;#x679A;&amp;#x4E3E;&amp;#x3002;&amp;#x5728; Java &amp;#x4E2D;&amp;#x5B83;&amp;#x867D;&amp;#x7136;&amp;#x7B97;&amp;#x4E2A;&amp;#x201C;&amp;#x5C0F;&amp;#x201D;&amp;#x529F;&amp;#x8">
-<meta property="og:updated_time" content="2016-11-07T09:49:01.000Z">
+<meta property="og:updated_time" content="2016-11-19T16:40:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA枚举常见用法">
 <meta name="twitter:description" content="JDK1.5&amp;#x5F15;&amp;#x5165;&amp;#x4E86;&amp;#x65B0;&amp;#x7684;&amp;#x7C7B;&amp;#x578B;&amp;#x2014;&amp;#x2014;&amp;#x679A;&amp;#x4E3E;&amp;#x3002;&amp;#x5728; Java &amp;#x4E2D;&amp;#x5B83;&amp;#x867D;&amp;#x7136;&amp;#x7B97;&amp;#x4E2A;&amp;#x201C;&amp;#x5C0F;&amp;#x201D;&amp;#x529F;&amp;#x8">
@@ -211,117 +211,117 @@
       
         <p>JDK1.5&#x5F15;&#x5165;&#x4E86;&#x65B0;&#x7684;&#x7C7B;&#x578B;&#x2014;&#x2014;&#x679A;&#x4E3E;&#x3002;&#x5728; Java &#x4E2D;&#x5B83;&#x867D;&#x7136;&#x7B97;&#x4E2A;&#x201C;&#x5C0F;&#x201D;&#x529F;&#x80FD;&#xFF0C;&#x5374;&#x7ED9;&#x6211;&#x7684;&#x5F00;&#x53D1;&#x5E26;&#x6765;&#x4E86;&#x201C;&#x5927;&#x201D;&#x65B9;&#x4FBF;&#x3002;</p>
 <h1 id="&#x7528;&#x6CD5;&#x4E00;&#xFF1A;&#x5E38;&#x91CF;"><a href="#&#x7528;&#x6CD5;&#x4E00;&#xFF1A;&#x5E38;&#x91CF;" class="headerlink" title="&#x7528;&#x6CD5;&#x4E00;&#xFF1A;&#x5E38;&#x91CF;"></a>&#x7528;&#x6CD5;&#x4E00;&#xFF1A;&#x5E38;&#x91CF;</h1><p>&#x5728;JDK1.5 &#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x5E38;&#x91CF;&#x90FD;&#x662F;&#xFF1A; publicstaticfianl&#x2026;. &#x3002;&#x73B0;&#x5728;&#x597D;&#x4E86;&#xFF0C;&#x6709;&#x4E86;&#x679A;&#x4E3E;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x76F8;&#x5173;&#x7684;&#x5E38;&#x91CF;&#x5206;&#x7EC4;&#x5230;&#x4E00;&#x4E2A;&#x679A;&#x4E3E;&#x7C7B;&#x578B;&#x91CC;&#xFF0C;&#x800C;&#x4E14;&#x679A;&#x4E3E;&#x63D0;&#x4F9B;&#x4E86;&#x6BD4;&#x5E38;&#x91CF;&#x66F4;&#x591A;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
-<pre><code class="bash">public enum Color {  
+<pre><code class="java"><span class="keyword">public</span> <span class="keyword">enum</span> Color {  
   RED, GREEN, BLANK, YELLOW  
 }
 </code></pre>
 <h1 id="&#x7528;&#x6CD5;&#x4E8C;&#xFF1A;switch"><a href="#&#x7528;&#x6CD5;&#x4E8C;&#xFF1A;switch" class="headerlink" title="&#x7528;&#x6CD5;&#x4E8C;&#xFF1A;switch"></a>&#x7528;&#x6CD5;&#x4E8C;&#xFF1A;switch</h1><p>JDK1.6&#x4E4B;&#x524D;&#x7684;switch&#x8BED;&#x53E5;&#x53EA;&#x652F;&#x6301;int,char,enum&#x7C7B;&#x578B;&#xFF0C;&#x4F7F;&#x7528;&#x679A;&#x4E3E;&#xFF0C;&#x80FD;&#x8BA9;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x66F4;&#x5F3A;&#x3002;</p>
-<pre><code class="bash">enum Signal {  
+<pre><code class="java"><span class="keyword">enum</span> Signal {  
     GREEN, YELLOW, RED  
 }  
-public class TrafficLight {  
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TrafficLight</span> </span>{  
     Signal color = Signal.RED;  
-    public void <span class="function"><span class="title">change</span></span>() {  
-        switch (color) {  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">change</span><span class="params">()</span> </span>{  
+        <span class="keyword">switch</span> (color) {  
         <span class="keyword">case</span> RED:  
             color = Signal.GREEN;  
-            <span class="built_in">break</span>;  
+            <span class="keyword">break</span>;  
         <span class="keyword">case</span> YELLOW:  
             color = Signal.RED;  
-            <span class="built_in">break</span>;  
+            <span class="keyword">break</span>;  
         <span class="keyword">case</span> GREEN:  
             color = Signal.YELLOW;  
-            <span class="built_in">break</span>;  
+            <span class="keyword">break</span>;  
         }  
     }  
 }
 </code></pre>
 <h1 id="&#x7528;&#x6CD5;&#x4E09;&#xFF1A;&#x5411;&#x679A;&#x4E3E;&#x4E2D;&#x6DFB;&#x52A0;&#x65B0;&#x65B9;&#x6CD5;"><a href="#&#x7528;&#x6CD5;&#x4E09;&#xFF1A;&#x5411;&#x679A;&#x4E3E;&#x4E2D;&#x6DFB;&#x52A0;&#x65B0;&#x65B9;&#x6CD5;" class="headerlink" title="&#x7528;&#x6CD5;&#x4E09;&#xFF1A;&#x5411;&#x679A;&#x4E3E;&#x4E2D;&#x6DFB;&#x52A0;&#x65B0;&#x65B9;&#x6CD5;"></a>&#x7528;&#x6CD5;&#x4E09;&#xFF1A;&#x5411;&#x679A;&#x4E3E;&#x4E2D;&#x6DFB;&#x52A0;&#x65B0;&#x65B9;&#x6CD5;</h1><p>&#x5982;&#x679C;&#x6253;&#x7B97;&#x81EA;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x5FC5;&#x987B;&#x5728;enum&#x5B9E;&#x4F8B;&#x5E8F;&#x5217;&#x7684;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5206;&#x53F7;&#x3002;&#x800C;&#x4E14; Java &#x8981;&#x6C42;&#x5FC5;&#x987B;&#x5148;&#x5B9A;&#x4E49; enum &#x5B9E;&#x4F8B;&#x3002;</p>
-<pre><code class="bash">public enum Color {  
-    RED(<span class="string">&quot;&#x7EA2;&#x8272;&quot;</span>, 1), GREEN(<span class="string">&quot;&#x7EFF;&#x8272;&quot;</span>, 2), BLANK(<span class="string">&quot;&#x767D;&#x8272;&quot;</span>, 3), YELLO(<span class="string">&quot;&#x9EC4;&#x8272;&quot;</span>, 4);  
-    // &#x6210;&#x5458;&#x53D8;&#x91CF;  
-    private String name;  
-    private int index;  
-    // &#x6784;&#x9020;&#x65B9;&#x6CD5;  
-    private Color(String name, int index) {  
-        this.name = name;  
-        this.index = index;  
+<pre><code class="java"><span class="keyword">public</span> <span class="keyword">enum</span> Color {  
+    RED(<span class="string">&quot;&#x7EA2;&#x8272;&quot;</span>, <span class="number">1</span>), GREEN(<span class="string">&quot;&#x7EFF;&#x8272;&quot;</span>, <span class="number">2</span>), BLANK(<span class="string">&quot;&#x767D;&#x8272;&quot;</span>, <span class="number">3</span>), YELLO(<span class="string">&quot;&#x9EC4;&#x8272;&quot;</span>, <span class="number">4</span>);  
+    <span class="comment">// &#x6210;&#x5458;&#x53D8;&#x91CF;  </span>
+    <span class="keyword">private</span> String name;  
+    <span class="keyword">private</span> <span class="keyword">int</span> index;  
+    <span class="comment">// &#x6784;&#x9020;&#x65B9;&#x6CD5;  </span>
+    <span class="function"><span class="keyword">private</span> <span class="title">Color</span><span class="params">(String name, <span class="keyword">int</span> index)</span> </span>{  
+        <span class="keyword">this</span>.name = name;  
+        <span class="keyword">this</span>.index = index;  
     }  
-    // &#x666E;&#x901A;&#x65B9;&#x6CD5;  
-    public static String getName(int index) {  
+    <span class="comment">// &#x666E;&#x901A;&#x65B9;&#x6CD5;  </span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getName</span><span class="params">(<span class="keyword">int</span> index)</span> </span>{  
         <span class="keyword">for</span> (Color c : Color.values()) {  
             <span class="keyword">if</span> (c.getIndex() == index) {  
-                <span class="built_in">return</span> c.name;  
+                <span class="keyword">return</span> c.name;  
             }  
         }  
-        <span class="built_in">return</span> null;  
+        <span class="keyword">return</span> <span class="keyword">null</span>;  
     }  
-    // get <span class="built_in">set</span> &#x65B9;&#x6CD5;  
-    public String <span class="function"><span class="title">getName</span></span>() {  
-        <span class="built_in">return</span> name;  
+    <span class="comment">// get set &#x65B9;&#x6CD5;  </span>
+    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>{  
+        <span class="keyword">return</span> name;  
     }  
-    public void <span class="built_in">set</span>Name(String name) {  
-        this.name = name;  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>{  
+        <span class="keyword">this</span>.name = name;  
     }  
-    public int <span class="function"><span class="title">getIndex</span></span>() {  
-        <span class="built_in">return</span> index;  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIndex</span><span class="params">()</span> </span>{  
+        <span class="keyword">return</span> index;  
     }  
-    public void <span class="built_in">set</span>Index(int index) {  
-        this.index = index;  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>{  
+        <span class="keyword">this</span>.index = index;  
     }  
 }
 </code></pre>
 <h1 id="&#x7528;&#x6CD5;&#x56DB;&#xFF1A;&#x8986;&#x76D6;&#x679A;&#x4E3E;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x7528;&#x6CD5;&#x56DB;&#xFF1A;&#x8986;&#x76D6;&#x679A;&#x4E3E;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x7528;&#x6CD5;&#x56DB;&#xFF1A;&#x8986;&#x76D6;&#x679A;&#x4E3E;&#x7684;&#x65B9;&#x6CD5;"></a>&#x7528;&#x6CD5;&#x56DB;&#xFF1A;&#x8986;&#x76D6;&#x679A;&#x4E3E;&#x7684;&#x65B9;&#x6CD5;</h1><p>&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;toString()&#x65B9;&#x6CD5;&#x8986;&#x76D6;&#x7684;&#x4F8B;&#x5B50;&#x3002;</p>
-<pre><code class="bash">public enum Color {  
-    RED(<span class="string">&quot;&#x7EA2;&#x8272;&quot;</span>, 1), GREEN(<span class="string">&quot;&#x7EFF;&#x8272;&quot;</span>, 2), BLANK(<span class="string">&quot;&#x767D;&#x8272;&quot;</span>, 3), YELLO(<span class="string">&quot;&#x9EC4;&#x8272;&quot;</span>, 4);  
-    // &#x6210;&#x5458;&#x53D8;&#x91CF;  
-    private String name;  
-    private int index;  
-    // &#x6784;&#x9020;&#x65B9;&#x6CD5;  
-    private Color(String name, int index) {  
-        this.name = name;  
-        this.index = index;  
+<pre><code class="java"><span class="keyword">public</span> <span class="keyword">enum</span> Color {  
+    RED(<span class="string">&quot;&#x7EA2;&#x8272;&quot;</span>, <span class="number">1</span>), GREEN(<span class="string">&quot;&#x7EFF;&#x8272;&quot;</span>, <span class="number">2</span>), BLANK(<span class="string">&quot;&#x767D;&#x8272;&quot;</span>, <span class="number">3</span>), YELLO(<span class="string">&quot;&#x9EC4;&#x8272;&quot;</span>, <span class="number">4</span>);  
+    <span class="comment">// &#x6210;&#x5458;&#x53D8;&#x91CF;  </span>
+    <span class="keyword">private</span> String name;  
+    <span class="keyword">private</span> <span class="keyword">int</span> index;  
+    <span class="comment">// &#x6784;&#x9020;&#x65B9;&#x6CD5;  </span>
+    <span class="function"><span class="keyword">private</span> <span class="title">Color</span><span class="params">(String name, <span class="keyword">int</span> index)</span> </span>{  
+        <span class="keyword">this</span>.name = name;  
+        <span class="keyword">this</span>.index = index;  
     }  
-    //&#x8986;&#x76D6;&#x65B9;&#x6CD5;  
-    @Override  
-    public String <span class="function"><span class="title">toString</span></span>() {  
-        <span class="built_in">return</span> this.index+<span class="string">&quot;_&quot;</span>+this.name;  
+    <span class="comment">//&#x8986;&#x76D6;&#x65B9;&#x6CD5;  </span>
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{  
+        <span class="keyword">return</span> <span class="keyword">this</span>.index+<span class="string">&quot;_&quot;</span>+<span class="keyword">this</span>.name;  
     }  
 }
 </code></pre>
 <h1 id="&#x7528;&#x6CD5;&#x4E94;&#xFF1A;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;"><a href="#&#x7528;&#x6CD5;&#x4E94;&#xFF1A;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;" class="headerlink" title="&#x7528;&#x6CD5;&#x4E94;&#xFF1A;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;"></a>&#x7528;&#x6CD5;&#x4E94;&#xFF1A;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;</h1><p>&#x5982;&#x679C;&#x6253;&#x7B97;&#x81EA;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x5FC5;&#x987B;&#x5728;enum&#x5B9E;&#x4F8B;&#x5E8F;&#x5217;&#x7684;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5206;&#x53F7;&#x3002;&#x800C;&#x4E14; Java &#x8981;&#x6C42;&#x5FC5;&#x987B;&#x5148;&#x5B9A;&#x4E49; enum &#x5B9E;&#x4F8B;&#x3002; </p>
-<pre><code class="bash">public interface Behaviour {  
-    void <span class="built_in">print</span>();  
-    String getInfo();  
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Behaviour</span> </span>{  
+    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;  
+    <span class="function">String <span class="title">getInfo</span><span class="params">()</span></span>;  
 }  
-public enum Color implements Behaviour{  
-    RED(<span class="string">&quot;&#x7EA2;&#x8272;&quot;</span>, 1), GREEN(<span class="string">&quot;&#x7EFF;&#x8272;&quot;</span>, 2), BLANK(<span class="string">&quot;&#x767D;&#x8272;&quot;</span>, 3), YELLO(<span class="string">&quot;&#x9EC4;&#x8272;&quot;</span>, 4);  
-    // &#x6210;&#x5458;&#x53D8;&#x91CF;  
-    private String name;  
-    private int index;  
-    // &#x6784;&#x9020;&#x65B9;&#x6CD5;  
-    private Color(String name, int index) {  
-        this.name = name;  
-        this.index = index;  
+<span class="keyword">public</span> <span class="keyword">enum</span> Color implements Behaviour{  
+    RED(<span class="string">&quot;&#x7EA2;&#x8272;&quot;</span>, <span class="number">1</span>), GREEN(<span class="string">&quot;&#x7EFF;&#x8272;&quot;</span>, <span class="number">2</span>), BLANK(<span class="string">&quot;&#x767D;&#x8272;&quot;</span>, <span class="number">3</span>), YELLO(<span class="string">&quot;&#x9EC4;&#x8272;&quot;</span>, <span class="number">4</span>);  
+    <span class="comment">// &#x6210;&#x5458;&#x53D8;&#x91CF;  </span>
+    <span class="keyword">private</span> String name;  
+    <span class="keyword">private</span> <span class="keyword">int</span> index;  
+    <span class="comment">// &#x6784;&#x9020;&#x65B9;&#x6CD5;  </span>
+    <span class="function"><span class="keyword">private</span> <span class="title">Color</span><span class="params">(String name, <span class="keyword">int</span> index)</span> </span>{  
+        <span class="keyword">this</span>.name = name;  
+        <span class="keyword">this</span>.index = index;  
     }  
-//&#x63A5;&#x53E3;&#x65B9;&#x6CD5;  
-    @Override  
-    public String <span class="function"><span class="title">getInfo</span></span>() {  
-        <span class="built_in">return</span> this.name;  
+<span class="comment">//&#x63A5;&#x53E3;&#x65B9;&#x6CD5;  </span>
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> String <span class="title">getInfo</span><span class="params">()</span> </span>{  
+        <span class="keyword">return</span> <span class="keyword">this</span>.name;  
     }  
-    //&#x63A5;&#x53E3;&#x65B9;&#x6CD5;  
-    @Override  
-    public void <span class="function"><span class="title">print</span></span>() {  
-        System.out.println(this.index+<span class="string">&quot;:&quot;</span>+this.name);  
+    <span class="comment">//&#x63A5;&#x53E3;&#x65B9;&#x6CD5;  </span>
+    <span class="meta">@Override</span>  
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>{  
+        System.out.println(<span class="keyword">this</span>.index+<span class="string">&quot;:&quot;</span>+<span class="keyword">this</span>.name);  
     }  
 }
 </code></pre>
 <h1 id="&#x7528;&#x6CD5;&#x516D;&#xFF1A;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7EC4;&#x7EC7;&#x679A;&#x4E3E;"><a href="#&#x7528;&#x6CD5;&#x516D;&#xFF1A;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7EC4;&#x7EC7;&#x679A;&#x4E3E;" class="headerlink" title="&#x7528;&#x6CD5;&#x516D;&#xFF1A;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7EC4;&#x7EC7;&#x679A;&#x4E3E;"></a>&#x7528;&#x6CD5;&#x516D;&#xFF1A;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7EC4;&#x7EC7;&#x679A;&#x4E3E;</h1><p>&#x5982;&#x679C;&#x6253;&#x7B97;&#x81EA;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x5FC5;&#x987B;&#x5728;enum&#x5B9E;&#x4F8B;&#x5E8F;&#x5217;&#x7684;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5206;&#x53F7;&#x3002;&#x800C;&#x4E14; Java &#x8981;&#x6C42;&#x5FC5;&#x987B;&#x5148;&#x5B9A;&#x4E49; enum &#x5B9E;&#x4F8B;&#x3002; </p>
-<pre><code class="bash">public interface Food {  
-    enum Coffee implements Food{  
+<pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Food</span> </span>{  
+    <span class="keyword">enum</span> Coffee implements Food{  
         BLACK_COFFEE,DECAF_COFFEE,LATTE,CAPPUCCINO  
     }  
-    enum Dessert implements Food{  
+    <span class="keyword">enum</span> Dessert implements Food{  
         FRUIT, CAKE, GELATO  
     }  
 }
