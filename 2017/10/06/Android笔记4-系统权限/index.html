@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#x7CFB;&amp;#x7EDF;&amp;#x6743;&amp;#x9650;&amp;#x5206;&amp;#x4E3A;&amp;#x5371;&amp;#x9669;&amp;#x6743;&amp;#x9650;&amp;#x548C;&amp;#x6B63;&amp;#x5E38;&amp;#x6743;&amp;#x9650;&amp;#x3002;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android笔记4: 系统权限">
+<meta property="og:url" content="/2017/10/06/Android笔记4-系统权限/index.html">
+<meta property="og:site_name" content="4pp.me">
+<meta property="og:description" content="&amp;#x7CFB;&amp;#x7EDF;&amp;#x6743;&amp;#x9650;&amp;#x5206;&amp;#x4E3A;&amp;#x5371;&amp;#x9669;&amp;#x6743;&amp;#x9650;&amp;#x548C;&amp;#x6B63;&amp;#x5E38;&amp;#x6743;&amp;#x9650;&amp;#x3002;">
+<meta property="og:updated_time" content="2017-10-09T15:44:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android笔记4: 系统权限">
+<meta name="twitter:description" content="&amp;#x7CFB;&amp;#x7EDF;&amp;#x6743;&amp;#x9650;&amp;#x5206;&amp;#x4E3A;&amp;#x5371;&amp;#x9669;&amp;#x6743;&amp;#x9650;&amp;#x548C;&amp;#x6B63;&amp;#x5E38;&amp;#x6743;&amp;#x9650;&amp;#x3002;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2017/10/06/Android笔记4-系统权限/"/>
+
+
+
+
+
+  <title>Android笔记4: 系统权限 | 4pp.me</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">4pp.me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/06/Android笔记4-系统权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zsp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="4pp.me">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android笔记4: 系统权限</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-06T01:50:52+08:00">
+                2017-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x7CFB;&#x7EDF;&#x6743;&#x9650;&#x5206;&#x4E3A;&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6B63;&#x5E38;&#x6743;&#x9650;&#x3002;<br><a id="more"></a></p>
+<h1 id="&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;"><a href="#&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;"></a>&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">&#x7CFB;&#x7EDF;&#x6743;&#x9650;&#x8868;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><font color="#337FFF">ACCESS_CHECKIN_PROPERTIES</font> &#x8BBF;&#x95EE;&#x767B;&#x8BB0;&#x5C5E;&#x6027;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x8BFB;&#x53D6;&#x6216;&#x5199;&#x5165;&#x767B;&#x8BB0;check-in&#x6570;&#x636E;&#x5E93;&#x5C5E;&#x6027;&#x8868;&#x7684;&#x6743;&#x9650;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">ACCESS_COARSE_LOCATION</font> &#x83B7;&#x53D6;&#x7C97;&#x7565;&#x4F4D;&#x7F6E;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x901A;&#x8FC7;WiFi&#x6216;&#x79FB;&#x52A8;&#x57FA;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;&#x83B7;&#x53D6;&#x7528;&#x6237;&#x9519;&#x7565;&#x7684;&#x7ECF;&#x7EAC;&#x5EA6;&#x4FE1;&#x606F;&#xFF0C;&#x5B9A;&#x4F4D;&#x7CBE;&#x5EA6;&#x5927;&#x6982;&#x8BEF;&#x5DEE;&#x5728;30~1500&#x7C73;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">ACCESS_FINE_LOCATION</font> &#x83B7;&#x53D6;&#x7CBE;&#x786E;&#x4F4D;&#x7F6E;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x901A;&#x8FC7;GPS&#x82AF;&#x7247;&#x63A5;&#x6536;&#x536B;&#x661F;&#x7684;&#x5B9A;&#x4F4D;&#x4FE1;&#x606F;&#xFF0C;&#x5B9A;&#x4F4D;&#x7CBE;&#x5EA6;&#x8FBE;10&#x7C73;&#x4EE5;&#x5185;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">ACCESS_LOCATION_EXTRA_COMMANDS</font> &#x8BBF;&#x95EE;&#x5B9A;&#x4F4D;&#x989D;&#x5916;&#x547D;&#x4EE4;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;&#x989D;&#x5916;&#x7684;&#x5B9A;&#x4F4D;&#x63D0;&#x4F9B;&#x8005;&#x6307;&#x4EE4;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">ACCESS_NETWORK_STATE</font> &#x83B7;&#x53D6;&#x7F51;&#x7EDC;&#x641C;&#x7D22;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x83B7;&#x53D6;&#x7F51;&#x7EDC;&#x4FE1;&#x606F;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x5F53;&#x524D;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x662F;&#x5426;&#x6709;&#x6548;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">ACCESS_WIFI_STATE</font> &#x83B7;&#x53D6;WiFi&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x83B7;&#x53D6;&#x5F53;&#x524D;WiFi&#x63A5;&#x5165;&#x7684;&#x72B6;&#x6001;&#x4EE5;&#x53CA;WLAN&#x70ED;&#x70B9;&#x7684;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">ACCOUNT_MANAGER</font> &#x8D26;&#x6237;&#x7BA1;&#x7406;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x83B7;&#x53D6;&#x8D26;&#x6237;&#x9A8C;&#x8BC1;&#x4FE1;&#x606F;&#xFF0C;&#x4E3B;&#x8981;&#x4E3A;GMail&#x8D26;&#x6237;&#x4FE1;&#x606F;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x7EA7;&#x8FDB;&#x7A0B;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x7684;&#x6743;&#x9650;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BATTERY_STATS</font> &#x7535;&#x91CF;&#x7EDF;&#x8BA1;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x83B7;&#x53D6;&#x7535;&#x6C60;&#x7535;&#x91CF;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BIND_APPWIDGET</font> &#x7ED1;&#x5B9A;&#x5C0F;&#x63D2;&#x4EF6;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x544A;&#x8BC9;appWidget&#x670D;&#x52A1;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x5C0F;&#x63D2;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x53EA;&#x6709;&#x975E;&#x5E38;&#x5C11;&#x7684;&#x5E94;&#x7528;&#x624D;&#x7528;&#x5230;&#x6B64;&#x6743;&#x9650;    </td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BIND_DEVICE_ADMIN</font> &#x7ED1;&#x5B9A;&#x8BBE;&#x5907;&#x7BA1;&#x7406;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x8BF7;&#x6C42;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x63A5;&#x6536;&#x8005;receiver&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x4F7F;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BIND_INPUT_METHOD</font> &#x7ED1;&#x5B9A;&#x8F93;&#x5165;&#x6CD5;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x8BF7;&#x6C42;InputMethodService&#x670D;&#x52A1;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x4F7F;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BIND_REMOTEVIEWS</font> &#x7ED1;&#x5B9A;RemoteView</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5FC5;&#x987B;&#x901A;&#x8FC7;RemoteViewsService&#x670D;&#x52A1;&#x6765;&#x8BF7;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BIND_WALLPAPER</font> &#x7ED1;&#x5B9A;&#x58C1;&#x7EB8;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5FC5;&#x987B;&#x901A;&#x8FC7;WallpaperService&#x670D;&#x52A1;&#x6765;&#x8BF7;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BLUETOOTH</font> &#x4F7F;&#x7528;&#x84DD;&#x7259;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8FDE;&#x63A5;&#x914D;&#x5BF9;&#x8FC7;&#x7684;&#x84DD;&#x7259;&#x8BBE;&#x5907;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BLUETOOTH_ADMIN</font> &#x84DD;&#x7259;&#x7BA1;&#x7406;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8FDB;&#x884C;&#x53D1;&#x73B0;&#x548C;&#x914D;&#x5BF9;&#x65B0;&#x7684;&#x84DD;&#x7259;&#x8BBE;&#x5907;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_PACKAGE_REMOVED</font> &#x5E94;&#x7528;&#x5220;&#x9664;&#x65F6;&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5F53;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x5728;&#x5220;&#x9664;&#x65F6;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_SMS</font> &#x6536;&#x5230;&#x77ED;&#x4FE1;&#x65F6;&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5F53;&#x6536;&#x5230;&#x77ED;&#x4FE1;&#x65F6;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_STICKY</font> &#x8FDE;&#x7EED;&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x6536;&#x5230;&#x5E7F;&#x64AD;&#x540E;&#x5FEB;&#x901F;&#x6536;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_WAP_PUSH</font> WAP PUSH&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left">WAP PUSH&#x670D;&#x52A1;&#x6536;&#x5230;&#x540E;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CALL_PHONE</font> &#x62E8;&#x6253;&#x7535;&#x8BDD;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x4ECE;&#x975E;&#x7CFB;&#x7EDF;&#x62E8;&#x53F7;&#x5668;&#x91CC;&#x8F93;&#x5165;&#x7535;&#x8BDD;&#x53F7;&#x7801;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CALL_PRIVILEGED</font> &#x901A;&#x8BDD;&#x6743;&#x9650;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x62E8;&#x6253;&#x7535;&#x8BDD;&#xFF0C;&#x66FF;&#x6362;&#x7CFB;&#x7EDF;&#x7684;&#x62E8;&#x53F7;&#x5668;&#x754C;&#x9762;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CAMERA</font> &#x62CD;&#x7167;&#x6743;&#x9650;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x6444;&#x50CF;&#x5934;&#x8FDB;&#x884C;&#x62CD;&#x7167;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CHANGE_COMPONENT_ENABLED_STATE</font> &#x6539;&#x53D8;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x6539;&#x53D8;&#x7EC4;&#x4EF6;&#x662F;&#x5426;&#x542F;&#x7528;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CHANGE_CONFIGURATION</font> &#x6539;&#x53D8;&#x914D;&#x7F6E;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x5F53;&#x524D;&#x5E94;&#x7528;&#x6539;&#x53D8;&#x914D;&#x7F6E;&#xFF0C;&#x5982;&#x5B9A;&#x4F4D;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CHANGE_NETWORK_STATE</font> &#x6539;&#x53D8;&#x7F51;&#x7EDC;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x6539;&#x53D8;&#x7F51;&#x7EDC;&#x72B6;&#x6001;&#x5982;&#x662F;&#x5426;&#x80FD;&#x8054;&#x7F51;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CHANGE_WIFI_MULTICAST_STATE</font> &#x6539;&#x53D8;WiFi&#x591A;&#x64AD;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x6539;&#x53D8;WiFi&#x591A;&#x64AD;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CHANGE_WIFI_STATE</font> &#x6539;&#x53D8;WiFi&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x6539;&#x53D8;WiFi&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CLEAR_APP_CACHE</font> &#x6E05;&#x9664;&#x5E94;&#x7528;&#x7F13;&#x5B58;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x6E05;&#x9664;&#x5E94;&#x7528;&#x7F13;&#x5B58;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">CONTROL_LOCATION_UPDATES</font> &#x63A7;&#x5236;&#x5B9A;&#x4F4D;&#x66F4;&#x65B0;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x83B7;&#x5F97;&#x79FB;&#x52A8;&#x7F51;&#x7EDC;&#x5B9A;&#x4F4D;&#x4FE1;&#x606F;&#x6539;&#x53D8;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">DELETE_CACHE_FILES</font> &#x5220;&#x9664;&#x7F13;&#x5B58;&#x6587;&#x4EF6;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x5E94;&#x7528;&#x5220;&#x9664;&#x7F13;&#x5B58;&#x6587;&#x4EF6;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">DELETE_PACKAGES</font> &#x5220;&#x9664;&#x5E94;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x5220;&#x9664;&#x5E94;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">DIAGNOSTIC</font> &#x5E94;&#x7528;&#x8BCA;&#x65AD;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x5230;RW&#x5230;&#x8BCA;&#x65AD;&#x8D44;&#x6E90;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">DISABLE_KEYGUARD</font> &#x7981;&#x7528;&#x952E;&#x76D8;&#x9501;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x7981;&#x7528;&#x952E;&#x76D8;&#x9501;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">DUMP</font> &#x8F6C;&#x5B58;&#x7CFB;&#x7EDF;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x83B7;&#x53D6;&#x7CFB;&#x7EDF;dump&#x4FE1;&#x606F;&#x4ECE;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">EXPAND_STATUS_BAR&gt;</font> &#x72B6;&#x6001;&#x680F;&#x63A7;&#x5236;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x6269;&#x5C55;&#x6216;&#x6536;&#x7F29;&#x72B6;&#x6001;&#x680F;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">FACTORY_TEST</font> &#x5DE5;&#x5382;&#x6D4B;&#x8BD5;&#x6A21;&#x5F0F;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x5DE5;&#x5382;&#x6D4B;&#x8BD5;&#x6A21;&#x5F0F;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">GET_ACCOUNTS</font> &#x8BBF;&#x95EE;&#x8D26;&#x6237;Gmail&#x5217;&#x8868;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x8BBF;&#x95EE;GMail&#x8D26;&#x6237;&#x5217;&#x8868;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">GET_PACKAGE_SIZE</font> &#x83B7;&#x53D6;&#x5E94;&#x7528;&#x5927;&#x5C0F;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x83B7;&#x53D6;&#x5E94;&#x7528;&#x7684;&#x6587;&#x4EF6;&#x5927;&#x5C0F;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">GET_TASKS</font> &#x83B7;&#x53D6;&#x4EFB;&#x52A1;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x6216;&#x6700;&#x8FD1;&#x8FD0;&#x884C;&#x7684;&#x5E94;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">GLOBAL_SEARCH</font> &#x5141;&#x8BB8;&#x5168;&#x5C40;&#x641C;&#x7D22;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;&#x5168;&#x5C40;&#x641C;&#x7D22;&#x529F;&#x80FD;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">INSTALL_LOCATION_PROVIDER</font> &#x5B89;&#x88C5;&#x5B9A;&#x4F4D;&#x63D0;&#x4F9B;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5B89;&#x88C5;&#x5B9A;&#x4F4D;&#x63D0;&#x4F9B;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">INSTALL_PACKAGES</font> &#x5B89;&#x88C5;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x5B89;&#x88C5;&#x5E94;&#x7528;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">INTERNET</font> &#x8BBF;&#x95EE;&#x7F51;&#x7EDC;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x8BBF;&#x95EE;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#xFF0C;&#x53EF;&#x80FD;&#x4EA7;&#x751F;GPRS&#x6D41;&#x91CF;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">KILL_BACKGROUND_PROCESSES</font> &#x7ED3;&#x675F;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8C03;&#x7528;killBackgroundProcesses(String).&#x65B9;&#x6CD5;&#x7ED3;&#x675F;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">MASTER_CLEAR</font> &#x8F6F;&#x683C;&#x5F0F;&#x5316;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x8F6F;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x5220;&#x9664;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">MODIFY_AUDIO_SETTINGS</font> &#x4FEE;&#x6539;&#x58F0;&#x97F3;&#x8BBE;&#x7F6E;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x4FEE;&#x6539;&#x58F0;&#x97F3;&#x8BBE;&#x7F6E;&#x4FE1;&#x606F;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">MODIFY_PHONE_STATE</font> &#x4FEE;&#x6539;&#x7535;&#x8BDD;&#x72B6;&#x6001;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x4FEE;&#x6539;&#x7535;&#x8BDD;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x98DE;&#x884C;&#x6A21;&#x5F0F;&#xFF0C;&#x4F46;&#x4E0D;&#x5305;&#x542B;&#x66FF;&#x6362;&#x7CFB;&#x7EDF;&#x62E8;&#x53F7;&#x5668;&#x754C;&#x9762;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">MOUNT_FORMAT_FILESYSTEMS</font> &#x683C;&#x5F0F;&#x5316;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x683C;&#x5F0F;&#x5316;&#x53EF;&#x79FB;&#x52A8;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF0C;&#x6BD4;&#x5982;&#x683C;&#x5F0F;&#x5316;&#x6E05;&#x7A7A;SD&#x5361;</td>
+</tr>
+<tr>
+<td style="text-align:left"><font color="#337FFF">MOUNT_UNMOUNT_FILESYSTEMS</font> &#x6302;&#x8F7D;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x6302;&#x8F7D;&#x3001;&#x53CD;&#x6302;&#x8F7D;&#x5916;&#x90E8;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</td>
+</tr>
+</tbody>
+</table>
+<h1 id="&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;"><a href="#&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;" class="headerlink" title="&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;"></a>&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">&#x6743;&#x9650;&#x7EC4;</th>
+<th style="text-align:left">&#x6743;&#x9650;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CALENDAR</td>
+<td style="text-align:left">READ_CALENDAR<br>WRITE_CALENDAR</td>
+</tr>
+<tr>
+<td style="text-align:left">CAMERA</td>
+<td style="text-align:left">CAMERA</td>
+</tr>
+<tr>
+<td style="text-align:left">CONTACTS</td>
+<td style="text-align:left">READ_CONTACTS<br>WRITE_CONTACTS<br>GET_ACCOUNTS</td>
+</tr>
+<tr>
+<td style="text-align:left">LOCATION</td>
+<td style="text-align:left">ACCESS_FINE_LOCATION<br>ACCESS_COARSE_LOCATION</td>
+</tr>
+<tr>
+<td style="text-align:left">MICROPHONE</td>
+<td style="text-align:left">RECORD_AUDIO</td>
+</tr>
+<tr>
+<td style="text-align:left">PHONE</td>
+<td style="text-align:left">READ_PHONE_STATE<br>CALL_PHONE<br>READ_CALL_LOG<br>WRITE_CALL_LOG<br>ADD_VOICEMAIL<br>USE_SIP<br>PROCESS_OUTGOING_CALLS</td>
+</tr>
+<tr>
+<td style="text-align:left">SMS</td>
+<td style="text-align:left">SEND_SMS<br>RECEIVE_SMS<br>READ_SMS<br>RECEIVE_WAP_PUSH<br>RECEIVE_MMS</td>
+</tr>
+<tr>
+<td style="text-align:left">STORAGE</td>
+<td style="text-align:left">READ_EXTERNAL_STORAGE<br>WRITE_EXTERNAL_STORAGE</td>
+</tr>
+</tbody>
+</table>
+<h1 id="&#x6B63;&#x5E38;&#x6743;&#x9650;"><a href="#&#x6B63;&#x5E38;&#x6743;&#x9650;" class="headerlink" title="&#x6B63;&#x5E38;&#x6743;&#x9650;"></a>&#x6B63;&#x5E38;&#x6743;&#x9650;</h1><ul>
+<li>ACCESS_LOCATION_EXTRA_COMMANDS</li>
+<li>ACCESS_NETWORK_STATE</li>
+<li>ACCESS_NOTIFICATION_POLICY</li>
+<li>ACCESS_WIFI_STATE</li>
+<li>BLUETOOTH</li>
+<li>BLUETOOTH_ADMIN</li>
+<li>BROADCAST_STICKY</li>
+<li>CHANGE_NETWORK_STATE</li>
+<li>CHANGE_WIFI_MULTICAST_STATE</li>
+<li>CHANGE_WIFI_STATE</li>
+<li>DISABLE_KEYGUARD</li>
+<li>EXPAND_STATUS_BAR</li>
+<li>GET_PACKAGE_SIZE</li>
+<li>INSTALL_SHORTCUT</li>
+<li>INTERNET</li>
+<li>KILL_BACKGROUND_PROCESSES</li>
+<li>MODIFY_AUDIO_SETTINGS</li>
+<li>NFC</li>
+<li>READ_SYNC_SETTINGS</li>
+<li>READ_SYNC_STATS</li>
+<li>RECEIVE_BOOT_COMPLETED</li>
+<li>REORDER_TASKS</li>
+<li>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</li>
+<li>REQUEST_INSTALL_PACKAGES</li>
+<li>SET_ALARM</li>
+<li>SET_TIME_ZONE</li>
+<li>SET_WALLPAPER</li>
+<li>SET_WALLPAPER_HINTS</li>
+<li>TRANSMIT_IR</li>
+<li>UNINSTALL_SHORTCUT</li>
+<li>USE_FINGERPRINT</li>
+<li>VIBRATE</li>
+<li>WAKE_LOCK</li>
+<li>WRITE_SYNC_SETTINGS</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/06/Android笔记3-权限机制/" rel="next" title="Android笔记3: 权限机制">
+                <i class="fa fa-chevron-left"></i> Android笔记3: 权限机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/09/工具：json-server模拟api/" rel="prev" title="工具：json-server模拟api">
+                工具：json-server模拟api <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="zsp" />
+            
+              <p class="site-author-name" itemprop="name">zsp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统提供的权限说明"><span class="nav-number">1.</span> <span class="nav-text">系统提供的权限说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#危险权限和权限组表"><span class="nav-number">2.</span> <span class="nav-text">危险权限和权限组表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正常权限"><span class="nav-number">3.</span> <span class="nav-text">正常权限</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zsp</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

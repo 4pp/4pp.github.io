@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#x9ED8;&amp;#x8BA4;&amp;#x60C5;&amp;#x51B5;&amp;#x4E0B;&amp;#x5E94;&amp;#x7528;&amp;#x6CA1;&amp;#x6709;&amp;#x6743;&amp;#x9650;&amp;#x6267;&amp;#x884C;&amp;#x5176;&amp;#x4ED6;&amp;#x5E94;&amp;#x7528;&amp;#xFF0C;&amp;#x7531;&amp;#x4E8E;&amp;#x6BCF;&amp;#x4E2A;&amp;#x5E94;&amp;#x7528;&amp;#x90FD;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android笔记3: 权限机制">
+<meta property="og:url" content="/2017/10/06/Android笔记3-权限机制/index.html">
+<meta property="og:site_name" content="4pp.me">
+<meta property="og:description" content="&amp;#x9ED8;&amp;#x8BA4;&amp;#x60C5;&amp;#x51B5;&amp;#x4E0B;&amp;#x5E94;&amp;#x7528;&amp;#x6CA1;&amp;#x6709;&amp;#x6743;&amp;#x9650;&amp;#x6267;&amp;#x884C;&amp;#x5176;&amp;#x4ED6;&amp;#x5E94;&amp;#x7528;&amp;#xFF0C;&amp;#x7531;&amp;#x4E8E;&amp;#x6BCF;&amp;#x4E2A;&amp;#x5E94;&amp;#x7528;&amp;#x90FD;">
+<meta property="og:updated_time" content="2017-10-09T15:38:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android笔记3: 权限机制">
+<meta name="twitter:description" content="&amp;#x9ED8;&amp;#x8BA4;&amp;#x60C5;&amp;#x51B5;&amp;#x4E0B;&amp;#x5E94;&amp;#x7528;&amp;#x6CA1;&amp;#x6709;&amp;#x6743;&amp;#x9650;&amp;#x6267;&amp;#x884C;&amp;#x5176;&amp;#x4ED6;&amp;#x5E94;&amp;#x7528;&amp;#xFF0C;&amp;#x7531;&amp;#x4E8E;&amp;#x6BCF;&amp;#x4E2A;&amp;#x5E94;&amp;#x7528;&amp;#x90FD;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2017/10/06/Android笔记3-权限机制/"/>
+
+
+
+
+
+  <title>Android笔记3: 权限机制 | 4pp.me</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">4pp.me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/06/Android笔记3-权限机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zsp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="4pp.me">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android笔记3: 权限机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-06T00:50:52+08:00">
+                2017-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x5E94;&#x7528;&#x6CA1;&#x6709;&#x6743;&#x9650;&#x6267;&#x884C;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#xFF0C;&#x7531;&#x4E8E;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x90FD;&#x662F;&#x5728;&#x8FDB;&#x7A0B;&#x6C99;&#x76D2;&#x4E2D;&#x8FD0;&#x884C;&#xFF0C;&#x8981;&#x60F3;&#x4E0E;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x6216;&#x529F;&#x80FD;&#x8C03;&#x7528;&#xFF0C;&#x5E94;&#x7528;&#x5FC5;&#x987B;&#x58F0;&#x660E;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x7136;&#x540E;&#x7CFB;&#x7EDF;&#x63D0;&#x793A;&#xFF0C;&#x7531;&#x7528;&#x6237;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x540C;&#x610F;&#x3002;<br><a id="more"></a></p>
+<h1 id="&#x6743;&#x9650;&#x5E94;&#x7528;&#x7684;&#x8303;&#x56F4;"><a href="#&#x6743;&#x9650;&#x5E94;&#x7528;&#x7684;&#x8303;&#x56F4;" class="headerlink" title="&#x6743;&#x9650;&#x5E94;&#x7528;&#x7684;&#x8303;&#x56F4;"></a>&#x6743;&#x9650;&#x5E94;&#x7528;&#x7684;&#x8303;&#x56F4;</h1><ul>
+<li>&#x5728;&#x8C03;&#x7528;&#x7CFB;&#x7EDF;&#x65F6;&#xFF0C;&#x9632;&#x6B62;&#x5E94;&#x7528;&#x6267;&#x884C;&#x67D0;&#x4E9B;&#x529F;&#x80FD;&#x3002;</li>
+<li>&#x5728;&#x542F;&#x52A8; Activity &#x65F6;&#xFF0C;&#x9632;&#x6B62;&#x5E94;&#x7528;&#x542F;&#x52A8;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7684; Activity&#x3002;</li>
+<li>&#x5728;&#x53D1;&#x9001;&#x548C;&#x63A5;&#x6536;&#x5E7F;&#x64AD;&#x65F6;&#xFF0C;&#x63A7;&#x5236;&#x8C01;&#x53EF;&#x4EE5;&#x63A5;&#x6536;&#x60A8;&#x7684;&#x5E7F;&#x64AD;&#xFF0C;&#x8C01;&#x53EF;&#x4EE5;&#x5411;&#x60A8;&#x53D1;&#x9001;&#x5E7F;&#x64AD;&#x3002;</li>
+<li>&#x5728;&#x8BBF;&#x95EE;&#x548C;&#x64CD;&#x4F5C;&#x5185;&#x5BB9;&#x63D0;&#x4F9B;&#x7A0B;&#x5E8F;&#x65F6;&#x3002;</li>
+<li>&#x7ED1;&#x5B9A;&#x81F3;&#x670D;&#x52A1;&#x6216;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x3002;</li>
+</ul>
+<h1 id="&#x58F0;&#x660E;&#x6743;&#x9650;"><a href="#&#x58F0;&#x660E;&#x6743;&#x9650;" class="headerlink" title="&#x58F0;&#x660E;&#x6743;&#x9650;"></a>&#x58F0;&#x660E;&#x6743;&#x9650;</h1><p>&#x8981;&#x4F7F;&#x7528;&#x6743;&#x9650;&#x5728; manifest &#x6587;&#x4EF6;&#x4E2D; &#x5305;&#x542B;&#x8981;&#x4F7F;&#x7528;&#x7684;&#x6743;&#x9650;&#x58F0;&#x660E;&#x6807;&#x7B7E; uses-permission<br>&#x4F8B;&#x5982;&#xFF1A;&#x76D1;&#x63A7;&#x63A5;&#x6536;&#x77ED;&#x4FE1;&#x7684;&#x6743;&#x9650;&#x58F0;&#x660E;</p>
+<pre><code>&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.app.myapp&quot; &gt;
+    &lt;uses-permission android:name=&quot;android.permission.RECEIVE_SMS&quot; /&gt;
+    ...
+&lt;/manifest&gt;
+</code></pre><p>&#x5982;&#x679C;&#x5217;&#x51FA;&#x4E0D;&#x4F1A;&#x5BF9;&#x7528;&#x6237;&#x9690;&#x79C1;&#x6216;&#x8BBE;&#x5907;&#x64CD;&#x4F5C;&#x9020;&#x6210;&#x5F88;&#x5927;&#x98CE;&#x9669;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x81EA;&#x52A8;&#x6388;&#x4E88;&#x8FD9;&#x4E9B;&#x6743;&#x9650;&#x3002;&#x53CD;&#x4E4B;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x8981;&#x6C42;&#x7528;&#x6237;&#x660E;&#x786E;&#x6388;&#x4E88;&#x8FD9;&#x4E9B;&#x6743;&#x9650;&#x3002;Android &#x53D1;&#x51FA;&#x8BF7;&#x6C42;&#x7684;&#x65B9;&#x5F0F;&#x53D6;&#x51B3;&#x4E8E;&#x7CFB;&#x7EDF;&#x7248;&#x672C;&#xFF0C;&#x800C;&#x7CFB;&#x7EDF;&#x7248;&#x672C;&#x662F;&#x5E94;&#x7528;&#x7684;&#x76EE;&#x6807;&#xFF1A;</p>
+<blockquote>
+<ol>
+<li>&#x8FD0;&#x884C;&#x5728; Android 6.0&#xFF08;API &#x7EA7;&#x522B; 23&#xFF09;&#x6216;&#x66F4;&#x9AD8;&#x7248;&#x672C;&#xFF0C;&#x5E76;&#x4E14;&#x5E94;&#x7528;&#x7684; targetSdkVersion &#x662F; 23 &#x6216;&#x66F4;&#x9AD8;&#x7248;&#x672C;&#xFF0C;&#x5219;&#x5E94;&#x7528;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x5411;&#x7528;&#x6237;&#x8BF7;&#x6C42;&#x6743;&#x9650;&#x3002;&#x7528;&#x6237;&#x53EF;&#x968F;&#x65F6;&#x8C03;&#x7528;&#x6743;&#x9650;&#xFF0C;&#x56E0;&#x6B64;&#x5E94;&#x7528;&#x5728;&#x6BCF;&#x6B21;&#x8FD0;&#x884C;&#x65F6;&#x5747;&#x9700;&#x68C0;&#x67E5;&#x81EA;&#x8EAB;&#x662F;&#x5426;&#x5177;&#x5907;&#x6240;&#x9700;&#x7684;&#x6743;&#x9650;&#x3002;</li>
+<li>&#x8FD0;&#x884C;&#x5728; Android 5.1&#xFF08;API &#x7EA7;&#x522B; 22&#xFF09;&#x6216;&#x66F4;&#x4F4E;&#x7248;&#x672C;&#xFF0C;&#x5E76;&#x4E14;&#x5E94;&#x7528;&#x7684; targetSdkVersion &#x662F; 22 &#x6216;&#x66F4;&#x4F4E;&#x7248;&#x672C;&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x5728;&#x7528;&#x6237;&#x5B89;&#x88C5;&#x5E94;&#x7528;&#x65F6;&#x8981;&#x6C42;&#x7528;&#x6237;&#x6388;&#x4E88;&#x6743;&#x9650;&#x3002;&#x5982;&#x679C;&#x5C06;&#x65B0;&#x6743;&#x9650;&#x6DFB;&#x52A0;&#x5230;&#x66F4;&#x65B0;&#x7684;&#x5E94;&#x7528;&#x7248;&#x672C;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x5728;&#x7528;&#x6237;&#x66F4;&#x65B0;&#x5E94;&#x7528;&#x65F6;&#x8981;&#x6C42;&#x6388;&#x4E88;&#x8BE5;&#x6743;&#x9650;&#x3002;&#x7528;&#x6237;&#x4E00;&#x65E6;&#x5B89;&#x88C5;&#x5E94;&#x7528;&#xFF0C;&#x4ED6;&#x4EEC;&#x64A4;&#x9500;&#x6743;&#x9650;&#x7684;&#x552F;&#x4E00;&#x65B9;&#x5F0F;&#x662F;&#x5378;&#x8F7D;&#x5E94;&#x7528;&#x3002;</li>
+</ol>
+</blockquote>
+<p><strong><em>&#x6CE8;&#x610F;&#xFF1A;&#x901A;&#x5E38;&#xFF0C;&#x6743;&#x9650;&#x5931;&#x8D25;&#x4F1A;&#x5BFC;&#x81F4;&#x629B;&#x51FA; SecurityException &#x3002;&#x4E5F;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x4F46;&#x5728;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6743;&#x9650;&#x5931;&#x6548;&#x4F1A;&#x8BB0;&#x5165;&#x7CFB;&#x7EDF;&#x65E5;&#x5FD7;&#x3002;</em></strong></p>
+<h1 id="&#x6743;&#x9650;&#x7EA7;&#x522B;"><a href="#&#x6743;&#x9650;&#x7EA7;&#x522B;" class="headerlink" title="&#x6743;&#x9650;&#x7EA7;&#x522B;"></a>&#x6743;&#x9650;&#x7EA7;&#x522B;</h1><p>&#x7CFB;&#x7EDF;&#x6743;&#x9650;&#x5206;&#x51E0;&#x4E2A;&#x7EA7;&#x522B;&#x3002;&#x6700;&#x91CD;&#x8981;&#x7EA7;&#x522B;&#x662F;&#x6B63;&#x5E38;&#x6743;&#x9650;&#x548C;&#x5371;&#x9669;&#x6743;&#x9650;&#xFF1A;</p>
+<ul>
+<li>&#x6B63;&#x5E38;&#x6743;&#x9650;&#x6DB5;&#x76D6;&#x5E94;&#x7528;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x5176;&#x6C99;&#x76D2;&#x5916;&#x90E8;&#x6570;&#x636E;&#x6216;&#x8D44;&#x6E90;&#xFF0C;&#x4F46;&#x5BF9;&#x7528;&#x6237;&#x9690;&#x79C1;&#x6216;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x64CD;&#x4F5C;&#x98CE;&#x9669;&#x5F88;&#x5C0F;&#x7684;&#x533A;&#x57DF;&#x3002;&#x5982;&#x679C;&#x5E94;&#x7528;&#x58F0;&#x660E;&#x5176;&#x9700;&#x8981;&#x6B63;&#x5E38;&#x6743;&#x9650;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x81EA;&#x52A8;&#x5411;&#x5E94;&#x7528;&#x6388;&#x4E88;&#x8BE5;&#x6743;&#x9650;&#x3002;<a href="https://developer.android.google.cn/guide/topics/permissions/normal-permissions.html" target="_blank" rel="external">&#x6B63;&#x5E38;&#x6743;&#x9650;&#x7684;&#x5B8C;&#x6574;&#x5217;&#x8868;</a></li>
+<li>&#x5371;&#x9669;&#x6743;&#x9650;&#x6DB5;&#x76D6;&#x5E94;&#x7528;&#x9700;&#x8981;&#x6D89;&#x53CA;&#x7528;&#x6237;&#x9690;&#x79C1;&#x4FE1;&#x606F;&#x7684;&#x6570;&#x636E;&#x6216;&#x8D44;&#x6E90;&#xFF0C;&#x6216;&#x8005;&#x53EF;&#x80FD;&#x5BF9;&#x7528;&#x6237;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x6216;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7684;&#x64CD;&#x4F5C;&#x4EA7;&#x751F;&#x5F71;&#x54CD;&#x7684;&#x533A;&#x57DF;&#x3002;&#x5982;&#x679C;&#x5E94;&#x7528;&#x58F0;&#x660E;&#x5176;&#x9700;&#x8981;&#x5371;&#x9669;&#x6743;&#x9650;&#xFF0C;&#x5219;&#x7528;&#x6237;&#x5FC5;&#x987B;&#x660E;&#x786E;&#x5411;&#x5E94;&#x7528;&#x6388;&#x4E88;&#x8BE5;&#x6743;&#x9650;&#x3002;<h2 id="&#x6743;&#x9650;&#x7EC4;"><a href="#&#x6743;&#x9650;&#x7EC4;" class="headerlink" title="&#x6743;&#x9650;&#x7EC4;"></a>&#x6743;&#x9650;&#x7EC4;</h2>&#x6240;&#x6709;&#x5371;&#x9669;&#x7684; Android &#x7CFB;&#x7EDF;&#x6743;&#x9650;&#x90FD;&#x5C5E;&#x4E8E;&#x6743;&#x9650;&#x7EC4;&#x3002;&#x5982;&#x679C;&#x8BBE;&#x5907;&#x8FD0;&#x884C;&#x7684;&#x662F; Android 6.0&#xFF08;API &#x7EA7;&#x522B; 23&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x5E94;&#x7528;&#x7684; targetSdkVersion &#x662F; 23 &#x6216;&#x66F4;&#x9AD8;&#x7248;&#x672C;&#xFF0C;&#x5219;&#x5F53;&#x7528;&#x6237;&#x8BF7;&#x6C42;&#x5371;&#x9669;&#x6743;&#x9650;&#x65F6;&#x7CFB;&#x7EDF;&#x4F1A;&#x53D1;&#x751F;&#x4EE5;&#x4E0B;&#x884C;&#x4E3A;&#xFF1A;<br>1.&#x5982;&#x679C;&#x5E94;&#x7528;&#x8BF7;&#x6C42;&#x5176;&#x6E05;&#x5355;&#x4E2D;&#x5217;&#x51FA;&#x7684;&#x5371;&#x9669;&#x6743;&#x9650;&#xFF0C;&#x5E94;&#x7528;&#x76EE;&#x524D;&#x5728;&#x6743;&#x9650;&#x7EC4;&#x4E2D;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x6743;&#x9650;&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x5411;&#x7528;&#x6237;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x5BF9;&#x8BDD;&#x6846;&#xFF0C;&#x63CF;&#x8FF0;&#x5E94;&#x7528;&#x8981;&#x8BBF;&#x95EE;&#x7684;&#x6743;&#x9650;&#x7EC4;&#x3002;&#x5BF9;&#x8BDD;&#x6846;&#x4E0D;&#x63CF;&#x8FF0;&#x8BE5;&#x7EC4;&#x5185;&#x7684;&#x5177;&#x4F53;&#x6743;&#x9650;&#x3002;&#x5982;&#x679C;&#x7528;&#x6237;&#x540C;&#x610F;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C06;&#x5411;&#x5E94;&#x7528;&#x6388;&#x4E88;&#x5176;&#x8BF7;&#x6C42;&#x7684;&#x6743;&#x9650;&#x3002;<br>2.&#x5982;&#x679C;&#x5E94;&#x7528;&#x5728;&#x540C;&#x4E00;&#x6743;&#x9650;&#x7EC4;&#x4E2D;&#x5DF2;&#x6709;&#x53E6;&#x4E00;&#x9879;&#x5371;&#x9669;&#x6743;&#x9650;&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x7ACB;&#x5373;&#x6388;&#x4E88;&#x8BE5;&#x6743;&#x9650;&#xFF0C;&#x800C;&#x65E0;&#x9700;&#x4E0E;&#x7528;&#x6237;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x4EA4;&#x4E92;&#xFF0C;&#x7CFB;&#x7EDF;&#x5C06;&#x7ACB;&#x5373;&#x6388;&#x4E88;&#x8BE5;&#x6743;&#x9650;&#x3002;<br>&#x4EFB;&#x4F55;&#x6743;&#x9650;&#x90FD;&#x53EF;&#x5C5E;&#x4E8E;&#x4E00;&#x4E2A;&#x6743;&#x9650;&#x7EC4;&#xFF0C;&#x5305;&#x62EC;&#x6B63;&#x5E38;&#x6743;&#x9650;&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x6743;&#x9650;&#x3002;&#x4F46;&#x6743;&#x9650;&#x7EC4;&#x4EC5;&#x5F53;&#x6743;&#x9650;&#x5371;&#x9669;&#x65F6;&#x624D;&#x5F71;&#x54CD;&#x7528;&#x6237;&#x4F53;&#x9A8C;&#x3002;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x6B63;&#x5E38;&#x6743;&#x9650;&#x7684;&#x6743;&#x9650;&#x7EC4;&#x3002;<br>&#x5982;&#x8BBE;&#x5907;&#x8FD0;&#x884C;&#x7684;&#x662F; Android 5.1&#xFF08;API &#x7EA7;&#x522B; 22&#xFF09;&#x6216;&#x66F4;&#x4F4E;&#x7248;&#x672C;&#xFF0C;&#x5E76; targetSdkVersion &#x662F; 22 &#x6216;&#x66F4;&#x4F4E;&#x7248;&#x672C;&#xFF0C;&#x5219;&#x4F1A;&#x5728;&#x5B89;&#x88C5;&#x65F6;&#x8981;&#x6C42;&#x7528;&#x6237;&#x6388;&#x4E88;&#x6743;&#x9650;&#x3002;<h2 id="&#x7279;&#x6B8A;&#x6743;&#x9650;"><a href="#&#x7279;&#x6B8A;&#x6743;&#x9650;" class="headerlink" title="&#x7279;&#x6B8A;&#x6743;&#x9650;"></a>&#x7279;&#x6B8A;&#x6743;&#x9650;</h2>&#x6709;&#x8BB8;&#x591A;&#x6743;&#x9650;&#x5176;&#x884C;&#x4E3A;&#x65B9;&#x5F0F;&#x4E0E;&#x6B63;&#x5E38;&#x6743;&#x9650;&#x53CA;&#x5371;&#x9669;&#x6743;&#x9650;&#x90FD;&#x4E0D;&#x540C;&#x3002;SYSTEM_ALERT_WINDOW &#x548C; WRITE_SETTINGS &#xFF0C;&#x614E;&#x7528;&#x3002;</li>
+</ul>
+<h1 id="&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;"><a href="#&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;" class="headerlink" title="&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;"></a>&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;</h1><p>&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A; <code>&lt;permission&gt;</code> &#x5143;&#x7D20;&#x5728; AndroidManifest.xml &#x4E2D;&#x58F0;&#x660E;&#x3002;</p>
+<pre><code>&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.example.myapp&quot; &gt;
+    &lt;permission android:name=&quot;com.example.myapp.permission.DEADLY_ACTIVITY&quot;
+        android:label=&quot;@string/permlab_deadlyActivity&quot;
+        android:description=&quot;@string/permdesc_deadlyActivity&quot;
+        android:permissionGroup=&quot;android.permission-group.COST_MONEY&quot;
+        android:protectionLevel=&quot;dangerous&quot; /&gt;
+    ...
+&lt;/manifest&gt;
+</code></pre><p><em>*</em>&#x6CE8;&#xFF1A;&#x5728;&#x7CFB;&#x7EDF;&#x4E2D;&#x6743;&#x9650;&#x540D;&#x8981;&#x552F;&#x4E00;&#x7684;&#xFF0C;&#x4E0D;&#x80FD;&#x548C;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x540C;&#x540D;&#x3002;</p>
+<p><font color="#337FFF">android:permissionGroup</font> &#x662F;&#x53EF;&#x9009;&#x5C5E;&#x6027;&#xFF0C;&#x53EA;&#x662F;&#x7528;&#x4E8E;&#x5411;&#x7528;&#x6237;&#x663E;&#x793A;&#x6743;&#x9650;&#x3002;&#x6B64;&#x8BBE;&#x4E3A;&#x6807;&#x51C6;&#x7CFB;&#x7EDF;&#x7EC4;&#xFF08;&#x5217;&#x5728; android.Manifest.permission_group &#x4E2D;&#xFF09;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7EC4;&#x3002;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x73B0;&#x6709;&#x7684;&#x7EC4;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x6837;&#x53EF;&#x7B80;&#x5316;&#x5411;&#x7528;&#x6237;&#x663E;&#x793A;&#x7684;&#x6743;&#x9650; UI&#x3002;</p>
+<p><font color="#337FFF">protectionLevel</font> &#x662F;&#x5FC5;&#x8981;&#x5C5E;&#x6027;&#xFF0C;&#x7528;&#x4E8E;&#x6307;&#x793A;&#x7CFB;&#x7EDF;&#x5982;&#x4F55;&#x5411;&#x7528;&#x6237;&#x544A;&#x77E5;&#x9700;&#x8981;&#x6743;&#x9650;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x8C01;&#x53EF;&#x4EE5;&#x62E5;&#x6709;&#x8BE5;&#x6743;&#x9650;.</p>
+<blockquote>
+<p>adb shell pm list permissions &#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x4E2D;&#x5F53;&#x524D;&#x5B9A;&#x4E49;&#x7684;&#x6743;&#x9650;</p>
+</blockquote>
+<h1 id="&#x7EC4;&#x4EF6;&#x6743;&#x9650;&#x63A7;&#x5236;"><a href="#&#x7EC4;&#x4EF6;&#x6743;&#x9650;&#x63A7;&#x5236;" class="headerlink" title="&#x7EC4;&#x4EF6;&#x6743;&#x9650;&#x63A7;&#x5236;"></a>&#x7EC4;&#x4EF6;&#x6743;&#x9650;&#x63A7;&#x5236;</h1><p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7; AndroidManifest.xml &#x9650;&#x5236;&#x8BBF;&#x95EE;&#x7CFB;&#x7EDF;&#x6216;&#x5E94;&#x7528;&#x7684;&#x5168;&#x90E8;&#x7EC4;&#x4EF6;&#x3002;&#x5728;&#x6240;&#x9700;&#x7684;&#x7EC4;&#x4EF6;&#x4E0A;&#x5305;&#x542B; android:permission &#x5C5E;&#x6027;&#xFF0C;&#x4E3A;&#x7528;&#x4E8E;&#x63A7;&#x5236;&#x8BBF;&#x95EE;&#x5B83;&#x7684;&#x6743;&#x9650;&#x547D;&#x540D;&#x3002;</p>
+<ul>
+<li><font color="#337FFF">Activity</font> &#x6743;&#x9650;&#xFF0C;&#x5728; <code>Context.startActivity()</code> &#x548C; <code>Activity.startActivityForResult()</code> &#x65F6;&#x4F1A;&#x68C0;&#x67E5;&#x6743;&#x9650;&#xFF1B;&#x5982;&#x679C;&#x8C03;&#x7528;&#x65B9;&#x6CA1;&#x6709;&#x6240;&#x9700;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x5219;&#x8C03;&#x7528;&#x4F1A;&#x629B;&#x51FA; SecurityException&#x3002;</li>
+<li><font color="#337FFF">Service</font> &#x6743;&#x9650;&#xFF0C;&#x5728; <code>Context.startService()</code>&#x3001;<code>Context.stopService()</code> &#x548C; <code>Context.bindService()</code> &#x65F6;&#x4F1A;&#x68C0;&#x67E5;&#x6743;&#x9650;&#xFF1B;&#x5982;&#x679C;&#x8C03;&#x7528;&#x65B9;&#x6CA1;&#x6709;&#x6240;&#x9700;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x5219;&#x8C03;&#x7528;&#x4F1A;&#x629B;&#x51FA; SecurityException&#x3002;</li>
+<li><font color="#337FFF">BroadcastReceiver</font> &#x6743;&#x9650;&#xFF0C;&#x5728; <code>Context.sendBroadcast()</code> &#x8FD4;&#x56DE;&#x540E;&#x68C0;&#x67E5;&#x6743;&#x9650;&#xFF0C;&#x6743;&#x9650;&#x5931;&#x6548;&#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;&#x5411;&#x8C03;&#x7528;&#x65B9;&#x629B;&#x56DE;&#x5F02;&#x5E38;&#xFF1B;&#x53EA;&#x662F;&#x4E0D;&#x4F1A;&#x4F20;&#x9012;&#x8BE5; intent&#x3002;&#x540C;&#x6837;&#xFF0C;&#x53EF;&#x4EE5;&#x5411; <code>Context.registerReceiver()</code> &#x7528;&#x6743;&#x9650;&#x6765;&#x63A7;&#x5236;&#x8C01;&#x53EF;&#x4EE5;&#x5E7F;&#x64AD;&#x5230;&#x4EE5;&#x7F16;&#x7A0B;&#x65B9;&#x5F0F;&#x6CE8;&#x518C;&#x7684;&#x63A5;&#x6536;&#x65B9;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x8C03;&#x7528; <code>Context.sendBroadcast()</code> &#x65F6;&#x7528;&#x6743;&#x9650;&#x9650;&#x5236;&#x5141;&#x8BB8;&#x54EA;&#x4E9B; BroadcastReceiver &#x5BF9;&#x8C61;&#x63A5;&#x6536;&#x5E7F;&#x64AD;&#x3002;</li>
+<li><font color="#337FFF">ContentProvider</font> &#x6743;&#x9650;&#xFF0C;&#x9650;&#x5236;&#x8C01;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE; ContentProvider &#x4E2D;&#x7684;&#x6570;&#x636E;&#x3002;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E24;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x6743;&#x9650;&#x5C5E;&#x6027;&#xFF1A;<code>android:readPermission</code> &#x9650;&#x5236;&#x8BFB;&#x53D6;&#xFF0C;<code>android:writePermission</code> &#x9650;&#x5236;&#x5199;&#x5165;&#x3002;</li>
+</ul>
+<h1 id="&#x5176;&#x4ED6;&#x6743;&#x9650;&#x63A7;&#x5236;"><a href="#&#x5176;&#x4ED6;&#x6743;&#x9650;&#x63A7;&#x5236;" class="headerlink" title="&#x5176;&#x4ED6;&#x6743;&#x9650;&#x63A7;&#x5236;"></a>&#x5176;&#x4ED6;&#x6743;&#x9650;&#x63A7;&#x5236;</h1><ul>
+<li>&#x901A;&#x8FC7; <code>Context.checkCallingPermission()</code> &#x53EF;&#x4EE5;&#x5BF9;&#x670D;&#x52A1;&#x8C03;&#x7528;&#x505A;&#x4EFB;&#x610F;&#x7EC6;&#x5316;&#x7684;&#x6743;&#x9650;&#x63A7;&#x5236;&#x3002; &#x53C2;&#x6570;&#x4E3A;&#x6743;&#x9650;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5B83;&#x5C06;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x6743;&#x9650;&#x662F;&#x5426;&#x5DF2;&#x6388;&#x4E88;&#x5F53;&#x524D;&#x7684;&#x8C03;&#x7528;&#x8FDB;&#x7A0B;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x4EC5;&#x5728;&#x6267;&#x884C;&#x4ECE;&#x53E6;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x4F20;&#x5165;&#x7684;&#x8C03;&#x7528;&#x65F6;&#x624D;&#x53EF;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x6709;&#x53E6;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684; pid&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Context &#x65B9;&#x6CD5; <code>Context.checkPermission(String, int, int)</code> &#x68C0;&#x67E5;&#x9488;&#x5BF9;&#x8BE5; pid &#x7684;&#x6743;&#x9650;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x6709;&#x53E6;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#x540D;&#x79F0;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x76F4;&#x63A5;&#x7684; PackageManager &#x65B9;&#x6CD5; <code>PackageManager.checkPermission(String, String)</code> &#x4E86;&#x89E3;&#x662F;&#x5426;&#x5DF2;&#x4E3A;&#x7279;&#x5B9A;&#x8F6F;&#x4EF6;&#x5305;&#x6388;&#x4E88;&#x7279;&#x5B9A;&#x6743;&#x9650;&#x3002;</li>
+</ul>
+<h1 id="URI-&#x6743;&#x9650;"><a href="#URI-&#x6743;&#x9650;" class="headerlink" title="URI &#x6743;&#x9650;"></a>URI &#x6743;&#x9650;</h1><p>&#x5BF9;&#x4E8E;&#x6709;ContentProvider&#x7684;&#x5E94;&#x7528;&#x4F7F;&#x7528;&#x4EE5;&#x4E0A;&#x7684;&#x6807;&#x51C6;&#x6743;&#x9650;&#x901A;&#x5E38;&#x662F;&#x4E0D;&#x591F;&#x7684;&#x3002;&#x53EF;&#x80FD;&#x8FD8;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x8BFB;&#x53D6;&#x548C;&#x5199;&#x5165;&#x6743;&#x9650;&#x4FDD;&#x62A4;&#x81EA;&#x5DF1;&#xFF0C;&#x800C;&#x5176;&#x76F4;&#x63A5;&#x5BA2;&#x6237;&#x7AEF;&#x4E5F;&#x9700;&#x8981;&#x5C06;&#x7279;&#x5B9A; URI &#x4F20;&#x7ED9;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x4EE5;&#x4FBF;&#x4E8E;&#x5B83;&#x4EEC;&#x8FD0;&#x884C;&#x3002;<br>&#x91C7;&#x7528; per-URI &#x6743;&#x9650;&#x673A;&#x5236;&#xFF1A;&#x5728;&#x542F;&#x52A8; Activity &#x6216;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x7ED9; Activity &#x65F6;&#xFF0C;&#x8C03;&#x7528;&#x65B9;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E; Intent.FLAG_GRANT_READ_URI_PERMISSION &#x548C;/&#x6216; Intent.FLAG_GRANT_WRITE_URI_PERMISSION&#x3002;&#x8FD9;&#x5C06;&#x6388;&#x4E88;&#x63A5;&#x6536; Activity &#x6743;&#x9650;&#x8BBF;&#x95EE; intent &#x4E2D;&#x7684;&#x7279;&#x5B9A;&#x6570;&#x636E; URI&#xFF0C;&#x800C;&#x4E0D;&#x7BA1;&#x5B83;&#x662F;&#x5426;&#x5177;&#x6709;&#x8BBF;&#x95EE; intent &#x5BF9;&#x5E94;&#x7684;&#x5185;&#x5BB9;&#x63D0;&#x4F9B;&#x7A0B;&#x5E8F;&#x4E2D;&#x6570;&#x636E;&#x7684;&#x4EFB;&#x4F55;&#x6743;&#x9650;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x9879;&#x5173;&#x952E;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x5C06;&#x5E94;&#x7528;&#x6240;&#x9700;&#x7684;&#x6743;&#x9650;&#x7F29;&#x5C0F;&#x81F3;&#x53EA;&#x4E0E;&#x5176;&#x884C;&#x4E3A;&#x76F4;&#x63A5;&#x76F8;&#x5173;&#x7684;&#x6743;&#x9650;&#x3002;<br>&#x4F46;&#x6388;&#x4E88;&#x7EC6;&#x5316;&#x7684; URI &#x6743;&#x9650;&#x9700;&#x8981;&#x4E0E;&#x62E5;&#x6709;&#x8FD9;&#x4E9B; URI &#x7684;&#x5185;&#x5BB9;&#x63D0;&#x4F9B;&#x7A0B;&#x5E8F;&#x8FDB;&#x884C;&#x4E00;&#x5B9A;&#x7684;&#x5408;&#x4F5C;&#x3002;&#x5EFA;&#x8BAE; ContentProvider &#x7684;&#x5E94;&#x7528;&#x52A0;&#x5165;&#x6B64;&#x529F;&#x80FD;&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7; <code>android:grantUriPermissions</code> &#x5C5E;&#x6027;&#x6216; <code>&lt;grant-uri-permissions&gt;</code> &#x6807;&#x8BB0;&#x58F0;&#x660E;&#x652F;&#x6301;&#x6B64;&#x529F;&#x80FD;&#x3002;<br>&#x66F4;&#x591A;&#x76F8;&#x5173;&#x65B9;&#x6CD5; <code>Context.grantUriPermission()</code> <code>Context.revokeUriPermission()</code> &#x548C; <code>Context.checkUriPermission()</code></p>
+<h1 id="&#x52A8;&#x6001;&#x8BF7;&#x6C42;&#x6743;&#x9650;"><a href="#&#x52A8;&#x6001;&#x8BF7;&#x6C42;&#x6743;&#x9650;" class="headerlink" title="&#x52A8;&#x6001;&#x8BF7;&#x6C42;&#x6743;&#x9650;"></a>&#x52A8;&#x6001;&#x8BF7;&#x6C42;&#x6743;&#x9650;</h1><h1 id="&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;"><a href="#&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;" class="headerlink" title="&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;"></a>&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/05/Android笔记2-沙箱机制/" rel="next" title="Android笔记2: 沙箱机制">
+                <i class="fa fa-chevron-left"></i> Android笔记2: 沙箱机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/06/Android笔记4-系统权限/" rel="prev" title="Android笔记4: 系统权限">
+                Android笔记4: 系统权限 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="zsp" />
+            
+              <p class="site-author-name" itemprop="name">zsp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#权限应用的范围"><span class="nav-number">1.</span> <span class="nav-text">权限应用的范围</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#声明权限"><span class="nav-number">2.</span> <span class="nav-text">声明权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权限级别"><span class="nav-number">3.</span> <span class="nav-text">权限级别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#权限组"><span class="nav-number">3.1.</span> <span class="nav-text">权限组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊权限"><span class="nav-number">3.2.</span> <span class="nav-text">特殊权限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义权限"><span class="nav-number">4.</span> <span class="nav-text">自定义权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件权限控制"><span class="nav-number">5.</span> <span class="nav-text">组件权限控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他权限控制"><span class="nav-number">6.</span> <span class="nav-text">其他权限控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URI-权限"><span class="nav-number">7.</span> <span class="nav-text">URI 权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态请求权限"><span class="nav-number">8.</span> <span class="nav-text">动态请求权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推荐使用方式"><span class="nav-number">9.</span> <span class="nav-text">推荐使用方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zsp</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

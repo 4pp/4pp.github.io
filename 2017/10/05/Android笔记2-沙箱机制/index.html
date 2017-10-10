@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Android&amp;#x7684;&amp;#x201D;&amp;#x6C99;&amp;#x7BB1;&amp;#x201C;(sandbox)&amp;#x5C31;&amp;#x662F;&amp;#x5728; Linux &amp;#x7684;&amp;#x8FDB;&amp;#x7A0B;&amp;#x7BA1;&amp;#x7406;&amp;#x57FA;&amp;#x7840;&amp;#x4E0A;&amp;#x5BF9; UID &amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x505A;&amp;#x4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android笔记2: 沙箱机制">
+<meta property="og:url" content="/2017/10/05/Android笔记2-沙箱机制/index.html">
+<meta property="og:site_name" content="4pp.me">
+<meta property="og:description" content="Android&amp;#x7684;&amp;#x201D;&amp;#x6C99;&amp;#x7BB1;&amp;#x201C;(sandbox)&amp;#x5C31;&amp;#x662F;&amp;#x5728; Linux &amp;#x7684;&amp;#x8FDB;&amp;#x7A0B;&amp;#x7BA1;&amp;#x7406;&amp;#x57FA;&amp;#x7840;&amp;#x4E0A;&amp;#x5BF9; UID &amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x505A;&amp;#x4">
+<meta property="og:updated_time" content="2017-10-08T14:49:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android笔记2: 沙箱机制">
+<meta name="twitter:description" content="Android&amp;#x7684;&amp;#x201D;&amp;#x6C99;&amp;#x7BB1;&amp;#x201C;(sandbox)&amp;#x5C31;&amp;#x662F;&amp;#x5728; Linux &amp;#x7684;&amp;#x8FDB;&amp;#x7A0B;&amp;#x7BA1;&amp;#x7406;&amp;#x57FA;&amp;#x7840;&amp;#x4E0A;&amp;#x5BF9; UID &amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x505A;&amp;#x4">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2017/10/05/Android笔记2-沙箱机制/"/>
+
+
+
+
+
+  <title>Android笔记2: 沙箱机制 | 4pp.me</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">4pp.me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/05/Android笔记2-沙箱机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zsp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="4pp.me">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android笔记2: 沙箱机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-05T21:50:03+08:00">
+                2017-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Android&#x7684;&#x201D;&#x6C99;&#x7BB1;&#x201C;(sandbox)&#x5C31;&#x662F;&#x5728; Linux &#x7684;&#x8FDB;&#x7A0B;&#x7BA1;&#x7406;&#x57FA;&#x7840;&#x4E0A;&#x5BF9; UID &#x7684;&#x4F7F;&#x7528;&#x505A;&#x4E86;&#x6539;&#x8FDB;&#xFF0C;&#x7EE7;&#x627F;&#x4E86; Linux &#x8FDB;&#x7A0B;&#x9694;&#x79BB;&#x673A;&#x5236;&#x4E0E;&#x6700;&#x5C0F;&#x6743;&#x9650;&#x539F;&#x5219;&#x3002;&#x5BF9;&#x4F7F;&#x7528;&#x8005;&#x6765;&#x8BF4;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x79CD;&#x5B89;&#x5168;&#x73AF;&#x5883;&#xFF0C;&#x5BF9;&#x6076;&#x610F;&#x8BBF;&#x95EE;&#x8005;&#x6765;&#x8BF4;&#x662F;&#x4E00;&#x79CD;&#x9650;&#x5236;&#x3002;<br><a id="more"></a></p>
+<h1 id="&#x6C99;&#x7BB1;&#x673A;&#x5236;&#x6982;&#x5FF5;"><a href="#&#x6C99;&#x7BB1;&#x673A;&#x5236;&#x6982;&#x5FF5;" class="headerlink" title="&#x6C99;&#x7BB1;&#x673A;&#x5236;&#x6982;&#x5FF5;"></a>&#x6C99;&#x7BB1;&#x673A;&#x5236;&#x6982;&#x5FF5;</h1><ul>
+<li>Android &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x672C;&#x8EAB;&#x57FA;&#x4E8E;&#x591A;&#x7528;&#x6237;&#x7684;Linux&#x7CFB;&#x7EDF;&#xFF0C;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x90FD;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x7528;&#x6237;&#x3002;</li>
+<li>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7CFB;&#x7EDF;&#x4E3A;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x5206;&#x914D;&#x552F;&#x4E00;&#x7684;&#x7528;&#x6237;ID&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x8FD9;&#x4E2A;&#x8BBE;&#x5907;&#x4E2D;&#x4FDD;&#x6301;&#x5B83;&#x7684;&#x6C38;&#x4E45;&#x6027;&#x3002;<br>ID&#x4EC5;&#x7531;&#x7CFB;&#x7EDF;&#x4F7F;&#x7528;&#xFF0C;&#x5BF9;&#x5E94;&#x7528;&#x662F;&#x900F;&#x660E;&#x7684;&#x3002;&#x7CFB;&#x7EDF;&#x4E3A;&#x5E94;&#x7528;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x8BBE;&#x7F6E;&#x6743;&#x9650;&#xFF0C;&#x53EA;&#x80FD;&#x7531;&#x5206;&#x914D;&#x7684;&#x7528;&#x6237;ID&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x3002;</li>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x4E0E;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x76F8;&#x4E92;&#x9694;&#x79BB;</li>
+<li>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#xFF0C;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x90FD;&#x5728;&#x81EA;&#x5DF1;&#x7684;Linux&#x8FDB;&#x7A0B;&#x5185;&#x8FD0;&#x884C;&#x3002;</li>
+</ul>
+<h1 id="&#x5E94;&#x7528;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x4E0E;&#x901A;&#x4FE1;"><a href="#&#x5E94;&#x7528;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x4E0E;&#x901A;&#x4FE1;" class="headerlink" title="&#x5E94;&#x7528;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x4E0E;&#x901A;&#x4FE1;"></a>&#x5E94;&#x7528;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x4E0E;&#x901A;&#x4FE1;</h1><h2 id="&#x65B9;&#x6CD5;&#x4E00;-Share-Preference-&#xFF08;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF0C;&#x4E86;&#x89E3;&#x5373;&#x53EF;&#xFF09;"><a href="#&#x65B9;&#x6CD5;&#x4E00;-Share-Preference-&#xFF08;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF0C;&#x4E86;&#x89E3;&#x5373;&#x53EF;&#xFF09;" class="headerlink" title="&#x65B9;&#x6CD5;&#x4E00;: Share Preference. &#xFF08;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF0C;&#x4E86;&#x89E3;&#x5373;&#x53EF;&#xFF09;"></a>&#x65B9;&#x6CD5;&#x4E00;: <del>Share Preference. &#xFF08;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF0C;&#x4E86;&#x89E3;&#x5373;&#x53EF;&#xFF09;</del></h2><p>Android &#x5E73;&#x53F0;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;SharedPreferences&#x7C7B;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#x5B58;&#x50A8;&#x7C7B;&#xFF0C;&#x9002;&#x5408;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x8F6F;&#x4EF6;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x3002;&#x7528;xml&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x6570;&#x636E;&#xFF0C;&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x5728;/data/data/&#x5305;&#x540D;/shared_prefs&#x76EE;&#x5F55;&#x4E0B;&#xFF1A;<br>SharedPreferences sharedPreferences = getSharedPreferences(&#x201C;config&#x201D;, Context.MODE_PRIVATE);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Editor editor = sharedPreferences.edit();//&#x83B7;&#x53D6;&#x7F16;&#x8F91;&#x5668;</span><br><span class="line">editor.putString(&quot;name&quot;, &quot;&#x5F20;&#x4E09;&quot;);</span><br><span class="line">editor.putInt(&quot;age&quot;, 10);</span><br><span class="line">editor.commit();//&#x63D0;&#x4EA4;&#x4FEE;&#x6539;</span><br></pre></td></tr></table></figure></p>
+<p>getSharedPreferences(name,mode)&#x65B9;&#x6CD5;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x8BE5;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#xFF0C;&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7684;&#x64CD;&#x4F5C;&#x6A21;&#x5F0F;&#x3002;<br>&#x503C;&#x53EF;&#x4EE5;&#x662F;0(MODE_PRIVATE)&#x6216;&#x7EC4;&#x5408;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x6A21;&#x5F0F;&#x4F7F;&#x7528;</p>
+<table>
+<thead>
+<tr>
+<th>&#x540D;&#x79F0;</th>
+<th>&#x4F5C;&#x7528;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MODE_PRIVATE</td>
+<td>&#x9ED8;&#x8BA4;&#x6A21;&#x5F0F;&#xFF0C;&#x6587;&#x4EF6;&#x53EA;&#x80FD;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;,&#x6216;&#x6709;&#x76F8;&#x540C;&#x7528;&#x6237;ID&#x7684;&#x5E94;&#x7528;&#x4F7F;&#x7528;</td>
+</tr>
+<tr>
+<td><del>MODE_WORLD_READABLE</del></td>
+<td>&#x5141;&#x8BB8;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BFB;&#x8BBF;&#x95EE;&#xFF0C;&#x6709;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF0C;&#x5DF2;&#x5E9F;&#x5F03;</td>
+</tr>
+<tr>
+<td><del>MODE_WORLD_WRITEABLE</del></td>
+<td>&#x5141;&#x8BB8;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5199;&#x8BBF;&#x95EE;&#xFF0C;&#x6709;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF0C;&#x5DF2;&#x5E9F;&#x5F03;</td>
+</tr>
+<tr>
+<td><del>MODE_MULTI_PROCESS</del></td>
+<td>&#x8DE8;&#x8FDB;&#x7A0B;&#x8BBF;&#x95EE;&#xFF0C;&#x5DF2;&#x5E9F;&#x5F03;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="&#x65B9;&#x6CD5;&#x4E8C;-SharedUserId"><a href="#&#x65B9;&#x6CD5;&#x4E8C;-SharedUserId" class="headerlink" title="&#x65B9;&#x6CD5;&#x4E8C;: SharedUserId"></a>&#x65B9;&#x6CD5;&#x4E8C;: SharedUserId</h2><p>Android &#x4E3A;&#x6BCF;&#x4E2A;&#x8F6F;&#x4EF6;&#x5305;&#x63D0;&#x4F9B;&#x552F;&#x4E00;&#x7684; Linux &#x7528;&#x6237; ID&#x3002;&#x6B64; ID &#x5728;&#x8F6F;&#x4EF6;&#x5305;&#x5728;&#x8BE5;&#x8BBE;&#x5907;&#x4E0A;&#x7684;&#x4F7F;&#x671F;&#x95F4;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x3002;&#x5728;&#x4E0D;&#x540C;&#x8BBE;&#x5907;&#x4E0A;&#xFF0C;&#x76F8;&#x540C;&#x5E94;&#x7528;&#x5305;&#x53EF;&#x80FD;&#x6709;&#x4E0D;&#x540C;&#x7684; UID&#xFF1B;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x6307;&#x5B9A;&#x8BBE;&#x5907;&#x4E0A;&#x7684; UID &#x662F;&#x552F;&#x4E00;&#x7684;&#x3002;<br>&#x901A;&#x8FC7;&#x62E5;&#x6709;&#x540C;&#x4E00;&#x4E2A; UID &#x7684;&#x591A;&#x4E2A;APK&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x6210;&#x8FD0;&#x884C;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E2D;.&#x53EF;&#x4EE5;&#x4E92;&#x76F8;&#x8BBF;&#x95EE;&#x4EFB;&#x610F;&#x6570;&#x636E;.&#x4E3A;&#x4E86;&#x8282;&#x7701;&#x8D44;&#x6E90;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5B89;&#x6392;&#x76F8;&#x540C;ID&#x7684;&#x5E94;&#x7528;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5145;&#x8FD0;&#x884C;&#xFF0C;&#x5E76;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x4E3A;&#x4E86;&#x5B89;&#x5168;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x7B7E;&#x540D;<br>&#x5728;&#x9700;&#x8981;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x7684;&#x9879;&#x76EE;&#x7684;&#x6BCF;&#x4E2A; AndroidMainfest.xml &#x4E2D;&#x6DFB;&#x52A0; sharedUserId &#x7684;&#x6807;&#x7B7E;&#x3002;</p>
+<pre><code>&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.zsp.sharedatademoa&quot;
+    android:sharedUserId=&quot;com.zsp&quot;&gt;
+</code></pre><p>Context &#x6709;&#x4E2A; createPackageContext &#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x5305;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x8FD9;&#x4E2A;&#x5B9E;&#x4F8B;&#x4E0D;&#x540C;&#x4E8E;&#x5B83;&#x672C;&#x8EAB;&#x7684;Context&#x5B9E;&#x4F8B;&#xFF0C;&#x4F46;&#x662F;&#x529F;&#x80FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;<br>1&#x3001;packageName  &#x5305;&#x540D;&#xFF0C;&#x8981;&#x5F97;&#x5230;Context&#x7684;&#x5305;&#x540D;<br>2&#x3001;flags  &#x6807;&#x5FD7;&#x4F4D;&#xFF0C;&#x6709; CONTEXT_INCLUDE_CODE &#x548C; CONTEXT_IGNORE_SECURITY &#x4E24;&#x4E2A;&#x9009;&#x9879;&#x3002;CONTEXT_INCLUDE_CODE&#x7684;&#x610F;&#x601D;&#x662F;&#x5305;&#x62EC;&#x4EE3;&#x7801;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x5305;&#x91CC;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x3002;CONTEXT_IGNORE_SECURITY&#x7684;&#x610F;&#x601D;&#x662F;&#x5FFD;&#x7565;&#x5B89;&#x5168;&#x8B66;&#x544A;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x52A0;&#x8FD9;&#x4E2A;&#x6807;&#x5FD7;&#x7684;&#x8BDD;&#xFF0C;&#x6709;&#x4E9B;&#x529F;&#x80FD;&#x662F;&#x7528;&#x4E0D;&#x4E86;&#x7684;&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;&#x5B89;&#x5168;&#x8B66;&#x544A;&#x3002; </p>
+<p>&#x5728;A&#x9879;&#x76EE;&#x4EE3;&#x7801;&#x4E2D;&#x8BBF;&#x95EE;B&#x9879;&#x76EE;&#x4E2D;&#x7684; SharedPreferences<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Context ctx  = createPackageContext(&quot;com.zsp.b&quot;, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY); </span><br><span class="line">SharedPreferences sp = ct.getSharedPreferences(&quot;appInfo&quot;, MODE_PRIVATE);  </span><br><span class="line">String name = sp.getString(&quot;name&quot;, &quot;123&quot;);  </span><br><span class="line">Log.d(&quot;name&quot;, &quot;share preference--&gt;&quot; + name);</span><br></pre></td></tr></table></figure></p>
+<p>&#x5728;A&#x9879;&#x76EE;&#x53CD;&#x5C04;&#x8C03;&#x7528;B&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Context c  = createPackageContext(&quot;com.zsp.sharedatademob&quot;, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);</span><br><span class="line">Class clazz = c.getClassLoader().loadClass(&quot;com.zsp.sharedatademob.MainActivity&quot;);</span><br><span class="line">Object owner = clazz.newInstance();</span><br><span class="line">Object obj = clazz.getMethod(&quot;testShareMethod&quot;, String.class).invoke(owner, &quot;OK&#x4E0D;&quot;);</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>&#x6CE8;&#xFF1A;</em></strong> &#x5728;as&#x73AF;&#x5883;&#x4E2D;&#x7528;&#x53CD;&#x5C04;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x6709;&#x5F02;&#x5E38;,&#x5173;&#x95ED;Instant Run&#x540E;&#x5C1D;&#x8BD5;&#x3002;</p>
+<h2 id="&#x65B9;&#x6CD5;&#x4E09;-ContentProvider"><a href="#&#x65B9;&#x6CD5;&#x4E09;-ContentProvider" class="headerlink" title="&#x65B9;&#x6CD5;&#x4E09; ContentProvider"></a>&#x65B9;&#x6CD5;&#x4E09; ContentProvider</h2><p>ContentProvider &#x4E3A;&#x5B58;&#x50A8;&#x548C;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x63D0;&#x4F9B;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x3002;<br>&#x662F;&#x6807;&#x51C6;&#x7684;&#x4E5F;&#x662F;&#x5B98;&#x65B9;&#x63A8;&#x8350;&#x7684;&#x8DE8;&#x8FDB;&#x7A0B;&#x6570;&#x636E;&#x5171;&#x4EAB;&#x65B9;&#x5F0F;&#x3002;Android &#x5DF2;&#x7ECF;&#x4E3A;&#x5E38;&#x89C1;&#x7684;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x63D0;&#x4F9B;&#x4E86;&#x9ED8;&#x8BA4;&#x7684; ContentProvider</p>
+<h2 id="&#x65B9;&#x6CD5;&#x56DB;-TrayPreferences"><a href="#&#x65B9;&#x6CD5;&#x56DB;-TrayPreferences" class="headerlink" title="&#x65B9;&#x6CD5;&#x56DB; TrayPreferences"></a>&#x65B9;&#x6CD5;&#x56DB; TrayPreferences</h2><p>&#x7B2C;&#x4E09;&#x65B9;&#x5E93;<a href="https://github.com/grandcentrix/tray" target="_blank" rel="external">Tray</a> &#x662F;&#x4E00;&#x4E2A;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x65B9;&#x6848;&#x652F;&#x6301;&#x591A;&#x7EBF;&#x7A0B;&#x3001;&#x591A;&#x8FDB;&#x7A0B;&#x3002;&#x672C;&#x8D28;&#x4E0A;&#x4E5F;&#x662F;&#x57FA;&#x4E8E;ContentProvider&#x7684;&#x3002;</p>
+<h1 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h1><p><strong>&#x65B9;&#x6CD5;&#x4E00;</strong> &#x4E0D;&#x7A33;&#x5B9A;&#x5E76;&#x6709;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#x3002; &#x5E76;&#x4E14;&#x5728;Android7.0&#x4E2D;&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x79C1;&#x6709;&#x6587;&#x4EF6;&#x7684;&#x5B89;&#x5168;&#x6027;&#xFF0C;&#x9762;&#x5411; Android N&#x6216;&#x66F4;&#x9AD8;&#x7248;&#x672C;&#x7684;&#x5E94;&#x7528;&#x79C1;&#x6709;&#x76EE;&#x5F55;&#x5C06;&#x88AB;&#x9650;&#x5236;&#x8BBF;&#x95EE;&#x3002;&#x79C1;&#x6709;&#x6587;&#x4EF6;&#x7684;&#x6587;&#x4EF6;&#x6743;&#x9650;&#x4E0D;&#x5728;&#x653E;&#x6743;&#x7ED9;&#x6240;&#x6709;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x4F7F;&#x7528; MODE_WORLD_READABLE &#x6216;MODE_WORLD_WRITEABLE &#x8FDB;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x5C06;&#x89E6;&#x53D1; SecurityException&#x3002;MODE_MULTI_PROCESS &#x867D;&#x53EF;&#x57AE;&#x8FDB;&#x7A0B;&#x7528;&#xFF0C;&#x4F46;&#x5728;&#x67D0;&#x4E9B;Android &#x7248;&#x672C;&#x4E0A;&#x4E0D;&#x53EF;&#x9760;&#xFF0C;&#x5DF2;&#x5E9F;&#x5F03;&#x3002;</p>
+<p><strong>&#x65B9;&#x6CD5;&#x4E8C;</strong> &#x5982;&#x679C;&#x591A;&#x4E2A;&#x5E94;&#x7528;&#x7684;uid&#x76F8;&#x540C;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x4ED6;&#x4EEC;&#x7684; apk &#x7B7E;&#x540D;&#x5FC5;&#x987B;&#x4E00;&#x81F4;&#xFF0C;&#x63D0;&#x9AD8;&#x5B89;&#x5168;&#x6027;&#x9632;&#x6B62;&#xFF0C;&#x9006;&#x5411;&#x7BE1;&#x6539;&#x7B49;&#x6F0F;&#x6D1E;&#x3002;&#x6CE8;&#x610F;&#x4ECE;&#x6CA1;&#x6709; sharedUserId &#x5230;&#x6709; sharedUserId &#x7248;&#x672C;&#x65F6;&#x7684;&#x5347;&#x7EA7;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x4E00;&#x5B9A;&#x7684;&#x5B89;&#x5168;&#x6743;&#x9650;&#x95EE;&#x9898;&#x3002;</p>
+<p><strong>&#x65B9;&#x6CD5;&#x4E09;</strong> &#x63A8;&#x8350; ContentProvider&#x3001;FileProvider &#x65B9;&#x6848;&#x3002;</p>
+<p><strong>&#x65B9;&#x6CD5;&#x56DB;</strong> &#x53EF;&#x4EE5;&#x5B66;&#x4E60;&#x53C2;&#x8003;&#xFF0C;&#x7814;&#x7A76;&#x5176;&#x539F;&#x7406;&#x3002;</p>
+<h1 id="&#x76F8;&#x5173;&#x8865;&#x5145;-exported-&#x5C5E;&#x6027;&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;"><a href="#&#x76F8;&#x5173;&#x8865;&#x5145;-exported-&#x5C5E;&#x6027;&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;" class="headerlink" title="&#x76F8;&#x5173;&#x8865;&#x5145; exported &#x5C5E;&#x6027;&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;"></a>&#x76F8;&#x5173;&#x8865;&#x5145; exported &#x5C5E;&#x6027;&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x6743;&#x9650;</h1><p>&#x7A0B;&#x5E8F;A&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x88AB;&#x5176;&#x4ED6;&#x7684;&#x7A0B;&#x5E8F;&#x8C03;&#x7528;&#x81EA;&#x5DF1;&#x7684; activity&#x3001;service&#xFF0C;&#x6216; receiver &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EA;&#x8981;&#x5728; AndroidManifest.xml &#x91CC;&#x9762;&#x6DFB;&#x52A0; exported &#x5C5E;&#x6027;&#xFF0C;&#x4FBF;&#x80FD;&#x4F7F;&#x5176;&#x4ED6;&#x7684;&#x7A0B;&#x5E8F;&#x4E0D;&#x80FD;&#x8C03;&#x7528;&#x81EA;&#x5DF1;&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x7A0B;&#x5E8F;&#x7684; userid &#x662F;&#x4E00;&#x6837;&#x7684;&#x8BDD;&#xFF0C;exported=&#x201D;false&#x201D; &#x5C31;&#x6CA1;&#x6709;&#x7528;&#x4E86;&#x3002;&#x6709;&#x65F6;&#x5019;&#xFF0C;&#x5904;&#x4E8E;&#x5B89;&#x5168;&#x7B49;&#x9700;&#x8981;&#xFF0C;&#x6B64;&#x7C7B;&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x53D7;&#x9650;&#x5236;&#x6027;&#x7684;&#x8BBF;&#x95EE;&#x9650;&#x5236;&#x3002;app&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684; permission &#x6216;&#x5C5E;&#x4E8E;&#x5F00;&#x53D1;&#x8005;&#x4F7F;&#x7528;&#x7684;&#x540C;&#x4E00;&#x4E2A;&#x7B7E;&#x540D;&#x7684; permission &#x3002;&#x5728;A&#x9879;&#x76EE; menifest &#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A; permission &#x6807;&#x7B7E;&#x3002; &#x5728;B&#x9879;&#x76EE;&#x7684; Manufest &#x4E2D; usepermission &#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x3002;<br><strong>&#x6CE8;&#xFF1A;</strong> <em>&#x4E0D;&#x540C;&#x7B7E;&#x540D;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x4E0D;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x76F8;&#x540C;&#x7684;&#x6743;&#x9650;&#x540D;&#x5B57;</em></p>
+<h1 id="&#x793A;&#x4F8B;&#x4EE3;&#x7801;"><a href="#&#x793A;&#x4F8B;&#x4EE3;&#x7801;" class="headerlink" title="&#x793A;&#x4F8B;&#x4EE3;&#x7801;"></a>&#x793A;&#x4F8B;&#x4EE3;&#x7801;</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/05/Android笔记1-基础知识/" rel="next" title="Android笔记1: 基础知识">
+                <i class="fa fa-chevron-left"></i> Android笔记1: 基础知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/06/Android笔记3-权限机制/" rel="prev" title="Android笔记3: 权限机制">
+                Android笔记3: 权限机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="zsp" />
+            
+              <p class="site-author-name" itemprop="name">zsp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#沙箱机制概念"><span class="nav-number">1.</span> <span class="nav-text">沙箱机制概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用间共享数据与通信"><span class="nav-number">2.</span> <span class="nav-text">应用间共享数据与通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一-Share-Preference-（不推荐使用，了解即可）"><span class="nav-number">2.1.</span> <span class="nav-text">方法一: Share Preference. （不推荐使用，了解即可）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二-SharedUserId"><span class="nav-number">2.2.</span> <span class="nav-text">方法二: SharedUserId</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三-ContentProvider"><span class="nav-number">2.3.</span> <span class="nav-text">方法三 ContentProvider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法四-TrayPreferences"><span class="nav-number">2.4.</span> <span class="nav-text">方法四 TrayPreferences</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关补充-exported-属性和自定义权限"><span class="nav-number">4.</span> <span class="nav-text">相关补充 exported 属性和自定义权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例代码"><span class="nav-number">5.</span> <span class="nav-text">示例代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zsp</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
