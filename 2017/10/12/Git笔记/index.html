@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x8005;&amp;#x7684;&amp;#x5FC5;&amp;#x5907;&amp;#x6280;&amp;#x80FD;&amp;#xFF0C;&amp;#x603B;&amp;#x7ED3;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E00;&amp;#x4E9B;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x548C;&amp;#x547D;&amp;#x4EE4;&amp;#xFF0C;&amp;#x4EC5;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git笔记">
+<meta property="og:url" content="/2017/10/12/Git笔记/index.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x8005;&amp;#x7684;&amp;#x5FC5;&amp;#x5907;&amp;#x6280;&amp;#x80FD;&amp;#xFF0C;&amp;#x603B;&amp;#x7ED3;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E00;&amp;#x4E9B;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x548C;&amp;#x547D;&amp;#x4EE4;&amp;#xFF0C;&amp;#x4EC5;">
+<meta property="og:updated_time" content="2017-10-13T15:49:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git笔记">
+<meta name="twitter:description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x8005;&amp;#x7684;&amp;#x5FC5;&amp;#x5907;&amp;#x6280;&amp;#x80FD;&amp;#xFF0C;&amp;#x603B;&amp;#x7ED3;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E00;&amp;#x4E9B;&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x548C;&amp;#x547D;&amp;#x4EE4;&amp;#xFF0C;&amp;#x4EC5;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2017/10/12/Git笔记/"/>
+
+
+
+
+
+  <title>Git笔记 | Hello World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/12/Git笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zsp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:38:51+08:00">
+                2017-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5F00;&#x53D1;&#x8005;&#x7684;&#x5FC5;&#x5907;&#x6280;&#x80FD;&#xFF0C;&#x603B;&#x7ED3;&#x8BB0;&#x5F55;&#x4E00;&#x4E9B;&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;&#x548C;&#x547D;&#x4EE4;&#xFF0C;&#x4EC5;&#x4F9B;&#x81EA;&#x5DF1;&#x5907;&#x5FD8;&#x3002;&#x4E5F;&#x6B22;&#x8FCE;&#x548C;&#x5927;&#x5BB6;&#x4EA4;&#x6D41;&#x3002;<br><a id="more"></a></p>
+<h1 id="&#x57FA;&#x672C;&#x6982;&#x5FF5;&#xFF1A;"><a href="#&#x57FA;&#x672C;&#x6982;&#x5FF5;&#xFF1A;" class="headerlink" title="&#x57FA;&#x672C;&#x6982;&#x5FF5;&#xFF1A;"></a>&#x57FA;&#x672C;&#x6982;&#x5FF5;&#xFF1A;</h1><p>Git&#x662F;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x3001;&#x9AD8;&#x901F;&#x7684;&#x5904;&#x7406;&#x4ECE;&#x5F88;&#x5C0F;&#x5230;&#x975E;&#x5E38;&#x5927;&#x7684;&#x9879;&#x76EE;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x3002;<br>git&#x56DB;&#x5927;&#x57DF;&#xFF1A;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#xFF0C;&#x6682;&#x5B58;&#x533A;&#xFF0C;&#x4ED3;&#x5E93;&#xFF0C;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x3002;<br>&#x7248;&#x672C;&#x5E93;&#x53C8;&#x540D;&#x4ED3;&#x5E93;&#xFF0C;&#x82F1;&#x6587;&#x540D;repository&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x7406;&#x89E3;&#x6210;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#xFF0C;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x91CC;&#x9762;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x88AB;Git&#x7BA1;&#x7406;&#x8D77;&#x6765;&#xFF0C;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#xFF0C;Git&#x90FD;&#x80FD;&#x8DDF;&#x8E2A;&#xFF0C;&#x4EE5;&#x4FBF;&#x4EFB;&#x4F55;&#x65F6;&#x523B;&#x90FD;&#x53EF;&#x4EE5;&#x8FFD;&#x8E2A;&#x5386;&#x53F2;&#xFF0C;&#x6216;&#x8005;&#x5728;&#x5C06;&#x6765;&#x67D0;&#x4E2A;&#x65F6;&#x523B;&#x53EF;&#x4EE5;&#x201C;&#x8FD8;&#x539F;&#x201D;&#x3002;</p>
+<p>origin&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x540D;&#x5B57;&#xFF0C;&#x5B83;&#x662F;&#x5728;&#x4F60;clone&#x4E00;&#x4E2A;&#x6258;&#x7BA1;&#x5728;Github&#x4E0A;&#x4EE3;&#x7801;&#x5E93;&#x65F6;&#xFF0C;git&#x4E3A;&#x4F60;&#x9ED8;&#x8BA4;&#x521B;&#x5EFA;&#x7684;&#x6307;&#x5411;&#x8FD9;&#x4E2A;&#x8FDC;&#x7A0B;&#x4EE3;&#x7801;&#x5E93;&#x7684;&#x6807;&#x7B7E;<br>git&#x7684;&#x670D;&#x52A1;&#x5668;&#x7AEF;(remote)&#x7AEF;&#x5305;&#x542B;&#x591A;&#x4E2A;repository&#xFF0C;&#x6BCF;&#x4E2A;repository&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x3002;&#x800C;&#x6BCF;&#x4E2A;repository&#x4E0B;&#x6709;&#x591A;&#x4E2A;branch&#xFF0C;&#x201D;origin&#x201D;&#x5C31;&#x662F;&#x6307;&#x5411;&#x67D0;&#x4E00;&#x4E2A;repository&#x7684;&#x6307;&#x9488;&#x3002;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x201D;master&#x201D;&#xFF08;&#x5F3A;&#x8C03;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x662F;&#x56E0;&#x4E3A;&#x672C;&#x5730;&#x7AEF;&#x4E5F;&#x6709;master&#xFF09;&#x5C31;&#x662F;&#x6307;&#x5411;&#x67D0;&#x4E2A;repository&#x7684;&#x4E00;&#x4E2A;branch&#x7684;&#x6307;&#x9488;&#x3002;<br>&#x800C;&#x5728;&#x672C;&#x5730;&#x7535;&#x8111;(local)&#x4E0A;&#xFF1A;&#x201D;master&#x201D;&#x5C31;&#x662F;&#x6307;&#x5411;&#x521A;&#x521A;&#x4ECE;remote server&#x4F20;&#x5230;&#x672C;&#x5730;&#x7684;&#x526F;&#x672C;branch&#x3002;</p>
+<h1 id="&#x672C;&#x5730;&#x64CD;&#x4F5C;"><a href="#&#x672C;&#x5730;&#x64CD;&#x4F5C;" class="headerlink" title="&#x672C;&#x5730;&#x64CD;&#x4F5C;"></a>&#x672C;&#x5730;&#x64CD;&#x4F5C;</h1><p>&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x4E3A;mac,&#x6240;&#x6709;&#x547D;&#x4EE4;&#x5728;&#x7EC8;&#x7AEF;&#x547D;&#x4EE4;&#x884C;&#x5185;&#x6267;&#x884C;&#x3002;<code>$</code>&#x4E3A;&#x547D;&#x4EE4;&#x884C;&#x8F93;&#x5165;&#x63D0;&#x793A;&#x7B26;&#x3002;</p>
+<h2 id="&#x521B;&#x5EFA;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;"><a href="#&#x521B;&#x5EFA;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;" class="headerlink" title="&#x521B;&#x5EFA;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;"></a>&#x521B;&#x5EFA;&#x672C;&#x5730;&#x7248;&#x672C;&#x5E93;</h2><p>&#x6253;&#x5F00;&#x7EC8;&#x7AEF;&#x7A97;&#x53E3;&#xFF0C;&#x5728;&#x5DF2;&#x6709;&#x7684;&#x76EE;&#x5F55;&#x6216;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#x91CC;,&#x547D;&#x4EE4;&#x884C;&#x6267;&#x884C;&#x6267;&#x884C;<code>git init</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /Users/zsp/Documents/demo/.git/</span><br></pre></td></tr></table></figure></p>
+<p>&#x901A;&#x8FC7;&#x6B64;&#x547D;&#x4EE4;&#x628A;&#x76EE;&#x5F55;&#x53D8;&#x6210; Git &#x53EF;&#x4EE5;&#x7BA1;&#x7406;&#x7684;&#x4ED3;&#x5E93;&#xFF0C;&#x76EE;&#x5F55;&#x4E0B;&#x591A;&#x4E86;&#x4E00;&#x4E2A; .git &#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x662F;Git&#x6765;&#x8DDF;&#x8E2A;&#x7BA1;&#x7406;&#x7248;&#x672C;&#x5E93;&#x7684;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;&#x9690;&#x85CF;&#x6587;&#x4EF6; <code>ls -a</code> &#x53EF;&#x67E5;&#x770B;</p>
+<h2 id="&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;"><a href="#&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;" class="headerlink" title="&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;"></a>&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;</h2><p>&#x5728;&#x521D;&#x59CB;&#x5316;&#x597D;&#x7684;&#x4ED3;&#x5E93;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x6587;&#x4EF6; hello.txt &#x5185;&#x5BB9;&#x5982;&#xFF1A;</p>
+<blockquote>
+<p>Hello World</p>
+</blockquote>
+<p>&#x7136;&#x540E;&#x547D;&#x4EE4;&#x884C;&#x6267;&#x884C; <code>git add hello.txt</code>&#x6DFB;&#x52A0;&#x6587;&#x4EF6;&#x5230;&#x6682;&#x5B58;&#x533A;&#x3002;</p>
+<h2 id="&#x67E5;&#x770B;&#x4ED3;&#x5E93;&#x5F53;&#x524D;&#x72B6;&#x6001;"><a href="#&#x67E5;&#x770B;&#x4ED3;&#x5E93;&#x5F53;&#x524D;&#x72B6;&#x6001;" class="headerlink" title="&#x67E5;&#x770B;&#x4ED3;&#x5E93;&#x5F53;&#x524D;&#x72B6;&#x6001;"></a>&#x67E5;&#x770B;&#x4ED3;&#x5E93;&#x5F53;&#x524D;&#x72B6;&#x6001;</h2><p>&#x6267;&#x884C; <code>git status</code> &#x547D;&#x4EE4;&#x540E;&#xFF0C;&#x53EF;&#x67E5;&#x770B;&#x5230;&#x5F53;&#x524D;&#x4ED3;&#x5E93;&#x7684;&#x72B6;&#x6001;&#xFF0C;hello.txt &#x5DF2;&#x52A0;&#x5165;&#x6682;&#x5B58;&#x533A;,&#x7B49;&#x5F85;&#x63D0;&#x4EA4;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Initial commit</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line">	new file:   hello.txt</span><br></pre></td></tr></table></figure></p>
+<p>&#x4E00;&#x822C;&#x6709;&#x4E09;&#x79CD;&#x72B6;&#x6001;:</p>
+<ul>
+<li>Untracked files&#xFF1A;&#x672A;&#x88AB;&#x8DDF;&#x8E2A;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x8868;&#x793A;&#x662F;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x65B0;&#x589E;&#x52A0;&#x7684;&#x6587;&#x4EF6;</li>
+<li>Changes not staged for commit&#xFF1A;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x4E2D;&#x4FEE;&#x6539;&#x4E86;&#x6587;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;</li>
+<li>Changes to be committed:&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x7B49;&#x5F85;&#x63D0;&#x4EA4;</li>
+</ul>
+<h2 id="&#x63D0;&#x4EA4;&#x5230;&#x672C;&#x5730;&#x4ED3;&#x5E93;"><a href="#&#x63D0;&#x4EA4;&#x5230;&#x672C;&#x5730;&#x4ED3;&#x5E93;" class="headerlink" title="&#x63D0;&#x4EA4;&#x5230;&#x672C;&#x5730;&#x4ED3;&#x5E93;"></a>&#x63D0;&#x4EA4;&#x5230;&#x672C;&#x5730;&#x4ED3;&#x5E93;</h2><p>&#x6B64;&#x65F6; <code>hello.txt</code> &#x5DF2;&#x7ECF;&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;&#xFF0C;&#x53EF;&#x7528;<code>git commit</code> &#x547D;&#x4EE4;&#x628A;&#x6682;&#x5B58;&#x533A;&#x7684;&#x4FEE;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x672C;&#x5730;&#x4ED3;&#x5E93;&#x4E2D;&#x4FDD;&#x5B58;&#x3002;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;&#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;&quot;</span></span><br><span class="line">[master (root-commit) d054ca7] &#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"> create mode 100644 hello.txt</span><br></pre></td></tr></table></figure></p>
+<h2 id="&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x65E5;&#x5FD7;"><a href="#&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x65E5;&#x5FD7;" class="headerlink" title="&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x65E5;&#x5FD7;"></a>&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x65E5;&#x5FD7;</h2><p>&#x968F;&#x65F6;&#x53EF;&#x7528; <code>git log</code> &#x547D;&#x4EE4;&#x67E5;&#x770B;&#x63D0;&#x4EA4;&#x65E5;&#x5FD7;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">commit d054ca7a4ac26629ae7a18e73443b9311909c818</span><br><span class="line">Author: <span class="string">&quot;zsp&quot;</span> &lt;mailzsp@qq.com&gt;</span><br><span class="line">Date:   Thu Oct 12 23:19:43 2012 +0800</span><br><span class="line">    &#x7B2C;&#x4E00;&#x6B21;&#x63D0;&#x4EA4;</span><br></pre></td></tr></table></figure></p>
+<p><code>commit</code> &#x663E;&#x793A;&#x7684;&#x4E00;&#x4E32;&#x5B57;&#x7B26;&#x662F;&#x672C;&#x6B21;&#x63D0;&#x4EA4;&#x7684; <code>commit id</code> &#x53EF;&#x7528;&#x6765;&#x56DE;&#x9000;&#x7248;&#x672C;</p>
+<h2 id="&#x56DE;&#x9000;&#x7248;&#x672C;"><a href="#&#x56DE;&#x9000;&#x7248;&#x672C;" class="headerlink" title="&#x56DE;&#x9000;&#x7248;&#x672C;"></a>&#x56DE;&#x9000;&#x7248;&#x672C;</h2><p>&#x518D;&#x6B21;&#x4FEE;&#x6539; hello.txt &#x6587;&#x4EF6;,&#x5185;&#x5BB9;&#x5982;&#xFF1A;</p>
+<blockquote>
+<p>Hello World<br>&#x4F60;&#x597D; &#x4E16;&#x754C;</p>
+</blockquote>
+<p>&#x4FEE;&#x6539;&#x540E;&#xFF0C;&#x6DFB;&#x52A0;&#x5230;&#x6682;&#x5B58;&#x533A;&#x5E76;&#x63D0;&#x4EA4;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git add hello.txt</span><br><span class="line">$ git commit -m <span class="string">&quot;&#x7B2C;&#x4E8C;&#x6B21;&#x4FEE;&#x6539;&quot;</span></span><br><span class="line">$ [master 908dbc6] &#x7B2C;&#x4E8C;&#x6B21;&#x4FEE;&#x6539;</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br></pre></td></tr></table></figure></p>
+<h1 id="&#x8FDC;&#x7A0B;&#x64CD;&#x4F5C;"><a href="#&#x8FDC;&#x7A0B;&#x64CD;&#x4F5C;" class="headerlink" title="&#x8FDC;&#x7A0B;&#x64CD;&#x4F5C;"></a>&#x8FDC;&#x7A0B;&#x64CD;&#x4F5C;</h1><h1 id="&#x5DE5;&#x4F5C;&#x6D41;"><a href="#&#x5DE5;&#x4F5C;&#x6D41;" class="headerlink" title="&#x5DE5;&#x4F5C;&#x6D41;"></a>&#x5DE5;&#x4F5C;&#x6D41;</h1><h1 id="&#x547D;&#x4EE4;&#x901F;&#x67E5;"><a href="#&#x547D;&#x4EE4;&#x901F;&#x67E5;" class="headerlink" title="&#x547D;&#x4EE4;&#x901F;&#x67E5;"></a>&#x547D;&#x4EE4;&#x901F;&#x67E5;</h1><h1 id="&#x5E38;&#x89C1;&#x95EE;&#x9898;"><a href="#&#x5E38;&#x89C1;&#x95EE;&#x9898;" class="headerlink" title="&#x5E38;&#x89C1;&#x95EE;&#x9898;"></a>&#x5E38;&#x89C1;&#x95EE;&#x9898;</h1><p>1.Git Commit Message &#x63D0;&#x4EA4;&#x591A;&#x884C;&#x6CE8;&#x91CA; ,Vim(Mac) &#x65E0;&#x6CD5;&#x6B63;&#x786E;&#x63D0;&#x4EA4;&#x3002;</p>
+<pre><code>$ git config --global core.editor /usr/bin/vim
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/Java笔记：数据运算与转换/" rel="next" title="Java笔记：数据运算与转换">
+                <i class="fa fa-chevron-left"></i> Java笔记：数据运算与转换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/13/Java笔记：大端与小端/" rel="prev" title="Java笔记：大端与小端">
+                Java笔记：大端与小端 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="zsp" />
+            
+              <p class="site-author-name" itemprop="name">zsp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念："><span class="nav-number">1.</span> <span class="nav-text">基本概念：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地操作"><span class="nav-number">2.</span> <span class="nav-text">本地操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建本地版本库"><span class="nav-number">2.1.</span> <span class="nav-text">创建本地版本库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加到暂存区"><span class="nav-number">2.2.</span> <span class="nav-text">添加到暂存区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看仓库当前状态"><span class="nav-number">2.3.</span> <span class="nav-text">查看仓库当前状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交到本地仓库"><span class="nav-number">2.4.</span> <span class="nav-text">提交到本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看提交日志"><span class="nav-number">2.5.</span> <span class="nav-text">查看提交日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回退版本"><span class="nav-number">2.6.</span> <span class="nav-text">回退版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程操作"><span class="nav-number">3.</span> <span class="nav-text">远程操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工作流"><span class="nav-number">4.</span> <span class="nav-text">工作流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令速查"><span class="nav-number">5.</span> <span class="nav-text">命令速查</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number">6.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zsp</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
