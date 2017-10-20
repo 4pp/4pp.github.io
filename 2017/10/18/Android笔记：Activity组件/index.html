@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Activity &amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x7528;&amp;#x6765;&amp;#x663E;&amp;#x793A;&amp;#x548C;&amp;#x4E0E;&amp;#x7528;&amp;#x6237;&amp;#x4EA4;&amp;#x4E92;&amp;#x7684;&amp;#x7EC4;&amp;#x4EF6;&amp;#x3002;&amp;#x65E2;&amp;#x53EF;&amp;#x4EE5;&amp;#x5168;&amp;#x5C4F;&amp;#x663E;&amp;#x793A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android笔记：Activity组件">
+<meta property="og:url" content="/2017/10/18/Android笔记：Activity组件/index.html">
+<meta property="og:site_name" content="Hello World">
+<meta property="og:description" content="Activity &amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x7528;&amp;#x6765;&amp;#x663E;&amp;#x793A;&amp;#x548C;&amp;#x4E0E;&amp;#x7528;&amp;#x6237;&amp;#x4EA4;&amp;#x4E92;&amp;#x7684;&amp;#x7EC4;&amp;#x4EF6;&amp;#x3002;&amp;#x65E2;&amp;#x53EF;&amp;#x4EE5;&amp;#x5168;&amp;#x5C4F;&amp;#x663E;&amp;#x793A">
+<meta property="og:updated_time" content="2017-10-20T15:57:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android笔记：Activity组件">
+<meta name="twitter:description" content="Activity &amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x7528;&amp;#x6765;&amp;#x663E;&amp;#x793A;&amp;#x548C;&amp;#x4E0E;&amp;#x7528;&amp;#x6237;&amp;#x4EA4;&amp;#x4E92;&amp;#x7684;&amp;#x7EC4;&amp;#x4EF6;&amp;#x3002;&amp;#x65E2;&amp;#x53EF;&amp;#x4EE5;&amp;#x5168;&amp;#x5C4F;&amp;#x663E;&amp;#x793A">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/2017/10/18/Android笔记：Activity组件/"/>
+
+
+
+
+
+  <title>Android笔记：Activity组件 | Hello World</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello World</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/18/Android笔记：Activity组件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zsp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar3.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android笔记：Activity组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T23:02:53+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Activity &#x662F;&#x4E00;&#x4E2A;&#x7528;&#x6765;&#x663E;&#x793A;&#x548C;&#x4E0E;&#x7528;&#x6237;&#x4EA4;&#x4E92;&#x7684;&#x7EC4;&#x4EF6;&#x3002;&#x65E2;&#x53EF;&#x4EE5;&#x5168;&#x5C4F;&#x663E;&#x793A;&#xFF0C;&#x4E5F;&#x53EF;&#x5C0F;&#x4E8E;&#x5C4F;&#x5E55;&#x5E76;&#x6D6E;&#x52A8;&#x5728;&#x5176;&#x4ED6;&#x7A97;&#x53E3;&#x4E4B;&#x4E0A;&#x3002;<br>&#x672C;&#x7BC7;&#x5BF9; Activity &#x76F8;&#x5173;&#x77E5;&#x8BC6;&#x70B9;&#x7684;&#x4E2A;&#x4EBA;&#x603B;&#x7ED3;&#xFF0C;&#x4E86;&#x7136;&#x4E8E;&#x5FC3;&#xFF0C;&#x624D;&#x80FD;&#x5F97;&#x5FC3;&#x5E94;&#x624B;&#x3002;<br><a id="more"></a></p>
+<h1 id="&#x57FA;&#x672C;&#x72B6;&#x6001;"><a href="#&#x57FA;&#x672C;&#x72B6;&#x6001;" class="headerlink" title="&#x57FA;&#x672C;&#x72B6;&#x6001;"></a>&#x57FA;&#x672C;&#x72B6;&#x6001;</h1><p>&#x89E6;&#x53D1;&#x4E0D;&#x540C;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x4F1A;&#x5BFC;&#x81F4;&#x4E0D;&#x540C;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x57FA;&#x672C;&#x4E0A;&#x4EE5;&#x4E09;&#x79CD;&#x72B6;&#x6001;&#x5B58;&#x5728;&#xFF1A;</p>
+<ol>
+<li><p><strong>&#x8FD0;&#x884C;&#x4E2D;&#xFF08;&#x4F18;&#x5148;&#x7EA7;1&#xFF09;&#xFF1A;</strong> Activity &#x53EF;&#x89C1;&#x5E76;&#x5177;&#x6709;&#x7528;&#x6237;&#x7126;&#x70B9;&#x3002;&#x4F18;&#x5148;&#x7EA7;&#x6700;&#x9AD8;</p>
+</li>
+<li><p><strong>&#x6682;&#x505C;&#xFF1A;&#xFF08;&#x4F18;&#x5148;&#x7EA7;2&#xFF09;</strong> &#x53EF;&#x89C1;&#x6216;&#x90E8;&#x5206;&#x53EF;&#x89C1;&#x72B6;&#x6001;&#x3002; &#x6682;&#x505C;&#x7684; Activity &#x5904;&#x4E8E;&#x5B8C;&#x5168;&#x6D3B;&#x52A8;&#x72B6;&#x6001;&#xFF08;Activity &#x5BF9;&#x8C61;&#x4FDD;&#x7559;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5B83;&#x4FDD;&#x7559;&#x4E86;&#x6240;&#x6709;&#x72B6;&#x6001;&#x548C;&#x6210;&#x5458;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x4E0E;&#x7A97;&#x53E3;&#x7BA1;&#x7406;&#x5668;&#x4FDD;&#x6301;&#x8FDE;&#x63A5;&#xFF09;&#xFF0C;&#x4F46;&#x5728;&#x5185;&#x5B58;&#x6781;&#x5EA6;&#x4E0D;&#x8DB3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x7CFB;&#x7EDF;&#x7EC8;&#x6B62;&#x3002;</p>
+</li>
+<li><p><strong>&#x505C;&#x6B62;&#xFF08;&#x4F18;&#x5148;&#x7EA7;3&#xFF09;&#xFF1A;</strong> &#x4E0D;&#x53EF;&#x89C1;&#x72B6;&#x6001;&#x3002;&#x5DF2;&#x505C;&#x6B62;&#x7684; Activity &#x540C;&#x6837;&#x4ECD;&#x5904;&#x4E8E;&#x6D3B;&#x52A8;&#x72B6;&#x6001;&#xFF08;Activity &#x5BF9;&#x8C61;&#x4FDD;&#x7559;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5B83;&#x4FDD;&#x7559;&#x4E86;&#x6240;&#x6709;&#x72B6;&#x6001;&#x548C;&#x6210;&#x5458;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x672A;&#x4E0E;&#x7A97;&#x53E3;&#x7BA1;&#x7406;&#x5668;&#x8FDE;&#x63A5;&#xFF09;&#x3002; &#x5BF9;&#x7528;&#x6237;&#x4E0D;&#x518D;&#x53EF;&#x89C1;&#xFF0C;&#x5728;&#x4ED6;&#x5904;&#x9700;&#x8981;&#x5185;&#x5B58;&#x65F6;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x7CFB;&#x7EDF;&#x7EC8;&#x6B62;&#x3002;</p>
+</li>
+</ol>
+<p><strong><em>&#x6CE8;&#xFF1A;&#x7CFB;&#x7EDF;&#x5185;&#x5B58;&#x5403;&#x7D27;&#x65F6;&#xFF0C;&#x4F1A;&#x6309;&#x4F18;&#x5148;&#x7EA7;&#x7531;&#x4F4E;&#x5230;&#x9AD8;&#x9500;&#x6BC1; </em></strong></p>
+<h1 id="&#x751F;&#x547D;&#x5468;&#x671F;"><a href="#&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="&#x751F;&#x547D;&#x5468;&#x671F;"></a>&#x751F;&#x547D;&#x5468;&#x671F;</h1><p><a href="https://developer.android.google.cn/images/activity_lifecycle.png" target="_blank" rel="external">&#x70B9;&#x51FB;&#x67E5;&#x770B;&#x5468;&#x671F;&#x56FE;</a></p>
+<h2 id="onCreate"><a href="#onCreate" class="headerlink" title="onCreate"></a>onCreate</h2><p>&#x9996;&#x6B21;&#x521B;&#x5EFA; Activity &#x65F6;&#x8C03;&#x7528;&#x3002;&#x7528;&#x6765;&#x505A;&#x4E00;&#x4E9B;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;&#x3002;&#x59CB;&#x7EC8;&#x540E;&#x63A5; onStart()&#x3002;</p>
+<h2 id="onRestart"><a href="#onRestart" class="headerlink" title="onRestart"></a>onRestart</h2><p>&#x5728; Activity &#x5DF2;&#x505C;&#x6B62;&#x5E76;&#x5373;&#x5C06;&#x518D;&#x6B21;&#x542F;&#x52A8;&#x524D;&#x8C03;&#x7528;&#x3002;&#x540E;&#x63A5; onStart()</p>
+<h2 id="onStart"><a href="#onStart" class="headerlink" title="onStart"></a>onStart</h2><p>&#x5728; Activity &#x53EF;&#x89C1;&#x4E4B;&#x524D;&#x8C03;&#x7528;&#x3002;&#x5982; Activity &#x8F6C;&#x5165;&#x524D;&#x53F0;&#xFF0C;&#x5219;&#x540E;&#x63A5; onResume()&#xFF0C;&#x5982;&#x8F6C;&#x5165;&#x9690;&#x85CF;&#x72B6;&#x6001;&#xFF0C;&#x5219;&#x540E;&#x63A5; onStop()&#x3002;</p>
+<h2 id="onResume"><a href="#onResume" class="headerlink" title="onResume"></a>onResume</h2><p>&#x5728; Activity &#x5DF2;&#x53EF;&#x89C1;&#x5E76;&#x5728;&#x4EA4;&#x4E92;&#x4E4B;&#x524D;&#x8C03;&#x7528;&#x3002;&#x5177;&#x6709;&#x8F93;&#x5165;&#x7126;&#x70B9;&#x3002;&#x59CB;&#x7EC8;&#x540E;&#x63A5; onPause()&#x3002;</p>
+<h2 id="onPause"><a href="#onPause" class="headerlink" title="onPause"></a>onPause</h2><p>&#x5373;&#x5C06;&#x5F00;&#x59CB;&#x7EE7;&#x7EED;&#x53E6;&#x4E00;&#x4E2A; Activity &#x65F6;&#x8C03;&#x7528;&#x3002;&#x5E94;&#x8BE5;&#x975E;&#x5E38;&#x8FC5;&#x901F;&#x5730;&#x6267;&#x884C;&#x6240;&#x9700;&#x64CD;&#x4F5C;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x8FD4;&#x56DE;&#x540E;&#xFF0C;&#x4E0B;&#x4E00;&#x4E2A; Activity &#x624D;&#x80FD;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x3002;&#x5982;&#x679C; Activity &#x8FD4;&#x56DE;&#x524D;&#x53F0;&#xFF0C;&#x5219;&#x540E;&#x63A5; onResume()&#xFF0C;&#x5982;&#x679C; Activity &#x8F6C;&#x5165;&#x5BF9;&#x7528;&#x6237;&#x4E0D;&#x53EF;&#x89C1;&#x72B6;&#x6001;&#xFF0C;&#x5219;&#x540E;&#x63A5; onStop()&#x3002;</p>
+<h2 id="onStop"><a href="#onStop" class="headerlink" title="onStop"></a>onStop</h2><p>&#x5BF9;&#x7528;&#x6237;&#x4E0D;&#x518D;&#x53EF;&#x89C1;&#x65F6;&#x8C03;&#x7528;&#x3002;&#x5982;&#x679C;&#x88AB;&#x9500;&#x6BC1;&#xFF0C;&#x6216;&#x53E6;&#x4E00;&#x4E2A; Activity &#x7EE7;&#x7EED;&#x6267;&#x884C;&#x5E76;&#x5C06;&#x5176;&#x8986;&#x76D6;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x3002;&#x5982;&#x679C;&#x6062;&#x590D;&#x4E0E;&#x7528;&#x6237;&#x7684;&#x4EA4;&#x4E92;&#xFF0C;&#x5219;&#x540E;&#x63A5; onRestart()&#xFF0C;&#x5982;&#x679C;&#x88AB;&#x9500;&#x6BC1;&#xFF0C;&#x5219;&#x540E;&#x63A5; onDestroy()&#x3002;</p>
+<h2 id="onDestroy"><a href="#onDestroy" class="headerlink" title="onDestroy"></a>onDestroy</h2><p>&#x5728;&#x88AB;&#x9500;&#x6BC1;&#x524D;&#x8C03;&#x7528;&#x3002;&#x5F53; Activity &#x7ED3;&#x675F;&#xFF08;&#x5BF9; Activity &#x8C03;&#x7528;&#x4E86; finish()&#xFF09;&#xFF0C;&#x6216;&#x7CFB;&#x7EDF;&#x4E3A;&#x8282;&#x7701;&#x7A7A;&#x95F4;&#x800C;&#x6682;&#x65F6;&#x9500;&#x6BC1;&#x8BE5; Activity &#x5B9E;&#x4F8B;&#x65F6;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x8C03;&#x7528;&#x5B83;&#x3002; &#x53EF;&#x4EE5;&#x901A;&#x8FC7; isFinishing() &#x65B9;&#x6CD5;&#x533A;&#x5206;&#x8FD9;&#x4E24;&#x79CD;&#x60C5;&#x5F62;&#x3002;</p>
+<p><strong><em>&#x6CE8;&#xFF1A;&#x4E00;&#x822C;&#x4E0D;&#x5728;&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x51FD;&#x6570;&#x5185;&#x505A;&#x8017;&#x65F6;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x754C;&#x9762;&#x5207;&#x6362;&#x4F1A;&#x5F15;&#x8D77;&#x5361;&#x987F;&#x3002;</em></strong></p>
+<h1 id="&#x4FDD;&#x5B58;&#x72B6;&#x6001;"><a href="#&#x4FDD;&#x5B58;&#x72B6;&#x6001;" class="headerlink" title="&#x4FDD;&#x5B58;&#x72B6;&#x6001;"></a>&#x4FDD;&#x5B58;&#x72B6;&#x6001;</h1><p>&#x5728;&#x540E;&#x53F0;&#x8FD0;&#x884C;&#x591A;&#x4E2A;&#x4EFB;&#x52A1;&#xFF0C;&#x5E76;&#x7CFB;&#x7EDF;&#x5185;&#x5B58;&#x8D44;&#x6E90;&#x4E0D;&#x8DB3;&#x65F6;&#xFF0C;&#x4F1A;&#x9500;&#x6BC1;&#x4E00;&#x4E9B;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#xFF08;&#x4F18;&#x5148;&#x7EA7;&#x5BF9;&#x5E94;&#x4E0A;&#x8FF0;3&#x79CD;&#x72B6;&#x6001;&#xFF09;&#x7684; Activity&#x3002;&#x5F53;&#x7528;&#x6237;&#x8FD4;&#x56DE;&#x65F6;&#x4F1A;&#x91CD;&#x5EFA;&#x8FD9;&#x4E2A;Activity,&#x7528;&#x6237;&#x5E76;&#x4E0D;&#x77E5;&#x9053;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;&#x56E0;&#x4E3A;&#x91CD;&#x5EFA;&#x4E86;Activity,&#x56E0;&#x6B64;&#x4E00;&#x4E9B;&#x72B6;&#x6001;&#x4F1A;&#x4FE1;&#x606F;&#x4F1A;&#x4E22;&#x5931;&#x3002; &#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5B9E;&#x73B0;onSaveInstanceState()&#x5BF9;&#x72B6;&#x6001;&#x7684;&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x4FDD;&#x5B58;&#x3002;</p>
+<p>&#x7CFB;&#x7EDF;&#x5728;&#x9500;&#x6BC1; Activity &#x524D;&#xFF0C;&#x4F1A;&#x5148;&#x8C03;&#x7528; onSaveInstanceState()&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x5411;&#x8BE5;&#x65B9;&#x6CD5;&#x4F20;&#x9012;&#x4E00;&#x4E2A; Bundle&#xFF0C;&#x8C03;&#x7528;&#x5B83;&#x7684; putString() &#x548C; putInt() &#x7B49;&#x65B9;&#x6CD5;&#x4EE5;&#x4FDD;&#x5B58;&#x6709;&#x5173; Activity&#x72B6;&#x6001;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x7136;&#x540E;&#x5982;&#x7CFB;&#x7EDF;&#x7EC8;&#x6B62;&#x5E94;&#x7528;&#x8FDB;&#x7A0B;&#xFF0C;&#x5E76;&#x4E14;&#x7528;&#x6237;&#x8FD4;&#x56DE; Activity&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x91CD;&#x5EFA;&#x8BE5; Activity&#xFF0C;&#x5E76;&#x5C06; Bundle &#x540C;&#x65F6;&#x4F20;&#x9012;&#x7ED9; onCreate() &#x548C; onRestoreInstanceState()&#x3002;&#x4ECE; Bundle &#x63D0;&#x53D6;&#x4FDD;&#x5B58;&#x7684;&#x72B6;&#x6001;&#x5E76;&#x6062;&#x590D;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x9700;&#x8981;&#x6062;&#x590D;&#xFF0C;&#x5219;&#x4F20;&#x9012; Bundle &#x662F;&#x7A7A;&#x503C;&#xFF08;&#x9996;&#x6B21;&#x521B;&#x5EFA;&#x8BE5; Activity &#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF09;&#x3002;</p>
+<p>&#x5982;&#x7528;&#x6237;&#x663E;&#x5F0F;&#x5173;&#x95ED; Activity &#xFF0C;&#x7CFB;&#x7EDF;&#x5728;&#x9500;&#x6BC1;&#x94B1;&#x5219;&#x4E0D;&#x4F1A;&#x8C03;&#x7528; onSaveInstanceState(),&#x5982;&#x7CFB;&#x7EDF;&#x8C03;&#x7528; onSaveInstanceState &#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x662F;&#x5728; onStop() &#x4E5F;&#x53EF;&#x80FD;&#x5728; onPause() &#x4E4B;&#x524D;&#x8C03;&#x7528;&#x3002;</p>
+<p>Activity &#x9ED8;&#x8BA4;&#x7684; onSaveInstanceState() &#x5B9E;&#x73B0;&#x5BF9;&#x4F9D;&#x6B21;&#x8C03;&#x7528;&#x5E03;&#x5C40;&#x4E2D;View &#x7684; onSaveInstanceState()&#x3002;&#x6BCF;&#x4E2A;View &#x9700;&#x8981;&#x6709;&#x6709;&#x63D0;&#x4F9B;id&#x5C5E;&#x6027;&#xFF0C;&#x7CFB;&#x7EDF;&#x5728;&#x91CD;&#x5EFA;ui&#x65F6;&#x624D;&#x4F1A;&#x6062;&#x590D;&#x5176;&#x72B6;&#x6001;&#x3002;</p>
+<p><strong><em>&#x6CE8;&#xFF1A;&#x5F00;&#x53D1;&#x65F6;&#x6309;&#x60C5;&#x51B5;&#x9700;&#x6C42;&#xFF0C;&#x5408;&#x7406;&#x7684;&#x5B9E;&#x73B0;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x5F97;&#x4FDD;&#x5B58;&#x3002;&#x4F7F;&#x5F97;&#x7A0B;&#x5E8F;&#x66F4;&#x5065;&#x58EE;</em></strong></p>
+<h1 id="&#x6A2A;&#x7AD6;&#x5C4F;&#x5207;&#x6362;"><a href="#&#x6A2A;&#x7AD6;&#x5C4F;&#x5207;&#x6362;" class="headerlink" title="&#x6A2A;&#x7AD6;&#x5C4F;&#x5207;&#x6362;"></a>&#x6A2A;&#x7AD6;&#x5C4F;&#x5207;&#x6362;</h1><p>&#x5728;&#x6A2A;&#x7AD6;&#x5C4F;&#x5207;&#x6362;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E5F;&#x4F1A;&#x53D1;&#x751F;Activity&#x88AB;&#x9500;&#x6BC1;&#x5E76;&#x91CD;&#x5EFA;&#x7684;&#x8FC7;&#x7A0B;&#x3002;<br>&#x6A2A;&#x7AD6;&#x5C4F;&#x5207;&#x6362;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1A;onPause()-&gt;onSaveInstanceState()-&gt; onStop()-&gt;onDestroy()-&gt;onCreate()-&gt;onStart()-&gt;onRestoreInstanceState-&gt;onResume()<br>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;AndroidManifest&#x6587;&#x4EF6;&#x7684;Activity&#x4E2D;&#x6307;&#x5B9A;&#x5982;&#x4E0B;&#x5C5E;&#x6027;&#xFF1A;<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:configChanges = &quot;orientation| screenSize&quot;</span><br></pre></td></tr></table></figure></p>
+<p>&#x6765;&#x907F;&#x514D;&#x6A2A;&#x7AD6;&#x5C4F;&#x5207;&#x6362;&#x65F6;&#xFF0C;Activity&#x7684;&#x9500;&#x6BC1;&#x548C;&#x91CD;&#x5EFA;&#xFF0C;&#x800C;&#x662F;&#x56DE;&#x8C03;&#x4E86;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConfigurationChanged</span><span class="params">(Configuration newConfig)</span> </span>{</span><br><span class="line">    <span class="keyword">super</span>.onConfigurationChanged(newConfig);</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<h1 id="&#x542F;&#x52A8;&#x6A21;&#x5F0F;"><a href="#&#x542F;&#x52A8;&#x6A21;&#x5F0F;" class="headerlink" title="&#x542F;&#x52A8;&#x6A21;&#x5F0F;"></a>&#x542F;&#x52A8;&#x6A21;&#x5F0F;</h1><p>Android&#x63D0;&#x4F9B;&#x4E86;&#x56DB;&#x79CD;Activity&#x542F;&#x52A8;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<ol>
+<li><p>**&#x6807;&#x51C6;&#x6A21;&#x5F0F;&#xFF08;standard&#xFF09;<br>&#x9ED8;&#x8BA4;&#x3002;&#x7CFB;&#x7EDF;&#x5728;&#x542F;&#x52A8; Activity &#x7684;&#x4EFB;&#x52A1;&#x4E2D;&#x521B;&#x5EFA; Activity &#x7684;&#x65B0;&#x5B9E;&#x4F8B;&#x5E76;&#x5411;&#x5176;&#x4F20;&#x9001; Intent&#x3002;Activity &#x53EF;&#x4EE5;&#x591A;&#x6B21;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x800C;&#x6BCF;&#x4E2A;&#x5B9E;&#x4F8B;&#x5747;&#x53EF;&#x5C5E;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x5E76;&#x4E14;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x62E5;&#x6709;&#x591A;&#x4E2A;&#x5B9E;&#x4F8B;&#x3002;</p>
+</li>
+<li><p><strong>&#x6808;&#x9876;&#x590D;&#x7528;&#x6A21;&#x5F0F;&#xFF08;singleTop&#xFF09;</strong><br>&#x5F53;&#x524D;&#x4EFB;&#x52A1;&#x6808;&#x7684;&#x9876;&#x90E8;&#x5DF2;&#x5B58;&#x5728; Activity &#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x8BE5;&#x5B9E;&#x4F8B;&#x7684; onNewIntent() &#x65B9;&#x6CD5;&#x5411;&#x5176;&#x4F20;&#x9001; Intent&#xFF0C;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x5B9E;&#x4F8B;&#x3002;&#x4E5F;&#x4E0D;&#x4F1A;&#x8C03;&#x7528;&#x5176;&#x4ED6;&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x5982;&#x4E0D;&#x5728;&#x6808;&#x9876;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5B9E;&#x4F8B;&#xFF0C;&#x653E;&#x5165;&#x6808;&#x9876;&#x3002;</p>
+</li>
+<li><p><strong>&#x6808;&#x5185;&#x590D;&#x7528;&#x6A21;&#x5F0F;&#xFF08;singleTask&#xFF09;</strong><br>&#x8BE5;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x79CD;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#xFF0C;&#x5373;&#x4E00;&#x4E2A;&#x6808;&#x5185;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x3002;&#x548C; singleTop &#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x4E0D;&#x662F;&#x5728;&#x6808;&#x9876;&#xFF0C;&#x53EA;&#x8981;&#x6808;&#x5185;&#x6709;&#x5B9E;&#x4F8B;&#x5C31;&#x4F1A;&#x590D;&#x7528;&#x3002;singleTask&#x5177;&#x6709;clearTop&#x7279;&#x6027;&#xFF0C;&#x628A;&#x4E4B;&#x4E0A;&#x7684;&#x6808;&#x5185;Activity&#x6E05;&#x9664;&#x3002;</p>
+</li>
+<li><p><strong>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#xFF08;singleInstance&#xFF09;</strong><br>&#x4E0E; singleTask &#x76F8;&#x540C;&#xFF0C;&#x53EA;&#x662F;&#x542F;&#x52A8;&#x7684;&#x4EFB;&#x4F55; Activity &#x5747;&#x5728;&#x5355;&#x72EC;&#x7684;&#x4EFB;&#x52A1;&#x4E2D;&#x6253;&#x5F00;&#xFF0C;&#x5E76;&#x8BE5; Activity &#x662F;&#x5176;&#x4EFB;&#x52A1;&#x552F;&#x4E00;&#x4EC5;&#x6709;&#x7684;&#x6210;&#x5458;</p>
+</li>
+</ol>
+<h1 id="&#x5E38;&#x7528;Flags"><a href="#&#x5E38;&#x7528;Flags" class="headerlink" title="&#x5E38;&#x7528;Flags"></a>&#x5E38;&#x7528;Flags</h1><p>&#x53EF;&#x4EE5;&#x5728;&#x542F;&#x52A8; Activity &#x65F6;&#xFF0C;&#x901A;&#x8FC7; Intent &#x7684; addFlags() &#x65B9;&#x6CD5;&#x8BBE;&#x7F6E; Activity &#x7684;&#x542F;&#x52A8;&#x6A21;&#x5F0F;&#x3002;</p>
+<p><strong>FLAG_ACTIVITY_NEW_TASK</strong><br>&#x5176;&#x6548;&#x679C;&#x4E0E;&#x6307;&#x5B9A; Activity &#x4E3A; singleTask &#x6A21;&#x5F0F;&#x4E00;&#x81F4;&#x3002;</p>
+<p><strong>FLAG_ACTIVITY_SINGLE_TOP</strong><br>&#x5176;&#x6548;&#x679C;&#x4E0E;&#x6307;&#x5B9A; Activity &#x4E3A; singleTop &#x6A21;&#x5F0F;&#x4E00;&#x81F4;&#x3002;</p>
+<p><strong>FLAG_ACTIVITY_CLEAR_TOP</strong><br>&#x9500;&#x6BC1;&#x76EE;&#x6807;Activity&#x548C;&#x5B83;&#x4E4B;&#x4E0A;&#x7684;&#x6240;&#x6709; Activity&#xFF0C;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x76EE;&#x6807; Activity</p>
+<h1 id="&#x4EFB;&#x52A1;&#x6808;"><a href="#&#x4EFB;&#x52A1;&#x6808;" class="headerlink" title="&#x4EFB;&#x52A1;&#x6808;"></a>&#x4EFB;&#x52A1;&#x6808;</h1><p>Activity &#x7684;&#x7BA1;&#x7406;&#x662F;&#x91C7;&#x7528;&#x4EFB;&#x52A1;&#x6808;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x4EFB;&#x52A1;&#x6808;&#x91C7;&#x7528;&#x201C;&#x540E;&#x8FDB;&#x5148;&#x51FA;&#x201D;&#x7684;&#x6808;&#x7ED3;&#x6784;&#x3002;&#x5982;&#xFF1A;<br>&#x5F53; Activity &#x542F;&#x52A8;&#x53E6;&#x4E00;&#x4E2A; Activity &#x65F6;&#xFF0C;&#x8BE5;&#x65B0; Activity &#x4F1A;&#x88AB;&#x63A8;&#x9001;&#x5230;&#x5806;&#x6808;&#x9876;&#x90E8;&#xFF0C;&#x6210;&#x4E3A;&#x7126;&#x70B9;&#x6240;&#x5728;&#x3002; &#x524D;&#x4E00;&#x4E2A; Activity &#x4ECD;&#x4FDD;&#x7559;&#x5728;&#x5806;&#x6808;&#x4E2D;&#xFF0C;&#x4F46;&#x662F;&#x5904;&#x4E8E;&#x505C;&#x6B62;&#x72B6;&#x6001;&#x3002;Activity &#x505C;&#x6B62;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x4FDD;&#x6301;&#x5176;&#x7528;&#x6237;&#x754C;&#x9762;&#x7684;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x3002; &#x7528;&#x6237;&#x6309;&#x201C;&#x8FD4;&#x56DE;&#x201D;&#x6309;&#x94AE;&#x65F6;&#xFF0C;&#x5F53;&#x524D; Activity &#x4F1A;&#x4ECE;&#x5806;&#x6808;&#x9876;&#x90E8;&#x5F39;&#x51FA;&#x5E76;&#x9500;&#x6BC1;&#xFF0C;&#x800C;&#x524D;&#x4E00;&#x4E2A; Activity &#x6062;&#x590D;&#x6267;&#x884C;&#x3002;<br>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0B;&#x5217;&#x51E0;&#x4E2A; Activity &#x5C5E;&#x6027;&#x4FEE;&#x6539;&#x6B64;&#x884C;&#x4E3A;&#xFF1A;</p>
+<h1 id="&#x6E05;&#x7406;&#x4EFB;&#x52A1;&#x6808;"><a href="#&#x6E05;&#x7406;&#x4EFB;&#x52A1;&#x6808;" class="headerlink" title="&#x6E05;&#x7406;&#x4EFB;&#x52A1;&#x6808;"></a>&#x6E05;&#x7406;&#x4EFB;&#x52A1;&#x6808;</h1><p>&#x5982;&#x679C;&#x7528;&#x6237;&#x957F;&#x65F6;&#x95F4;&#x79BB;&#x5F00;&#x4EFB;&#x52A1;&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x6E05;&#x9664;&#x6240;&#x6709; Activity &#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x6839; Activity &#x9664;&#x5916;&#x3002; &#x5F53;&#x7528;&#x6237;&#x518D;&#x6B21;&#x8FD4;&#x56DE;&#x5230;&#x4EFB;&#x52A1;&#x65F6;&#xFF0C;&#x4EC5;&#x6062;&#x590D;&#x6839;Activity&#x3002;&#x7CFB;&#x7EDF;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x539F;&#x56E0;&#x662F;&#xFF0C;&#x7ECF;&#x8FC7;&#x5F88;&#x957F;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x80FD;&#x5DF2;&#x7ECF;&#x653E;&#x5F03;&#x4E4B;&#x524D;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x8FD4;&#x56DE;&#x5230;&#x4EFB;&#x52A1;&#x662F;&#x8981;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x65B0;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<ol>
+<li><p>alwaysRetainTaskState<br>&#x5982;&#x679C;&#x5728;&#x4EFB;&#x52A1;&#x7684;&#x6839; Activity &#x4E2D;&#x5C06;&#x6B64;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x4E3A; &#x201C;true&#x201D;&#xFF0C;&#x5373;&#x4F7F;&#x5728;&#x5F88;&#x957F;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#xFF0C;&#x4EFB;&#x52A1;&#x4ECD;&#x5C06;&#x6240;&#x6709; Activity &#x4FDD;&#x7559;&#x5728;&#x5176;&#x5806;&#x6808;&#x4E2D;&#x3002;</p>
+</li>
+<li><p>clearTaskOnLaunch<br>&#x5982;&#x679C;&#x5728;&#x4EFB;&#x52A1;&#x7684;&#x6839; Activity &#x4E2D;&#x5C06;&#x6B64;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x4E3A; &#x201C;true&#x201D;&#xFF0C;&#x5219;&#x6BCF;&#x5F53;&#x7528;&#x6237;&#x79BB;&#x5F00;&#x4EFB;&#x52A1;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x90FD;&#x4F1A;&#x5C06;&#x5806;&#x6808;&#x6E05;&#x9664;&#x5230;&#x53EA;&#x5269;&#x4E0B;&#x6839; Activity&#x3002;&#x5B83;&#x4E0E; alwaysRetainTaskState &#x6B63;&#x597D;&#x76F8;&#x53CD;&#x3002; &#x5373;&#x4F7F;&#x53EA;&#x79BB;&#x5F00;&#x4EFB;&#x52A1;&#x7247;&#x523B;&#x65F6;&#x95F4;&#xFF0C;&#x7528;&#x6237;&#x4E5F;&#x59CB;&#x7EC8;&#x4F1A;&#x8FD4;&#x56DE;&#x5230;&#x4EFB;&#x52A1;&#x7684;&#x521D;&#x59CB;&#x72B6;&#x6001;&#x3002;</p>
+</li>
+<li><p>finishOnTaskLaunch<br>&#x6B64;&#x5C5E;&#x6027;&#x7C7B;&#x4F3C;&#x4E8E; clearTaskOnLaunch&#xFF0C;&#x4F46;&#x5B83;&#x5BF9;&#x5355;&#x4E2A; Activity &#x8D77;&#x4F5C;&#x7528;&#xFF0C;&#x800C;&#x975E;&#x6574;&#x4E2A;&#x4EFB;&#x52A1;&#x3002;&#x5982;&#x8BBE;&#x7F6E;&#x4E3A; true &#x7528;&#x6237;&#x4E00;&#x65E6;&#x79BB;&#x5F00;&#x4E86;&#x5F53;&#x524D;&#x4EFB;&#x52A1;&#xFF0C;&#x518D;&#x6B21;&#x8FD4;&#x56DE;&#x65F6;&#x8FD9;&#x4E2A;Activity&#x5C31;&#x4F1A;&#x88AB;&#x6E05;&#x9664;&#x6389;&#x3002;</p>
+</li>
+</ol>
+<h1 id="TaskAffinity-&#x5173;&#x8054;&#x5904;&#x7406;"><a href="#TaskAffinity-&#x5173;&#x8054;&#x5904;&#x7406;" class="headerlink" title="TaskAffinity &#x5173;&#x8054;&#x5904;&#x7406;"></a>TaskAffinity &#x5173;&#x8054;&#x5904;&#x7406;</h1><p>&#x201C;&#x5173;&#x8054;&#x201D;&#x6307; Activity &#x4F18;&#x5148;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x4EFB;&#x52A1;&#x3002; &#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Activity &#x6CA1;&#x6709;&#x6307;&#x660E; taskAffinity&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x5C31;&#x7B49;&#x4E8E; Application &#x6307;&#x660E;&#x7684;taskAffinity&#xFF0C;&#x5982; Application &#x4E5F;&#x6CA1;&#x6709;&#x6307;&#x660E;&#xFF0C;&#x90A3;&#x4E48;&#x8BE5; taskAffinity &#x7684;&#x503C;&#x5C31;&#x7B49;&#x4E8E;&#x5E94;&#x7528;&#x7684;&#x5305;&#x540D;&#x3002;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x7684;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x4E3A;&#x4EFB;&#x610F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4F46;&#x662F;&#x5FC5;&#x987B;&#x81F3;&#x5C11;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x201D;.&#x201D;&#x3002;&#x5728;&#x4E0D;&#x540C;&#x5E94;&#x7528;&#x4E2D;&#x5B9A;&#x4E49;&#x7684; Activity &#x53EF;&#x4EE5;&#x5171;&#x4EAB;&#x5173;&#x8054;&#xFF0C;&#x6216;&#x8005;&#x53EF;&#x4E3A;&#x5728;&#x540C;&#x4E00;&#x5E94;&#x7528;&#x4E2D;&#x5B9A;&#x4E49; Activity &#x5206;&#x914D;&#x4E0D;&#x540C;&#x7684;&#x4EFB;&#x52A1;&#x5173;&#x8054;&#x3002;</p>
+<p>&#x5728;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5173;&#x8054;&#x4F1A;&#x8D77;&#x4F5C;&#x7528;&#xFF1A;</p>
+<ol>
+<li><p>&#x5982;&#x679C;&#x52A0;&#x8F7D;&#x67D0;&#x4E2A; Activity &#x7684; intent&#xFF0C;Flag &#x88AB;&#x8BBE;&#x7F6E;&#x6210; FLAG_ACTIVITY_NEW_TASK&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x9996;&#x5148;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5B58;&#x5728;&#x4E0E;&#x81EA;&#x5DF1; taskAffinity &#x76F8;&#x540C;&#x7684; Task&#xFF0C;&#x5982;&#x679C;&#x5B58;&#x5728;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x4F1A;&#x76F4;&#x63A5;&#x5BBF;&#x4E3B;&#x5230;&#x8BE5;Task&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x5219;&#x91CD;&#x65B0;&#x521B;&#x5EFA; Task&#x3002; </p>
+</li>
+<li><p>&#x5982;&#x679C;&#x8BE5; Activity &#x7684; allowTaskReparenting &#x8BBE;&#x7F6E;&#x4E3A; true&#xFF0C;&#x5B83;&#x8FDB;&#x5165;&#x540E;&#x53F0;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x548C;&#x5B83;&#x6709;&#x76F8;&#x540C; affinity &#x7684; Task &#x8FDB;&#x5165;&#x524D;&#x53F0;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x91CD;&#x65B0;&#x5BBF;&#x4E3B;&#xFF0C;&#x8FDB;&#x5165;&#x5230;&#x8BE5;&#x524D;&#x53F0;&#x7684; task &#x4E2D;&#x3002; </p>
+</li>
+</ol>
+<h1 id="&#x53C2;&#x6570;&#x4F20;&#x9012;"><a href="#&#x53C2;&#x6570;&#x4F20;&#x9012;" class="headerlink" title="&#x53C2;&#x6570;&#x4F20;&#x9012;"></a>&#x53C2;&#x6570;&#x4F20;&#x9012;</h1><h2 id="&#x53D1;&#x9001;&#x53C2;&#x6570;"><a href="#&#x53D1;&#x9001;&#x53C2;&#x6570;" class="headerlink" title="&#x53D1;&#x9001;&#x53C2;&#x6570;"></a>&#x53D1;&#x9001;&#x53C2;&#x6570;</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Activity1 &#x4E2D;&#x542F;&#x52A8; Activity2 &#x5E76;&#x53D1;&#x9001;&#x53C2;&#x6570;</span></span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>,Activity2.class);</span><br><span class="line">intent.putExtra(<span class="string">&quot;zsp&quot;</span>, <span class="string">&quot;zsp&quot;</span>);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+<h2 id="&#x63A5;&#x6536;&#x53C2;&#x6570;"><a href="#&#x63A5;&#x6536;&#x53C2;&#x6570;" class="headerlink" title="&#x63A5;&#x6536;&#x53C2;&#x6570;"></a>&#x63A5;&#x6536;&#x53C2;&#x6570;</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Activity2 &#x4E2D; onCreate() &#x63A5;&#x6536;&#x53C2;&#x6570;</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{</span><br><span class="line">	Intent intent = getIntent();</span><br><span class="line">	String nameString = intent.getStringExtra(<span class="string">&quot;name&quot;</span>); </span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x7ECF;&#x9A8C;&#x603B;&#x7ED3;&#xFF1A;<br>1.&#x5982;&#x9700;&#x4F20;&#x9012;&#x5927;&#x91CF;&#x5BF9;&#x8C61;&#xFF0C;&#x6700;&#x597D;&#x5C01;&#x88C5;&#x6210;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x5F0F;&#x4F20;&#x9012;&#x3002;&#x4FDD;&#x8BC1;&#x63A5;&#x53E3;&#x6574;&#x6D01;<br>2.&#x5982;&#x4E00;&#x4E2A;&#x516C;&#x5171;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x5F88;&#x591A;&#x4E2A;&#x5730;&#x65B9;&#x89E6;&#x53D1;&#x542F;&#x52A8;&#xFF0C;&#x5E76;&#x63A5;&#x6536;&#x4E0D;&#x540C;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x6700;&#x597D;&#x7EDF;&#x4E00;&#x5728;&#x88AB;&#x542F;&#x52A8;&#x7684; Activity &#x4E2D;&#x63D0;&#x4F9B;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x542F;&#x52A8;&#x5165;&#x53E3;&#x3002;&#x597D;&#x5BF9;&#x8C03;&#x7528;&#x53C2;&#x6570;&#x6709;&#x4E2A;&#x7EDF;&#x4E00;&#x7BA1;&#x7406;&#xFF0C;&#x4E5F;&#x597D;&#x533A;&#x5206;&#x6709;&#x51E0;&#x79CD;&#x53C2;&#x6570;&#x7684;&#x63A5;&#x6536;&#x5F62;&#x5F0F;&#xFF0C;&#x65B9;&#x4FBF;&#x540E;&#x671F;&#x7EF4;&#x62A4;&#x3002;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## &#x8FD4;&#x56DE;&#x53C2;&#x6570;</span><br><span class="line">&#x5728;&#x4E00;&#x4E2A; Activity &#x4E2D;&#xFF0C;&#x5982;&#x9700;&#x6253;&#x5F00;&#x53E6;&#x4E00;&#x4E2A; Activity &#x5E76;&#x7684;&#x5230;&#x5904;&#x7406;&#x7ED3;&#x679C;&#x3002;&#x901A;&#x8FC7; startActivityForResult() &#x542F;&#x52A8;&#x65B0; Activity&#x3002; &#x65B0; Activity &#x5904;&#x7406;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5173;&#x95ED;&#x524D;&#x9700;&#x8981; setResult(int resultCode, Intent data) &#x8BBE;&#x7F6E;&#x5904;&#x7406;&#x7ED3;&#x679C;&#x3002;&#x63A5;&#x6536;&#x7ED3;&#x679C;&#x7684; Activity &#x5B9E;&#x73B0; onActivityResult() &#x65B9;&#x6CD5;&#x5904;&#x7406;&#x8FD4;&#x56DE;&#x3002;</span><br><span class="line"></span><br><span class="line">&#x793A;&#x4F8B;&#xFF1A;</span><br><span class="line">MainActivity &#x4E2D;&#x542F;&#x52A8; OtherActivity &#xFF0C;&#x5E76;&#x63A5;&#x6536; OtherActivity &#x7684;&#x5904;&#x7406;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x3002;</span><br><span class="line">```java</span><br><span class="line">// 100 &#x4E3A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x8BF7;&#x6C42;&#x7801;&#xFF0C;&#x4E00;&#x822C;&#x5B9A;&#x4E49;&#x4E3A;&#x4E00;&#x4E2A;&#x5E38;&#x91CF;&#xFF0C;&#x7528;&#x6765;&#x63A5;&#x6536;&#x5224;&#x65AD;</span><br><span class="line">startActivityForResult(new Intent(MainActivity.this, OtherActivity.class), 100);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">* @param requestCode &#x8BF7;&#x6C42;&#x7801;&#xFF0C;&#x8C03;&#x7528; startActivityForResult() &#x65F6;&#x4F20;&#x9012;&#x7684;&#x503C;</span><br><span class="line">* @param resultCode &#x7ED3;&#x679C;&#x7801;&#xFF0C;&#x7ED3;&#x679C;&#x7801;&#x7528;&#x4E8E;&#x6807;&#x8BC6;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x6765;&#x81EA;&#x54EA;&#x4E2A;&#x65B0;Activity</span><br><span class="line">* @param data &#x56DE;&#x4F20;&#x7ED3;&#x679C;&#x7684;&#x6570;&#x636E;</span><br><span class="line">*/</span><br><span class="line">@Override</span><br><span class="line">protected void onActivityResult(int requestCode, int resultCode, Intent data) {</span><br><span class="line">	//&#x53EF;&#x80FD;&#x63A5;&#x6536;&#x4E0D;&#x540C;&#x7684; Activity &#x5904;&#x7406;&#x7ED3;&#x679C;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x7528; requestCode &#x533A;&#x5206;&#xFF0C;&#x5E76;&#x7528; resultCode &#x5224;&#x65AD;&#x5904;&#x7406;&#x7ED3;&#x679C;&#x72B6;&#x6001;</span><br><span class="line">    if (resultCode == Activity.RESULT_OK &amp;&amp; requestCode == 100) {</span><br><span class="line">        // TODO</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>OtherActivity &#x5904;&#x7406;&#x540E;&#x8FD4;&#x56DE;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line"><span class="comment">//&#x628A;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x5B58;&#x5165; Intent</span></span><br><span class="line">intent.putExtra(<span class="string">&quot;result&quot;</span>, <span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="comment">//&#x8BBE;&#x7F6E;&#x8FD4;&#x56DE;&#x6570;&#x636E;</span></span><br><span class="line">OtherActivity.<span class="keyword">this</span>.setResult(RESULT_OK, intent);</span><br><span class="line"><span class="comment">//&#x5173;&#x95ED;&#x8FD4;&#x56DE;&#x5230; MainActivity&#x3002;</span></span><br><span class="line">OtherActivity.<span class="keyword">this</span>.finish();</span><br><span class="line"><span class="comment">//&#x5173;&#x95ED;&#x540E;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x56DE;&#x8C03; MainActivity &#x7684; onActivityResult &#x65B9;&#x6CD5;&#x5904;&#x7406;&#x7ED3;&#x679C;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="activity-&#x6807;&#x7B7E;&#x5C5E;&#x6027;"><a href="#activity-&#x6807;&#x7B7E;&#x5C5E;&#x6027;" class="headerlink" title="activity &#x6807;&#x7B7E;&#x5C5E;&#x6027;"></a>activity &#x6807;&#x7B7E;&#x5C5E;&#x6027;</h1><p><a href="https://developer.android.google.cn/guide/topics/manifest/activity-element.html#always" target="_blank" rel="external">&#x5B98;&#x65B9;&#x53C2;&#x8003;</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/14/Java笔记：ByteBuffer用法/" rel="next" title="Java笔记：ByteBuffer用法">
+                <i class="fa fa-chevron-left"></i> Java笔记：ByteBuffer用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/18/Android笔记：Intent消息传递/" rel="prev" title="Android笔记：Intent消息传递">
+                Android笔记：Intent消息传递 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar3.png"
+                alt="zsp" />
+            
+              <p class="site-author-name" itemprop="name">zsp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本状态"><span class="nav-number">1.</span> <span class="nav-text">基本状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生命周期"><span class="nav-number">2.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#onCreate"><span class="nav-number">2.1.</span> <span class="nav-text">onCreate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onRestart"><span class="nav-number">2.2.</span> <span class="nav-text">onRestart</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onStart"><span class="nav-number">2.3.</span> <span class="nav-text">onStart</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onResume"><span class="nav-number">2.4.</span> <span class="nav-text">onResume</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onPause"><span class="nav-number">2.5.</span> <span class="nav-text">onPause</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onStop"><span class="nav-number">2.6.</span> <span class="nav-text">onStop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onDestroy"><span class="nav-number">2.7.</span> <span class="nav-text">onDestroy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#保存状态"><span class="nav-number">3.</span> <span class="nav-text">保存状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#横竖屏切换"><span class="nav-number">4.</span> <span class="nav-text">横竖屏切换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动模式"><span class="nav-number">5.</span> <span class="nav-text">启动模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用Flags"><span class="nav-number">6.</span> <span class="nav-text">常用Flags</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#任务栈"><span class="nav-number">7.</span> <span class="nav-text">任务栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#清理任务栈"><span class="nav-number">8.</span> <span class="nav-text">清理任务栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TaskAffinity-关联处理"><span class="nav-number">9.</span> <span class="nav-text">TaskAffinity 关联处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参数传递"><span class="nav-number">10.</span> <span class="nav-text">参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#发送参数"><span class="nav-number">10.1.</span> <span class="nav-text">发送参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接收参数"><span class="nav-number">10.2.</span> <span class="nav-text">接收参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#activity-标签属性"><span class="nav-number">11.</span> <span class="nav-text">activity 标签属性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zsp</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
