@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="Android &amp;#x4E3B;&amp;#x8981;&amp;#x91C7;&amp;#x7528;Java&amp;#x8BED;&amp;#x8A00;&amp;#x7F16;&amp;#x5199;&amp;#xFF0C;Android Sdk&amp;#x5C06;&amp;#x4EE3;&amp;#x7801;&amp;#x6570;&amp;#x636E;&amp;#x548C;&amp;#x8D44;&amp;#x6E90;&amp;#x6253;&amp;#x5305;&amp;#x7F16;&amp;#x8BD1;&amp;#x5230;&amp;">
+<meta name="description" content="Android 主要采用Java语言编写，Android Sdk将代码数据和资源打包编译到一个apk文件中。这个文件也就是 Android 系统的安装文件。程序安装后，每个应用程序都运行在自己的安全沙箱内，以保证应用实现最小权限原则，相互隔离，提供一个安全的运行环境。">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记: 基础知识">
 <meta property="og:url" content="/2017/10/05/Android笔记：基础知识/index.html">
 <meta property="og:site_name" content="Hello World">
-<meta property="og:description" content="Android &amp;#x4E3B;&amp;#x8981;&amp;#x91C7;&amp;#x7528;Java&amp;#x8BED;&amp;#x8A00;&amp;#x7F16;&amp;#x5199;&amp;#xFF0C;Android Sdk&amp;#x5C06;&amp;#x4EE3;&amp;#x7801;&amp;#x6570;&amp;#x636E;&amp;#x548C;&amp;#x8D44;&amp;#x6E90;&amp;#x6253;&amp;#x5305;&amp;#x7F16;&amp;#x8BD1;&amp;#x5230;&amp;">
+<meta property="og:description" content="Android 主要采用Java语言编写，Android Sdk将代码数据和资源打包编译到一个apk文件中。这个文件也就是 Android 系统的安装文件。程序安装后，每个应用程序都运行在自己的安全沙箱内，以保证应用实现最小权限原则，相互隔离，提供一个安全的运行环境。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-10-13T16:47:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记: 基础知识">
-<meta name="twitter:description" content="Android &amp;#x4E3B;&amp;#x8981;&amp;#x91C7;&amp;#x7528;Java&amp;#x8BED;&amp;#x8A00;&amp;#x7F16;&amp;#x5199;&amp;#xFF0C;Android Sdk&amp;#x5C06;&amp;#x4EE3;&amp;#x7801;&amp;#x6570;&amp;#x636E;&amp;#x548C;&amp;#x8D44;&amp;#x6E90;&amp;#x6253;&amp;#x5305;&amp;#x7F16;&amp;#x8BD1;&amp;#x5230;&amp;">
+<meta name="twitter:description" content="Android 主要采用Java语言编写，Android Sdk将代码数据和资源打包编译到一个apk文件中。这个文件也就是 Android 系统的安装文件。程序安装后，每个应用程序都运行在自己的安全沙箱内，以保证应用实现最小权限原则，相互隔离，提供一个安全的运行环境。">
 
 
 
@@ -320,41 +322,41 @@
       
 
       
-        <p>Android &#x4E3B;&#x8981;&#x91C7;&#x7528;Java&#x8BED;&#x8A00;&#x7F16;&#x5199;&#xFF0C;Android Sdk&#x5C06;&#x4EE3;&#x7801;&#x6570;&#x636E;&#x548C;&#x8D44;&#x6E90;&#x6253;&#x5305;&#x7F16;&#x8BD1;&#x5230;&#x4E00;&#x4E2A;apk&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E5F;&#x5C31;&#x662F; Android &#x7CFB;&#x7EDF;&#x7684;&#x5B89;&#x88C5;&#x6587;&#x4EF6;&#x3002;&#x7A0B;&#x5E8F;&#x5B89;&#x88C5;&#x540E;&#xFF0C;&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x90FD;&#x8FD0;&#x884C;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x5B89;&#x5168;&#x6C99;&#x7BB1;&#x5185;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1;&#x5E94;&#x7528;&#x5B9E;&#x73B0;&#x6700;&#x5C0F;&#x6743;&#x9650;&#x539F;&#x5219;&#xFF0C;&#x76F8;&#x4E92;&#x9694;&#x79BB;&#xFF0C;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5B89;&#x5168;&#x7684;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x3002;<br><a id="more"></a></p>
-<h1 id="&#x5E94;&#x7528;&#x7EC4;&#x4EF6;"><a href="#&#x5E94;&#x7528;&#x7EC4;&#x4EF6;" class="headerlink" title="&#x5E94;&#x7528;&#x7EC4;&#x4EF6;"></a>&#x5E94;&#x7528;&#x7EC4;&#x4EF6;</h1><p>Activity:&#x63D0;&#x4F9B;&#x7528;&#x6237;&#x754C;&#x9762;&#x76F8;&#x5173;<br>Service:&#x8FD0;&#x884C;&#x4E8E;&#x540E;&#x53F0;&#xFF0C;&#x4E0D;&#x63D0;&#x4F9B;&#x754C;&#x9762;&#x3002;&#x7528;&#x4E8E;&#x957F;&#x65F6;&#x95F4;&#x8FD0;&#x884C;&#x7684;&#x7EC4;&#x4EF6;<br>ContentProvider:&#x4E3A;&#x5B58;&#x50A8;&#x548C;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x63D0;&#x4F9B;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;,&#x5B9E;&#x73B0;&#x5728;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#x6570;&#x636E;<br>BroadcastReceiver:</p>
-<h1 id="&#x542F;&#x52A8;&#x7EC4;&#x4EF6;"><a href="#&#x542F;&#x52A8;&#x7EC4;&#x4EF6;" class="headerlink" title="&#x542F;&#x52A8;&#x7EC4;&#x4EF6;"></a>&#x542F;&#x52A8;&#x7EC4;&#x4EF6;</h1><p>Activity&#x3001;Service&#x3001;BroadcastReceiver &#x901A;&#x8FC7; Intent &#x7684;&#x5F02;&#x6B65;&#x6D88;&#x606F;&#x542F;&#x52A8;<br>Intent &#x4E0D;&#x4F1A;&#x76F4;&#x63A5;&#x542F;&#x52A8; ContentProvider&#x7EC4;&#x4EF6;&#xFF0C;&#x901A;&#x8FC7;&#x6210;&#x4E3A; ContentResolver &#x7684;&#x8BF7;&#x6C42;&#x76EE;&#x6807;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x5728; ContentResolver &#x5BF9;&#x8C61;&#x4E0A;&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#xFF0C;&#x4F7F;&#x8BF7;&#x6C42;&#x4E0E;&#x7EC4;&#x4EF6;&#x95F4;&#x7559;&#x51FA;&#x62BD;&#x8C61;&#x5C42;&#xFF0C;&#x786E;&#x4FDD;&#x5B89;&#x5168;&#x3002;<br>Intent &#x53EF;&#x4EE5;&#x662F;&#x663E;&#x793A;&#x7684;&#xFF0C;&#x5728;&#x6E05;&#x5355;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x901A;&#x8FC7;&#x7EC4;&#x4EF6;&#x7C7B;&#x540D;&#x6267;&#x884C;&#x64CD;&#x4F5C;&#x3002;<br>&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x9690;&#x5F0F;&#x7684;&#xFF0C;&#x5728;&#x6E05;&#x5355;&#x6587;&#x4EF6;&#x7528;&lt;intent-filter&gt;&#x6807;&#x7B7E;&#x8FC7;&#x6EE4;&#x5668;&#x7C7B;&#x578B;&#x5339;&#x914D;&#x6267;&#x884C;&#x3002;</p>
+        <p>Android 主要采用Java语言编写，Android Sdk将代码数据和资源打包编译到一个apk文件中。这个文件也就是 Android 系统的安装文件。程序安装后，每个应用程序都运行在自己的安全沙箱内，以保证应用实现最小权限原则，相互隔离，提供一个安全的运行环境。<br><a id="more"></a></p>
+<h1 id="应用组件"><a href="#应用组件" class="headerlink" title="应用组件"></a>应用组件</h1><p>Activity:提供用户界面相关<br>Service:运行于后台，不提供界面。用于长时间运行的组件<br>ContentProvider:为存储和获取数据提供统一的接口,实现在应用程序之间共享数据<br>BroadcastReceiver:</p>
+<h1 id="启动组件"><a href="#启动组件" class="headerlink" title="启动组件"></a>启动组件</h1><p>Activity、Service、BroadcastReceiver 通过 Intent 的异步消息启动<br>Intent 不会直接启动 ContentProvider组件，通过成为 ContentResolver 的请求目标时启动，在 ContentResolver 对象上调用方法，使请求与组件间留出抽象层，确保安全。<br>Intent 可以是显示的，在清单文件中，通过组件类名执行操作。<br>也可以是隐式的，在清单文件用&lt;intent-filter&gt;标签过滤器类型匹配执行。</p>
 <blockquote>
 <ul>
-<li>Activity &#x901A;&#x8FC7; startActivity() &#x6216; startActivityForResult() &#x4F20;&#x9012; Intent</li>
-<li>Service&#x901A;&#x8FC7;startService()&#x542F;&#x52A8;bindService()&#x4F20;&#x9012;Intent</li>
-<li>BroadcastReceiver &#x901A;&#x8FC7; sendBroadcast()&#x3001;sendOrderedBroadcast() &#x6216; sendStickyBroadcast() &#x4F20;&#x9012; Intent</li>
-<li>ContentProvider &#x901A;&#x8FC7; ContentResolver &#x4E0A;&#x8C03;&#x7528; query() &#x67E5;&#x8BE2;</li>
+<li>Activity 通过 startActivity() 或 startActivityForResult() 传递 Intent</li>
+<li>Service通过startService()启动bindService()传递Intent</li>
+<li>BroadcastReceiver 通过 sendBroadcast()、sendOrderedBroadcast() 或 sendStickyBroadcast() 传递 Intent</li>
+<li>ContentProvider 通过 ContentResolver 上调用 query() 查询</li>
 </ul>
 </blockquote>
-<h1 id="&#x6E05;&#x5355;&#x6587;&#x4EF6;"><a href="#&#x6E05;&#x5355;&#x6587;&#x4EF6;" class="headerlink" title="&#x6E05;&#x5355;&#x6587;&#x4EF6;"></a>&#x6E05;&#x5355;&#x6587;&#x4EF6;</h1><p>&#x6BCF;&#x4E2A;&#x5E94;&#x7528;&#x6839;&#x76EE;&#x5F55;&#x5FC5;&#x987B;&#x5305;&#x542B;AndroidManifest.xml&#x6587;&#x4EF6;&#xFF0C;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x5E94;&#x7528;&#x524D;&#xFF0C;&#x4F1A;&#x8BFB;&#x53D6;AndroidManifest.xml&#x6587;&#x4EF6;&#x786E;&#x8BA4;&#x7EC4;&#x4EF6;&#x5B58;&#x5728;.<br>&#x4F5C;&#x7528;:</p>
+<h1 id="清单文件"><a href="#清单文件" class="headerlink" title="清单文件"></a>清单文件</h1><p>每个应用根目录必须包含AndroidManifest.xml文件，系统启动应用前，会读取AndroidManifest.xml文件确认组件存在.<br>作用:</p>
 <blockquote>
 <ul>
-<li>&#x4E3A;&#x8F6F;&#x4EF6;&#x5305;&#x547D;&#x540D;&#xFF0C;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x7B26;</li>
-<li>&#x58F0;&#x660E;&#x7EC4;&#x4EF6;&#x3001;&#x4EE5;&#x53CA;&#x542F;&#x52A8;&#x6761;&#x4EF6;&#x4FE1;&#x606F;</li>
-<li>&#x786E;&#x5B9A;&#x7EC4;&#x4EF6;&#x7684;&#x8FDB;&#x7A0B;</li>
-<li>&#x786E;&#x5B9A;&#x6743;&#x9650;</li>
-<li>&#x58F0;&#x660E;&#x6700;&#x4F4E;API&#x7EA7;&#x522B;</li>
-<li>&#x58F0;&#x660E;&#x4F7F;&#x7528;&#x8F6F;&#x786C;&#x4EF6;&#x529F;&#x80FD;</li>
-<li>&#x8FDE;&#x63A5;&#x5176;&#x4ED6;API&#x5E93;</li>
-<li>&#x5217;&#x51FA; Instrumentation &#x7C7B;&#xFF0C;&#x5E94;&#x7528;&#x8FD0;&#x884C;&#x65F6;&#x63D0;&#x4F9B;&#x5206;&#x6790;&#x548C;&#x5176;&#x4ED6;&#x4FE1;&#x606F;&#xFF0C;&#x53D1;&#x5E03;&#x524D;&#x79FB;&#x9664;</li>
+<li>为软件包命名，唯一标识符</li>
+<li>声明组件、以及启动条件信息</li>
+<li>确定组件的进程</li>
+<li>确定权限</li>
+<li>声明最低API级别</li>
+<li>声明使用软硬件功能</li>
+<li>连接其他API库</li>
+<li>列出 Instrumentation 类，应用运行时提供分析和其他信息，发布前移除</li>
 </ul>
 </blockquote>
-<p><strong>&#x6CE8;&#x610F;</strong>&#xFF1A;</p>
+<p><strong>注意</strong>：</p>
 <blockquote>
 <ul>
-<li>&#x5F53;&#x542F;&#x52A8;&#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;Android &#x7CFB;&#x7EDF;&#x4F1A;&#x521B;&#x5EFA;&#x5DF2;&#x547D;&#x540D;&#x5B50;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x3002;&#x5982;&#x679C;&#x672A;&#x6307;&#x5B9A;&#x5B50;&#x7C7B;&#xFF0C;&#x5219;&#x4F1A;&#x521B;&#x5EFA;&#x57FA;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;</li>
-<li>&lt;/manifest&gt; &#x7ED3;&#x675F;&#x6807;&#x8BB0;&#x5FC5;&#x987B;&#x7D27;&#x63A5;&#x5728; &lt;/application&gt; &#x7ED3;&#x675F;&#x6807;&#x8BB0;&#x540E;</li>
-<li>&#x5C5E;&#x6027;&#x503C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x53CC;&#x53CD;&#x659C;&#x6760; (\\) &#x8F6C;&#x4E49;&#x5B57;&#x7B26;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x4F7F;&#x7528; \\n &#x8868;&#x793A;&#x6362;&#x884C;&#x7B26;&#x6216;&#x4F7F;&#x7528; \\uxxxx &#x8868;&#x793A; Unicode &#x5B57;&#x7B26;&#x3002;</li>
-<li>&#x5982;&#x679C;&#x5E94;&#x7528;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x53D7;&#x6743;&#x9650;&#x4FDD;&#x62A4;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F7F;&#x7528; &lt;uses-permission&gt; &#x58F0;&#x660E;&#x9700;&#x8981;&#x8BE5;&#x6743;&#x9650;&#x3002;&#x5E94;&#x7528;&#x5B89;&#x88C5;&#x5230;&#x8BBE;&#x5907;&#x4E0A;&#x540E;&#xFF0C;&#x5B89;&#x88C5;&#x7A0B;&#x5E8F;&#x4F1A;&#x901A;&#x8FC7;<br>&#x68C0;&#x67E5;&#x7B7E;&#x7F72;&#x5E94;&#x7528;&#x8BC1;&#x4E66;&#x7684;&#x9881;&#x53D1;&#x673A;&#x6784;&#x5E76;&#xFF08;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF09;&#x8BE2;&#x95EE;&#x7528;&#x6237;&#xFF0C;&#x786E;&#x5B9A;&#x662F;&#x5426;&#x6388;&#x4E88;&#x8BF7;&#x6C42;&#x7684;&#x6743;&#x9650;&#x3002;&#x5982;&#x679C;&#x6388;&#x4E88;&#x6743;&#x9650;&#xFF0C;&#x5219;&#x5E94;&#x7528;&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x53D7;&#x4FDD;&#x62A4;&#x7684;&#x529F;&#x80FD;&#x3002;<br>&#x5426;&#x5219;&#xFF0C;&#x5176;&#x8BBF;&#x95EE;&#x8FD9;&#x4E9B;&#x529F;&#x80FD;&#x7684;&#x5C1D;&#x8BD5;&#x5C06;&#x4F1A;&#x5931;&#x8D25;&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x4F1A;&#x5411;&#x7528;&#x6237;&#x53D1;&#x9001;&#x4EFB;&#x4F55;&#x901A;&#x77E5;&#x3002;</li>
+<li>当启动组件时，Android 系统会创建已命名子类的实例。如果未指定子类，则会创建基类的实例</li>
+<li>&lt;/manifest&gt; 结束标记必须紧接在 &lt;/application&gt; 结束标记后</li>
+<li>属性值为字符串，必须使用双反斜杠 (\\) 转义字符，例如，使用 \\n 表示换行符或使用 \\uxxxx 表示 Unicode 字符。</li>
+<li>如果应用需要访问受权限保护的功能，使用 &lt;uses-permission&gt; 声明需要该权限。应用安装到设备上后，安装程序会通过<br>检查签署应用证书的颁发机构并（在某些情况下）询问用户，确定是否授予请求的权限。如果授予权限，则应用能够使用受保护的功能。<br>否则，其访问这些功能的尝试将会失败，并且不会向用户发送任何通知。</li>
 </ul>
 </blockquote>
-<h1 id="&#x7EC4;&#x4EF6;&#x58F0;&#x660E;"><a href="#&#x7EC4;&#x4EF6;&#x58F0;&#x660E;" class="headerlink" title="&#x7EC4;&#x4EF6;&#x58F0;&#x660E;"></a>&#x7EC4;&#x4EF6;&#x58F0;&#x660E;</h1><p>&#x57FA;&#x4E8E;Android&#x7CFB;&#x7EDF;&#x7684;&#x8BBE;&#x5907;&#x591A;&#x6837;&#x6027;&#xFF0C;&#x5E76;&#x975E;&#x6240;&#x6709;&#x8BBE;&#x5907;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x7279;&#x6027;&#x548C;&#x529F;&#x80FD;&#xFF0C;&#x4E3A;&#x9632;&#x6B62;&#x5E94;&#x7528;&#x5B89;&#x88C5;&#x5728;&#x7F3A;&#x5C11;&#x6240;&#x9700;&#x7279;&#x6027;&#x7684;&#x8BBE;&#x5907;&#x4E0A;&#xFF0C;&#x5FC5;&#x987B;&#x901A;&#x8FC7;AndroidMainfest&#x6587;&#x4EF6;&#x4E2D;&#x58F0;&#x660E;&#x3002;<br>&#x7CFB;&#x7EDF;&#x4E0D;&#x4F1A;&#x8BFB;&#x53D6;&#x8FD9;&#x4E9B;&#x58F0;&#x660E;&#xFF0C;&#x5927;&#x591A;&#x58F0;&#x660E;&#x53EA;&#x662F;&#x63D0;&#x4F9B;&#x4FE1;&#x606F;&#xFF0C;&#x4E3A;&#x5916;&#x90E8;&#x5546;&#x5E97;&#x670D;&#x52A1;&#x8BFB;&#x53D6;&#xFF0C;&#x4E3A;&#x7528;&#x6237;&#x641C;&#x7D22;&#x5E94;&#x7528;&#x65F6;&#x63D0;&#x4F9B;&#x8FC7;&#x6EE4;&#x529F;&#x80FD;&#x3002;<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-feature</span> <span class="attr">android:name</span>=<span class="string">&quot;android.hardware.camera.any&quot;</span></span><br><span class="line">                  <span class="attr">android:required</span>=<span class="string">&quot;true&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-sdk</span> <span class="attr">android:minSdkVersion</span>=<span class="string">&quot;7&quot;</span> <span class="attr">android:targetSdkVersion</span>=<span class="string">&quot;19&quot;</span> &gt;</span></span><br><span class="line">   ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>&#x6CA1;&#x6709;&#x76F8;&#x673A;&#x4E14; Android &#x7248;&#x672C;&#x4F4E;&#x4E8E; 2.1 &#x7684;&#x8BBE;&#x5907;&#x5C06;&#x65E0;&#x6CD5;&#x4ECE;&#x5546;&#x5E97;&#x5B89;&#x88C5;&#x5E94;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06; required &#x5C5E;&#x6027;&#x8BBE;&#x4E3A; &#x201C;false&#x201D;&#xFF0C;&#x5E76;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x68C0;&#x67E5;&#x8BBE;&#x5907;&#x662F;&#x5426;&#x5177;&#x6709;&#x76F8;&#x673A;&#xFF0C;&#x6839;&#x636E;&#x9700;&#x8981;&#x505C;&#x7528;&#x4EFB;&#x4F55;&#x76F8;&#x673A;&#x529F;&#x80FD;&#x3002;</p>
+<h1 id="组件声明"><a href="#组件声明" class="headerlink" title="组件声明"></a>组件声明</h1><p>基于Android系统的设备多样性，并非所有设备具有相同的特性和功能，为防止应用安装在缺少所需特性的设备上，必须通过AndroidMainfest文件中声明。<br>系统不会读取这些声明，大多声明只是提供信息，为外部商店服务读取，为用户搜索应用时提供过滤功能。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-feature</span> <span class="attr">android:name</span>=<span class="string">"android.hardware.camera.any"</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">android:required</span>=<span class="string">"true"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-sdk</span> <span class="attr">android:minSdkVersion</span>=<span class="string">"7"</span> <span class="attr">android:targetSdkVersion</span>=<span class="string">"19"</span> &gt;</span></span><br><span class="line">   ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>没有相机且 Android 版本低于 2.1 的设备将无法从商店安装应用，也可以将 required 属性设为 “false”，并在运行时检查设备是否具有相机，根据需要停用任何相机功能。</p>
 
       
     </div>

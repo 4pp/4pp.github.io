@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="&amp;#x7CFB;&amp;#x7EDF;&amp;#x6743;&amp;#x9650;&amp;#x5206;&amp;#x4E3A;&amp;#x5371;&amp;#x9669;&amp;#x6743;&amp;#x9650;&amp;#x548C;&amp;#x6B63;&amp;#x5E38;&amp;#x6743;&amp;#x9650;&amp;#x3002;">
+<meta name="description" content="系统权限分为危险权限和正常权限。">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android笔记: 系统权限">
 <meta property="og:url" content="/2017/10/06/Android笔记：系统权限/index.html">
 <meta property="og:site_name" content="Hello World">
-<meta property="og:description" content="&amp;#x7CFB;&amp;#x7EDF;&amp;#x6743;&amp;#x9650;&amp;#x5206;&amp;#x4E3A;&amp;#x5371;&amp;#x9669;&amp;#x6743;&amp;#x9650;&amp;#x548C;&amp;#x6B63;&amp;#x5E38;&amp;#x6743;&amp;#x9650;&amp;#x3002;">
+<meta property="og:description" content="系统权限分为危险权限和正常权限。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-10-13T16:47:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android笔记: 系统权限">
-<meta name="twitter:description" content="&amp;#x7CFB;&amp;#x7EDF;&amp;#x6743;&amp;#x9650;&amp;#x5206;&amp;#x4E3A;&amp;#x5371;&amp;#x9669;&amp;#x6743;&amp;#x9650;&amp;#x548C;&amp;#x6B63;&amp;#x5E38;&amp;#x6743;&amp;#x9650;&amp;#x3002;">
+<meta name="twitter:description" content="系统权限分为危险权限和正常权限。">
 
 
 
@@ -320,315 +322,315 @@
       
 
       
-        <p>&#x7CFB;&#x7EDF;&#x6743;&#x9650;&#x5206;&#x4E3A;&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6B63;&#x5E38;&#x6743;&#x9650;&#x3002;<br><a id="more"></a></p>
-<h1 id="&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;"><a href="#&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;"></a>&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x6743;&#x9650;&#x8BF4;&#x660E;</h1><table>
+        <p>系统权限分为危险权限和正常权限。<br><a id="more"></a></p>
+<h1 id="系统提供的权限说明"><a href="#系统提供的权限说明" class="headerlink" title="系统提供的权限说明"></a>系统提供的权限说明</h1><table>
 <thead>
 <tr>
-<th style="text-align:left">&#x7CFB;&#x7EDF;&#x6743;&#x9650;&#x8868;</th>
+<th style="text-align:left">系统权限表</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><font color="#337FFF">ACCESS_CHECKIN_PROPERTIES</font> &#x8BBF;&#x95EE;&#x767B;&#x8BB0;&#x5C5E;&#x6027;</td>
+<td style="text-align:left"><font color="#337FFF">ACCESS_CHECKIN_PROPERTIES</font> 访问登记属性</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x8BFB;&#x53D6;&#x6216;&#x5199;&#x5165;&#x767B;&#x8BB0;check-in&#x6570;&#x636E;&#x5E93;&#x5C5E;&#x6027;&#x8868;&#x7684;&#x6743;&#x9650;</td>
+<td style="text-align:left">读取或写入登记check-in数据库属性表的权限</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">ACCESS_COARSE_LOCATION</font> &#x83B7;&#x53D6;&#x7C97;&#x7565;&#x4F4D;&#x7F6E;</td>
+<td style="text-align:left"><font color="#337FFF">ACCESS_COARSE_LOCATION</font> 获取粗略位置</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x901A;&#x8FC7;WiFi&#x6216;&#x79FB;&#x52A8;&#x57FA;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;&#x83B7;&#x53D6;&#x7528;&#x6237;&#x9519;&#x7565;&#x7684;&#x7ECF;&#x7EAC;&#x5EA6;&#x4FE1;&#x606F;&#xFF0C;&#x5B9A;&#x4F4D;&#x7CBE;&#x5EA6;&#x5927;&#x6982;&#x8BEF;&#x5DEE;&#x5728;30~1500&#x7C73;</td>
+<td style="text-align:left">通过WiFi或移动基站的方式获取用户错略的经纬度信息，定位精度大概误差在30~1500米</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">ACCESS_FINE_LOCATION</font> &#x83B7;&#x53D6;&#x7CBE;&#x786E;&#x4F4D;&#x7F6E;</td>
+<td style="text-align:left"><font color="#337FFF">ACCESS_FINE_LOCATION</font> 获取精确位置</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x901A;&#x8FC7;GPS&#x82AF;&#x7247;&#x63A5;&#x6536;&#x536B;&#x661F;&#x7684;&#x5B9A;&#x4F4D;&#x4FE1;&#x606F;&#xFF0C;&#x5B9A;&#x4F4D;&#x7CBE;&#x5EA6;&#x8FBE;10&#x7C73;&#x4EE5;&#x5185;</td>
+<td style="text-align:left">通过GPS芯片接收卫星的定位信息，定位精度达10米以内</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">ACCESS_LOCATION_EXTRA_COMMANDS</font> &#x8BBF;&#x95EE;&#x5B9A;&#x4F4D;&#x989D;&#x5916;&#x547D;&#x4EE4;</td>
+<td style="text-align:left"><font color="#337FFF">ACCESS_LOCATION_EXTRA_COMMANDS</font> 访问定位额外命令</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;&#x989D;&#x5916;&#x7684;&#x5B9A;&#x4F4D;&#x63D0;&#x4F9B;&#x8005;&#x6307;&#x4EE4;</td>
+<td style="text-align:left">允许程序访问额外的定位提供者指令</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">ACCESS_NETWORK_STATE</font> &#x83B7;&#x53D6;&#x7F51;&#x7EDC;&#x641C;&#x7D22;&#x72B6;&#x6001;</td>
+<td style="text-align:left"><font color="#337FFF">ACCESS_NETWORK_STATE</font> 获取网络搜索状态</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x83B7;&#x53D6;&#x7F51;&#x7EDC;&#x4FE1;&#x606F;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x5F53;&#x524D;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x662F;&#x5426;&#x6709;&#x6548;</td>
+<td style="text-align:left">获取网络信息状态，如当前的网络连接是否有效</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">ACCESS_WIFI_STATE</font> &#x83B7;&#x53D6;WiFi&#x72B6;&#x6001;</td>
+<td style="text-align:left"><font color="#337FFF">ACCESS_WIFI_STATE</font> 获取WiFi状态</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x83B7;&#x53D6;&#x5F53;&#x524D;WiFi&#x63A5;&#x5165;&#x7684;&#x72B6;&#x6001;&#x4EE5;&#x53CA;WLAN&#x70ED;&#x70B9;&#x7684;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">获取当前WiFi接入的状态以及WLAN热点的信息</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">ACCOUNT_MANAGER</font> &#x8D26;&#x6237;&#x7BA1;&#x7406;</td>
+<td style="text-align:left"><font color="#337FFF">ACCOUNT_MANAGER</font> 账户管理</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x83B7;&#x53D6;&#x8D26;&#x6237;&#x9A8C;&#x8BC1;&#x4FE1;&#x606F;&#xFF0C;&#x4E3B;&#x8981;&#x4E3A;GMail&#x8D26;&#x6237;&#x4FE1;&#x606F;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x7EA7;&#x8FDB;&#x7A0B;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x7684;&#x6743;&#x9650;</td>
+<td style="text-align:left">获取账户验证信息，主要为GMail账户信息，只有系统级进程才能访问的权限</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BATTERY_STATS</font> &#x7535;&#x91CF;&#x7EDF;&#x8BA1;</td>
+<td style="text-align:left"><font color="#337FFF">BATTERY_STATS</font> 电量统计</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x83B7;&#x53D6;&#x7535;&#x6C60;&#x7535;&#x91CF;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">获取电池电量统计信息</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BIND_APPWIDGET</font> &#x7ED1;&#x5B9A;&#x5C0F;&#x63D2;&#x4EF6;</td>
+<td style="text-align:left"><font color="#337FFF">BIND_APPWIDGET</font> 绑定小插件</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x544A;&#x8BC9;appWidget&#x670D;&#x52A1;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x5C0F;&#x63D2;&#x4EF6;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x53EA;&#x6709;&#x975E;&#x5E38;&#x5C11;&#x7684;&#x5E94;&#x7528;&#x624D;&#x7528;&#x5230;&#x6B64;&#x6743;&#x9650;    </td>
+<td style="text-align:left">允许一个程序告诉appWidget服务需要访问小插件的数据库，只有非常少的应用才用到此权限    </td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BIND_DEVICE_ADMIN</font> &#x7ED1;&#x5B9A;&#x8BBE;&#x5907;&#x7BA1;&#x7406;</td>
+<td style="text-align:left"><font color="#337FFF">BIND_DEVICE_ADMIN</font> 绑定设备管理</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x8BF7;&#x6C42;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x63A5;&#x6536;&#x8005;receiver&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x4F7F;&#x7528;</td>
+<td style="text-align:left">请求系统管理员接收者receiver，只有系统才能使用</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BIND_INPUT_METHOD</font> &#x7ED1;&#x5B9A;&#x8F93;&#x5165;&#x6CD5;</td>
+<td style="text-align:left"><font color="#337FFF">BIND_INPUT_METHOD</font> 绑定输入法</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x8BF7;&#x6C42;InputMethodService&#x670D;&#x52A1;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x4F7F;&#x7528;</td>
+<td style="text-align:left">请求InputMethodService服务，只有系统才能使用</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BIND_REMOTEVIEWS</font> &#x7ED1;&#x5B9A;RemoteView</td>
+<td style="text-align:left"><font color="#337FFF">BIND_REMOTEVIEWS</font> 绑定RemoteView</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5FC5;&#x987B;&#x901A;&#x8FC7;RemoteViewsService&#x670D;&#x52A1;&#x6765;&#x8BF7;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x7528;</td>
+<td style="text-align:left">必须通过RemoteViewsService服务来请求，只有系统才能用</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BIND_WALLPAPER</font> &#x7ED1;&#x5B9A;&#x58C1;&#x7EB8;</td>
+<td style="text-align:left"><font color="#337FFF">BIND_WALLPAPER</font> 绑定壁纸</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5FC5;&#x987B;&#x901A;&#x8FC7;WallpaperService&#x670D;&#x52A1;&#x6765;&#x8BF7;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x7CFB;&#x7EDF;&#x624D;&#x80FD;&#x7528;</td>
+<td style="text-align:left">必须通过WallpaperService服务来请求，只有系统才能用</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BLUETOOTH</font> &#x4F7F;&#x7528;&#x84DD;&#x7259;</td>
+<td style="text-align:left"><font color="#337FFF">BLUETOOTH</font> 使用蓝牙</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8FDE;&#x63A5;&#x914D;&#x5BF9;&#x8FC7;&#x7684;&#x84DD;&#x7259;&#x8BBE;&#x5907;</td>
+<td style="text-align:left">允许程序连接配对过的蓝牙设备</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BLUETOOTH_ADMIN</font> &#x84DD;&#x7259;&#x7BA1;&#x7406;</td>
+<td style="text-align:left"><font color="#337FFF">BLUETOOTH_ADMIN</font> 蓝牙管理</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8FDB;&#x884C;&#x53D1;&#x73B0;&#x548C;&#x914D;&#x5BF9;&#x65B0;&#x7684;&#x84DD;&#x7259;&#x8BBE;&#x5907;</td>
+<td style="text-align:left">允许程序进行发现和配对新的蓝牙设备</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BROADCAST_PACKAGE_REMOVED</font> &#x5E94;&#x7528;&#x5220;&#x9664;&#x65F6;&#x5E7F;&#x64AD;</td>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_PACKAGE_REMOVED</font> 应用删除时广播</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5F53;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x5728;&#x5220;&#x9664;&#x65F6;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+<td style="text-align:left">当一个应用在删除时触发一个广播</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BROADCAST_SMS</font> &#x6536;&#x5230;&#x77ED;&#x4FE1;&#x65F6;&#x5E7F;&#x64AD;</td>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_SMS</font> 收到短信时广播</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5F53;&#x6536;&#x5230;&#x77ED;&#x4FE1;&#x65F6;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+<td style="text-align:left">当收到短信时触发一个广播</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BROADCAST_STICKY</font> &#x8FDE;&#x7EED;&#x5E7F;&#x64AD;</td>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_STICKY</font> 连续广播</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x6536;&#x5230;&#x5E7F;&#x64AD;&#x540E;&#x5FEB;&#x901F;&#x6536;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+<td style="text-align:left">允许一个程序收到广播后快速收到下一个广播</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">BROADCAST_WAP_PUSH</font> WAP PUSH&#x5E7F;&#x64AD;</td>
+<td style="text-align:left"><font color="#337FFF">BROADCAST_WAP_PUSH</font> WAP PUSH广播</td>
 </tr>
 <tr>
-<td style="text-align:left">WAP PUSH&#x670D;&#x52A1;&#x6536;&#x5230;&#x540E;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x5E7F;&#x64AD;</td>
+<td style="text-align:left">WAP PUSH服务收到后触发一个广播</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CALL_PHONE</font> &#x62E8;&#x6253;&#x7535;&#x8BDD;</td>
+<td style="text-align:left"><font color="#337FFF">CALL_PHONE</font> 拨打电话</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x4ECE;&#x975E;&#x7CFB;&#x7EDF;&#x62E8;&#x53F7;&#x5668;&#x91CC;&#x8F93;&#x5165;&#x7535;&#x8BDD;&#x53F7;&#x7801;</td>
+<td style="text-align:left">允许程序从非系统拨号器里输入电话号码</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CALL_PRIVILEGED</font> &#x901A;&#x8BDD;&#x6743;&#x9650;</td>
+<td style="text-align:left"><font color="#337FFF">CALL_PRIVILEGED</font> 通话权限</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x62E8;&#x6253;&#x7535;&#x8BDD;&#xFF0C;&#x66FF;&#x6362;&#x7CFB;&#x7EDF;&#x7684;&#x62E8;&#x53F7;&#x5668;&#x754C;&#x9762;</td>
+<td style="text-align:left">允许程序拨打电话，替换系统的拨号器界面</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CAMERA</font> &#x62CD;&#x7167;&#x6743;&#x9650;</td>
+<td style="text-align:left"><font color="#337FFF">CAMERA</font> 拍照权限</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x6444;&#x50CF;&#x5934;&#x8FDB;&#x884C;&#x62CD;&#x7167;</td>
+<td style="text-align:left">允许访问摄像头进行拍照</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CHANGE_COMPONENT_ENABLED_STATE</font> &#x6539;&#x53D8;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;</td>
+<td style="text-align:left"><font color="#337FFF">CHANGE_COMPONENT_ENABLED_STATE</font> 改变组件状态</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x6539;&#x53D8;&#x7EC4;&#x4EF6;&#x662F;&#x5426;&#x542F;&#x7528;&#x72B6;&#x6001;</td>
+<td style="text-align:left">改变组件是否启用状态</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CHANGE_CONFIGURATION</font> &#x6539;&#x53D8;&#x914D;&#x7F6E;</td>
+<td style="text-align:left"><font color="#337FFF">CHANGE_CONFIGURATION</font> 改变配置</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x5F53;&#x524D;&#x5E94;&#x7528;&#x6539;&#x53D8;&#x914D;&#x7F6E;&#xFF0C;&#x5982;&#x5B9A;&#x4F4D;</td>
+<td style="text-align:left">允许当前应用改变配置，如定位</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CHANGE_NETWORK_STATE</font> &#x6539;&#x53D8;&#x7F51;&#x7EDC;&#x72B6;&#x6001;</td>
+<td style="text-align:left"><font color="#337FFF">CHANGE_NETWORK_STATE</font> 改变网络状态</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x6539;&#x53D8;&#x7F51;&#x7EDC;&#x72B6;&#x6001;&#x5982;&#x662F;&#x5426;&#x80FD;&#x8054;&#x7F51;</td>
+<td style="text-align:left">改变网络状态如是否能联网</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CHANGE_WIFI_MULTICAST_STATE</font> &#x6539;&#x53D8;WiFi&#x591A;&#x64AD;&#x72B6;&#x6001;</td>
+<td style="text-align:left"><font color="#337FFF">CHANGE_WIFI_MULTICAST_STATE</font> 改变WiFi多播状态</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x6539;&#x53D8;WiFi&#x591A;&#x64AD;&#x72B6;&#x6001;</td>
+<td style="text-align:left">改变WiFi多播状态</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CHANGE_WIFI_STATE</font> &#x6539;&#x53D8;WiFi&#x72B6;&#x6001;</td>
+<td style="text-align:left"><font color="#337FFF">CHANGE_WIFI_STATE</font> 改变WiFi状态</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x6539;&#x53D8;WiFi&#x72B6;&#x6001;</td>
+<td style="text-align:left">改变WiFi状态</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CLEAR_APP_CACHE</font> &#x6E05;&#x9664;&#x5E94;&#x7528;&#x7F13;&#x5B58;</td>
+<td style="text-align:left"><font color="#337FFF">CLEAR_APP_CACHE</font> 清除应用缓存</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x6E05;&#x9664;&#x5E94;&#x7528;&#x7F13;&#x5B58;</td>
+<td style="text-align:left">清除应用缓存</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">CONTROL_LOCATION_UPDATES</font> &#x63A7;&#x5236;&#x5B9A;&#x4F4D;&#x66F4;&#x65B0;</td>
+<td style="text-align:left"><font color="#337FFF">CONTROL_LOCATION_UPDATES</font> 控制定位更新</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x83B7;&#x5F97;&#x79FB;&#x52A8;&#x7F51;&#x7EDC;&#x5B9A;&#x4F4D;&#x4FE1;&#x606F;&#x6539;&#x53D8;</td>
+<td style="text-align:left">允许获得移动网络定位信息改变</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">DELETE_CACHE_FILES</font> &#x5220;&#x9664;&#x7F13;&#x5B58;&#x6587;&#x4EF6;</td>
+<td style="text-align:left"><font color="#337FFF">DELETE_CACHE_FILES</font> 删除缓存文件</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x5E94;&#x7528;&#x5220;&#x9664;&#x7F13;&#x5B58;&#x6587;&#x4EF6;</td>
+<td style="text-align:left">允许应用删除缓存文件</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">DELETE_PACKAGES</font> &#x5220;&#x9664;&#x5E94;&#x7528;</td>
+<td style="text-align:left"><font color="#337FFF">DELETE_PACKAGES</font> 删除应用</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x5220;&#x9664;&#x5E94;&#x7528;</td>
+<td style="text-align:left">允许程序删除应用</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">DIAGNOSTIC</font> &#x5E94;&#x7528;&#x8BCA;&#x65AD;</td>
+<td style="text-align:left"><font color="#337FFF">DIAGNOSTIC</font> 应用诊断</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x5230;RW&#x5230;&#x8BCA;&#x65AD;&#x8D44;&#x6E90;</td>
+<td style="text-align:left">允许程序到RW到诊断资源</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">DISABLE_KEYGUARD</font> &#x7981;&#x7528;&#x952E;&#x76D8;&#x9501;</td>
+<td style="text-align:left"><font color="#337FFF">DISABLE_KEYGUARD</font> 禁用键盘锁</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x7981;&#x7528;&#x952E;&#x76D8;&#x9501;</td>
+<td style="text-align:left">允许程序禁用键盘锁</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">DUMP</font> &#x8F6C;&#x5B58;&#x7CFB;&#x7EDF;&#x4FE1;&#x606F;</td>
+<td style="text-align:left"><font color="#337FFF">DUMP</font> 转存系统信息</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x83B7;&#x53D6;&#x7CFB;&#x7EDF;dump&#x4FE1;&#x606F;&#x4ECE;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;</td>
+<td style="text-align:left">允许程序获取系统dump信息从系统服务</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">EXPAND_STATUS_BAR&gt;</font> &#x72B6;&#x6001;&#x680F;&#x63A7;&#x5236;</td>
+<td style="text-align:left"><font color="#337FFF">EXPAND_STATUS_BAR&gt;</font> 状态栏控制</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x6269;&#x5C55;&#x6216;&#x6536;&#x7F29;&#x72B6;&#x6001;&#x680F;</td>
+<td style="text-align:left">允许程序扩展或收缩状态栏</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">FACTORY_TEST</font> &#x5DE5;&#x5382;&#x6D4B;&#x8BD5;&#x6A21;&#x5F0F;</td>
+<td style="text-align:left"><font color="#337FFF">FACTORY_TEST</font> 工厂测试模式</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x5DE5;&#x5382;&#x6D4B;&#x8BD5;&#x6A21;&#x5F0F;</td>
+<td style="text-align:left">允许程序运行工厂测试模式</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">GET_ACCOUNTS</font> &#x8BBF;&#x95EE;&#x8D26;&#x6237;Gmail&#x5217;&#x8868;</td>
+<td style="text-align:left"><font color="#337FFF">GET_ACCOUNTS</font> 访问账户Gmail列表</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x8BBF;&#x95EE;GMail&#x8D26;&#x6237;&#x5217;&#x8868;</td>
+<td style="text-align:left">访问GMail账户列表</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">GET_PACKAGE_SIZE</font> &#x83B7;&#x53D6;&#x5E94;&#x7528;&#x5927;&#x5C0F;</td>
+<td style="text-align:left"><font color="#337FFF">GET_PACKAGE_SIZE</font> 获取应用大小</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x83B7;&#x53D6;&#x5E94;&#x7528;&#x7684;&#x6587;&#x4EF6;&#x5927;&#x5C0F;</td>
+<td style="text-align:left">获取应用的文件大小</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">GET_TASKS</font> &#x83B7;&#x53D6;&#x4EFB;&#x52A1;&#x4FE1;&#x606F;</td>
+<td style="text-align:left"><font color="#337FFF">GET_TASKS</font> 获取任务信息</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x6216;&#x6700;&#x8FD1;&#x8FD0;&#x884C;&#x7684;&#x5E94;&#x7528;</td>
+<td style="text-align:left">允许程序获取当前或最近运行的应用</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">GLOBAL_SEARCH</font> &#x5141;&#x8BB8;&#x5168;&#x5C40;&#x641C;&#x7D22;</td>
+<td style="text-align:left"><font color="#337FFF">GLOBAL_SEARCH</font> 允许全局搜索</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;&#x5168;&#x5C40;&#x641C;&#x7D22;&#x529F;&#x80FD;</td>
+<td style="text-align:left">允许程序使用全局搜索功能</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">INSTALL_LOCATION_PROVIDER</font> &#x5B89;&#x88C5;&#x5B9A;&#x4F4D;&#x63D0;&#x4F9B;</td>
+<td style="text-align:left"><font color="#337FFF">INSTALL_LOCATION_PROVIDER</font> 安装定位提供</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5B89;&#x88C5;&#x5B9A;&#x4F4D;&#x63D0;&#x4F9B;</td>
+<td style="text-align:left">安装定位提供</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">INSTALL_PACKAGES</font> &#x5B89;&#x88C5;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;</td>
+<td style="text-align:left"><font color="#337FFF">INSTALL_PACKAGES</font> 安装应用程序</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x5B89;&#x88C5;&#x5E94;&#x7528;</td>
+<td style="text-align:left">允许程序安装应用</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">INTERNET</font> &#x8BBF;&#x95EE;&#x7F51;&#x7EDC;</td>
+<td style="text-align:left"><font color="#337FFF">INTERNET</font> 访问网络</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x8BBF;&#x95EE;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#xFF0C;&#x53EF;&#x80FD;&#x4EA7;&#x751F;GPRS&#x6D41;&#x91CF;</td>
+<td style="text-align:left">访问网络连接，可能产生GPRS流量</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">KILL_BACKGROUND_PROCESSES</font> &#x7ED3;&#x675F;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;</td>
+<td style="text-align:left"><font color="#337FFF">KILL_BACKGROUND_PROCESSES</font> 结束后台进程</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x8C03;&#x7528;killBackgroundProcesses(String).&#x65B9;&#x6CD5;&#x7ED3;&#x675F;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;</td>
+<td style="text-align:left">允许程序调用killBackgroundProcesses(String).方法结束后台进程</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">MASTER_CLEAR</font> &#x8F6F;&#x683C;&#x5F0F;&#x5316;</td>
+<td style="text-align:left"><font color="#337FFF">MASTER_CLEAR</font> 软格式化</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x5141;&#x8BB8;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x8F6F;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x5220;&#x9664;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">允许程序执行软格式化，删除系统配置信息</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">MODIFY_AUDIO_SETTINGS</font> &#x4FEE;&#x6539;&#x58F0;&#x97F3;&#x8BBE;&#x7F6E;</td>
+<td style="text-align:left"><font color="#337FFF">MODIFY_AUDIO_SETTINGS</font> 修改声音设置</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x4FEE;&#x6539;&#x58F0;&#x97F3;&#x8BBE;&#x7F6E;&#x4FE1;&#x606F;</td>
+<td style="text-align:left">修改声音设置信息</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">MODIFY_PHONE_STATE</font> &#x4FEE;&#x6539;&#x7535;&#x8BDD;&#x72B6;&#x6001;</td>
+<td style="text-align:left"><font color="#337FFF">MODIFY_PHONE_STATE</font> 修改电话状态</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x4FEE;&#x6539;&#x7535;&#x8BDD;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x98DE;&#x884C;&#x6A21;&#x5F0F;&#xFF0C;&#x4F46;&#x4E0D;&#x5305;&#x542B;&#x66FF;&#x6362;&#x7CFB;&#x7EDF;&#x62E8;&#x53F7;&#x5668;&#x754C;&#x9762;</td>
+<td style="text-align:left">修改电话状态，如飞行模式，但不包含替换系统拨号器界面</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">MOUNT_FORMAT_FILESYSTEMS</font> &#x683C;&#x5F0F;&#x5316;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</td>
+<td style="text-align:left"><font color="#337FFF">MOUNT_FORMAT_FILESYSTEMS</font> 格式化文件系统</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x683C;&#x5F0F;&#x5316;&#x53EF;&#x79FB;&#x52A8;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF0C;&#x6BD4;&#x5982;&#x683C;&#x5F0F;&#x5316;&#x6E05;&#x7A7A;SD&#x5361;</td>
+<td style="text-align:left">格式化可移动文件系统，比如格式化清空SD卡</td>
 </tr>
 <tr>
-<td style="text-align:left"><font color="#337FFF">MOUNT_UNMOUNT_FILESYSTEMS</font> &#x6302;&#x8F7D;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</td>
+<td style="text-align:left"><font color="#337FFF">MOUNT_UNMOUNT_FILESYSTEMS</font> 挂载文件系统</td>
 </tr>
 <tr>
-<td style="text-align:left">&#x6302;&#x8F7D;&#x3001;&#x53CD;&#x6302;&#x8F7D;&#x5916;&#x90E8;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</td>
+<td style="text-align:left">挂载、反挂载外部文件系统</td>
 </tr>
 </tbody>
 </table>
-<h1 id="&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;"><a href="#&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;" class="headerlink" title="&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;"></a>&#x5371;&#x9669;&#x6743;&#x9650;&#x548C;&#x6743;&#x9650;&#x7EC4;&#x8868;</h1><table>
+<h1 id="危险权限和权限组表"><a href="#危险权限和权限组表" class="headerlink" title="危险权限和权限组表"></a>危险权限和权限组表</h1><table>
 <thead>
 <tr>
-<th style="text-align:left">&#x6743;&#x9650;&#x7EC4;</th>
-<th style="text-align:left">&#x6743;&#x9650;</th>
+<th style="text-align:left">权限组</th>
+<th style="text-align:left">权限</th>
 </tr>
 </thead>
 <tbody>
@@ -666,7 +668,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="&#x6B63;&#x5E38;&#x6743;&#x9650;"><a href="#&#x6B63;&#x5E38;&#x6743;&#x9650;" class="headerlink" title="&#x6B63;&#x5E38;&#x6743;&#x9650;"></a>&#x6B63;&#x5E38;&#x6743;&#x9650;</h1><ul>
+<h1 id="正常权限"><a href="#正常权限" class="headerlink" title="正常权限"></a>正常权限</h1><ul>
 <li>ACCESS_LOCATION_EXTRA_COMMANDS</li>
 <li>ACCESS_NETWORK_STATE</li>
 <li>ACCESS_NOTIFICATION_POLICY</li>

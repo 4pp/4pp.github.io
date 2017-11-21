@@ -80,11 +80,13 @@
 
 
 <meta name="description" content="动手实践一个多任务多线程的下载续传。断点就是为了记录当前已经下载位置，续传就是可以在断点的位置上可以继续下载，而不用重复下载浪费时间和资源。多任务能够同时下载多个文件，多线程分片下载能够加速下载的时间。">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android实践：多任务多线程下载器">
 <meta property="og:url" content="/2017/11/01/Android实践：多任务多线程下载器/index.html">
 <meta property="og:site_name" content="Hello World">
 <meta property="og:description" content="动手实践一个多任务多线程的下载续传。断点就是为了记录当前已经下载位置，续传就是可以在断点的位置上可以继续下载，而不用重复下载浪费时间和资源。多任务能够同时下载多个文件，多线程分片下载能够加速下载的时间。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/4pp/downloader/blob/master/output/screenshot_1.png?raw=true">
 <meta property="og:image" content="https://github.com/4pp/downloader/blob/master/output/screenshot_2.png?raw=true">
 <meta property="og:image" content="https://github.com/4pp/downloader/blob/master/output/screenshot_3.png?raw=true">
@@ -334,7 +336,7 @@
 <li>使用简单零活方便</li>
 </ol>
 <h1 id="演示截图"><a href="#演示截图" class="headerlink" title="演示截图"></a>演示截图</h1><p><img src="https://github.com/4pp/downloader/blob/master/output/screenshot_1.png?raw=true" alt="图1"><br><img src="https://github.com/4pp/downloader/blob/master/output/screenshot_2.png?raw=true" alt="图2"><br><img src="https://github.com/4pp/downloader/blob/master/output/screenshot_3.png?raw=true" alt="图3"></p>
-<h1 id="演示demo"><a href="#演示demo" class="headerlink" title="演示demo"></a>演示demo</h1><p><a href="https://github.com/4pp/downloader" target="_blank" rel="external">项目地址</a><br><a href="https://raw.githubusercontent.com/4pp/downloader/master/output/demo-release.apk" target="_blank" rel="external">点这里下载Demo的APK</a><br><img src="https://github.com/4pp/downloader/blob/master/output/qrcode.png?raw=true" alt="扫码"></p>
+<h1 id="演示demo"><a href="#演示demo" class="headerlink" title="演示demo"></a>演示demo</h1><p><a href="https://github.com/4pp/downloader" target="_blank" rel="noopener">项目地址</a><br><a href="https://raw.githubusercontent.com/4pp/downloader/master/output/demo-release.apk" target="_blank" rel="noopener">点这里下载Demo的APK</a><br><img src="https://github.com/4pp/downloader/blob/master/output/qrcode.png?raw=true" alt="扫码"></p>
 <h1 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h1><p>对于断点的记录的技术点是数据的持久化，和保存数据格式的设计上。用 sqlite 或用其它的 Android 持久化方式。实现相应的增删改查功能。<br>HTTP1.1 协议（RFC2616）开始支持获取文件的部分内容，这为并行下载以及断点续传提供了技术支持。它通过在 Header 里两个参数实现的，客户端发请求时对应的是 Range ，服务器端响应时对应的是 Content-Range。<br>多任务和多线程，用 java 的线程池来做控制。用队列来管理不同状态下的任务。等待队列-停止队列-下载队列-任务完成队列。同时利用 java RandomAccessFile seek方法跳转到指定位置写入数据。</p>
 <h1 id="下载流程"><a href="#下载流程" class="headerlink" title="下载流程"></a>下载流程</h1><ol>
 <li>添加任务</li>
@@ -375,7 +377,7 @@
 <li>下载文件意外丢失的处理。</li>
 <li>压缩文件自动解压处理</li>
 </ol>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/findumars/p/5745345.html" target="_blank" rel="external">HTTP断点续传（分块传输）https://www.cnblogs.com/findumars/p/5745345.html</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/findumars/p/5745345.html" target="_blank" rel="noopener">HTTP断点续传（分块传输）https://www.cnblogs.com/findumars/p/5745345.html</a></p>
 
       
     </div>
